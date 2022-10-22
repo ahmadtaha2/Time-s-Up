@@ -73,6 +73,12 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
+   - media/logo1.png
+   - media/Profile_image.png
+   - media/chart.png
+   - media/logo2.png
+   - media/logo2_small.png
+   - media/On_Time_logo_circular_transparent.png
    - media/parents_portrait_transparent.png
    - media/User.png
    - media/child_avatar.png
@@ -85,6 +91,8 @@ flutter:
    - media/profile_added1.json #bad one
    - media/wait_to_connect1.json
    - media/wait_to_connect2.json #i think so
+   - media/On_Time.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
