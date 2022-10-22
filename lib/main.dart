@@ -7,6 +7,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_database/firebase_database.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:firebase_database/firebase_database.dart';
+
 import 'package:get/get.dart';
 
 void main() async{
@@ -15,6 +20,13 @@ void main() async{
   runApp(const MyApp());
 
 
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
+
+
+}
 }
 
 final ThemeManager _themeManager = ThemeManager();
