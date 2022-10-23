@@ -8,7 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:pro1/Theme/app_themes.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -33,40 +32,46 @@ class _AccountState extends State<Account> {
   final TextEditingController _emailController = TextEditingController();
 
   //final GlobalKey<FormState> formKey = GlobalKey();
-  final Map<String, String> _authData = {
-    'username': '',
-    'email': '',
-    'password': '',
-  };
-  bool hidden = true;
-   GlobalKey<FormState> formstate = new GlobalKey<FormState>;
-  var musername  , mpassword , memail;
+  //final Map<String, String> _authData = {
+  // 'username': '',
+  // 'email': '',
+  //'password': '',
+  // };
+  GlobalKey<FormState> formstate = new GlobalKey<FormState>();
+  var musername, mpassword, memail, cpassword;
 
-   signUp() async {
-     var formdata = formstate.currentState;
-     if(formdata.validate()) {
+  signUp() async {
+    var formdata = formstate.currentState;
+    if (formdata!.validate()) {
       formdata.save();
 
       try {
-        final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: memail,
           password: mpassword,
         );
-        return credential;
+        return userCredential;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
-          AwesomeDialog(context: context , title: "Erorr" , body: Text("The password provided is too weak."))..show();
+          AwesomeDialog(
+              context: context,
+              title: "Erorr",
+              body: Text("The password provided is too weak."))
+            ..show();
         } else if (e.code == 'email-already-in-use') {
-          AwesomeDialog(context: context , title: "Erorr" , body: Text("The account already exists for that email."))..show();
+          AwesomeDialog(
+              context: context,
+              title: "Erorr",
+              body: Text("The account already exists for that email."))
+            ..show();
         }
       } catch (e) {
         print(e);
       }
-
-    }else{
+    } else {
       print("Not valid");
     }
-
   }
 
   @override
@@ -82,8 +87,6 @@ class _AccountState extends State<Account> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: appLogo(),
-                ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -140,40 +143,13 @@ class _AccountState extends State<Account> {
                           }
                           return null;
                         },
-                        onSaved: (newValue) {
-                          _authData['username'] = newValue!;
-                          _usernameController.text = newValue;
+                        onSaved: (val) {
+                          musername = val;
                         },
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
-                          //username text field
-                          keyboardType: TextInputType.name,
-                          keyboardAppearance: Brightness.dark,
-                          controller: _usernameController,
-
-                          decoration:
-                              _themes.textFormFieldDecoration('Username'),
-                          style: TextStyle(
-                            color: fontColor4,
-                          ),
-                          obscureText: false,
-                          validator: (value) {
-                            if (value!.isEmpty || value.length < 4) {
-                              if (value.isEmpty) {
-                                return 'This field is required!';
-                              } else {
-                                return 'Invalid username';
-                              }
-                            }
-                            return null;
-                          },
-                          onSaved: (newValue) {
-                            _authData['username'] = newValue!;
-                            _usernameController.text = newValue;
-                          },
-                        ),
+                        //onSaved: (newValue) {
+                        // _authData['username'] = newValue!;
+                        //_usernameController.text = newValue;
+                        // },
                       ),
                       const SizedBox(
                         height: 10,
@@ -193,45 +169,14 @@ class _AccountState extends State<Account> {
                           }
                           return null;
                         },
-                        onSaved: (newValue) {
-                          setState(() {
-                            _authData['email'] = newValue!;
-                            _emailController.text = newValue;
-                          });
+                        onSaved: (val) {
+                          memail = val;
                         },
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
-                          //email text field
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          keyboardAppearance: Brightness.dark,
-                          decoration: _themes.textFormFieldDecoration('Email'),
-                          style: TextStyle(
-                            color: fontColor4,
-                          ),
-                          obscureText: false,
-                          validator: (value) {
-                            if (value!.isEmpty ||
-                                !value.contains('@') ||
-                                !value.contains('.com') ||
-                                value.length < 12) {
-                              if (value.isEmpty) {
-                                return 'This field is required!';
-                              } else {
-                                return 'Invalid email';
-                              }
-                            }
-                            return null;
-                          },
-                          onSaved: (newValue) {
-                            setState(() {
-                              _authData['email'] = newValue!;
-                              _emailController.text = newValue;
-                            });
-                          },
-                        ),
+                        //onSaved: (newValue) {
+                        // setState(() {
+                        //_authData['email'] = newValue!;
+                        //  _emailController.text = newValue;});
+                        // },
                       ),
                       const SizedBox(
                         height: 10,
@@ -245,65 +190,17 @@ class _AccountState extends State<Account> {
                           return null;
                         },
                         controller: _passwordController,
-                        onSaved: (newValue) {
-                          setState(() {
-                            _authData['password'] = newValue!;
-                            _passwordController.text = newValue;
-                          });
+                        onSaved: (val) {
+                          mpassword = val;
                         },
+                        //onSaved: (newValue) {
+                        //setState(() {
+                        //_authData['password'] = newValue!;
+                        //   _passwordController.text = newValue;
+                        // });
+                        // },
                         decoration: _themes.textFormFieldDecoration('Password'),
                         obscureText: true,
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
-                          /*password text field*/
-                          keyboardAppearance: Brightness.dark,
-                          keyboardType: TextInputType.visiblePassword,
-                          style: TextStyle(
-                            color: fontColor4,
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty || value.length < 6) {
-                              if (value.isEmpty) {
-                                return 'This field is required!';
-                              } else {
-                                return 'Short password';
-                              }
-                            }
-                            return null;
-                          },
-                          controller: _passwordController,
-                          onSaved: (newValue) {
-                            setState(() {
-                              _authData['password'] = newValue!;
-                              _passwordController.text = newValue;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            labelText: 'Password',
-                            labelStyle: TextStyle(
-                              color: fontColor4,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                hidden
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
-                                color: background5,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  hidden = !hidden;
-                                });
-                              },
-                            ),
-                          ),
-                          obscureText: hidden,
-                        ),
                       ),
                       const SizedBox(
                         height: 10,
@@ -320,64 +217,15 @@ class _AccountState extends State<Account> {
                           }
                           return null;
                         },
-                        onSaved: (newValue) {
-                          setState(() {
-                            _authData['password'] = newValue!;
-                            _confirmedPasswordController.text = newValue;
-                          });
+                        onSaved: (val) {
+                          cpassword = val;
                         },
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
-                          //Confirm password text field
-                          keyboardAppearance: Brightness.dark,
-                          keyboardType: TextInputType.visiblePassword,
-                          controller: _confirmedPasswordController,
-                          style: TextStyle(
-                            color: fontColor4,
-                          ),
-                          decoration: InputDecoration(
-                            labelText: 'Password',
-                            labelStyle: TextStyle(
-                              color: fontColor4,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                hidden
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
-                                color: background5,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  hidden = !hidden;
-                                });
-                              },
-                            ),
-                          ),
-                          obscureText: hidden,
-                          validator: (value) {
-                            if (value!.isEmpty ||
-                                value != _passwordController.text) {
-                              if (value.isEmpty) {
-                                return 'This field is required!';
-                              } else {
-                                return 'Password doesn\'t match';
-                              }
-                            }
-                            return null;
-                          },
-                          onSaved: (newValue) {
-                            setState(() {
-                              _authData['password'] = newValue!;
-                              _confirmedPasswordController.text = newValue;
-                            });
-                          },
-                        ),
+                        // onSaved: (newValue) {
+                        // setState(() {
+                        // _authData['password'] = newValue!;
+                        //_confirmedPasswordController.text = newValue;
+                        // });
+                        //},
                       ),
                       const SizedBox(
                         height: 45,
@@ -386,14 +234,8 @@ class _AccountState extends State<Account> {
                         /**Sign up button */
                         onPressed: () async {
                           userRef.child('password').set(4124);
-                          credential response= await signUp();
-                          if(response != null){
-                          }else{
-                            print("signup is field");
-                          }
-                          final isValid = formKey.currentState!.validate();
-                          test = isValid;
-                          if (isValid) {
+                          UserCredential response = await signUp();
+                          if (response != null) {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -404,8 +246,8 @@ class _AccountState extends State<Account> {
                                     : ((context) => const Account()),
                               ),
                             );
-                            test = isValid;
-                            getData;
+                          } else {
+                            print("signup is field");
                           }
                         },
                         child: _themes.textButtonStyle('SIGN UP'),
