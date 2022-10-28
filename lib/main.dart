@@ -11,14 +11,8 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SafeArea(
-        child: Launch(),
+        child: Launch(), //launch()
       ),
     ); // MaterialApp
   }
 }
-
-/**
- * 
- * Continue Coding and designing in case nothing worked
- * 
- */

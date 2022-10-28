@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Home_Page/Home_Page.dart';
+//import 'package:pro1/Home_Page/Home_Page.dart';
+import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
+import 'package:pro1/Home_Page/Single_User_Version/single_user_home.dart';
+import 'package:pro1/Registration/Forgot_Password/verify_email.dart';
 import 'package:pro1/Registration/account.dart';
-import 'package:pro1/launch.dart';
+import 'package:pro1/Registration/choose_mode.dart';
+//import 'package:pro1/launch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pro1/app_themes.dart';
 
@@ -29,7 +33,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme2,
+        backgroundColor: background1,
         body: Form(
           key: formKey,
           child: SingleChildScrollView(
@@ -51,9 +55,10 @@ class _LoginState extends State<Login> {
                       const Text(
                         'On Time',
                         style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 30),
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 30,
+                        ),
                       ),
                     ],
                   ),
@@ -65,17 +70,8 @@ class _LoginState extends State<Login> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.close_outlined,
-                              color: Colors.blue[900],
-                            ),
-                          )
-                        ],
+                      const SizedBox(
+                        height: 30,
                       ),
                       _themes.title('LOGIN'),
                       _themes.trailing('Sign in to your account'),
@@ -86,6 +82,7 @@ class _LoginState extends State<Login> {
                         //email/username text field
                         controller: _emailInput,
                         keyboardType: TextInputType.emailAddress,
+                        keyboardAppearance: Brightness.dark,
                         decoration:
                             _themes.textFormFieldDecoration('Email/Username'),
                         obscureText: false,
@@ -108,6 +105,7 @@ class _LoginState extends State<Login> {
                       ),
                       TextFormField(
                         //password text field
+                        keyboardAppearance: Brightness.dark,
                         controller: _passwordInput,
                         decoration: _themes.textFormFieldDecoration('Password'),
                         obscureText: true,
@@ -123,10 +121,17 @@ class _LoginState extends State<Login> {
                         },
                       ),
                       Row(
+                        /**Forgot Password link*/
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const VerifyEmail(),
+                                ),
+                              );
+                            },
                             child: Text(
                               'Forgot Password?',
                               style: TextStyle(
@@ -149,7 +154,7 @@ class _LoginState extends State<Login> {
                               MaterialPageRoute(
                                 builder: (_emailInput.text != '' &&
                                         _passwordInput.text != '')
-                                    ? (context) => const MyHomePage()
+                                    ? (context) => swtch()
                                     : ((context) => const Login()),
                               ),
                             );
@@ -192,5 +197,16 @@ class _LoginState extends State<Login> {
     SharedPreferences loginPrefs = await SharedPreferences.getInstance();
     loginPrefs.setString('user', _emailInput.text);
     loginPrefs.setString('password', _passwordInput.text);
+  }
+
+  Widget swtch() {
+    if (userMode == 'family') {
+      return ParentHomePage();
+    }
+    if (userMode == 'personal') {
+      return SingleUserHomePage();
+    } else {
+      return const Login();
+    }
   }
 }

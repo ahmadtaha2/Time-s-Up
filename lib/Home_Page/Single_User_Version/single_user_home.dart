@@ -7,7 +7,6 @@ import 'package:pro1/Home_Page/switch_account.dart';
 import 'package:pro1/Home_Page/website_tab.dart';
 import 'package:pro1/Registration/login.dart';
 import 'package:pro1/launch.dart';
-import 'package:pro1/app_themes.dart';
 
 class SingleUserHomePage extends StatefulWidget {
   @override
@@ -15,7 +14,6 @@ class SingleUserHomePage extends StatefulWidget {
 }
 
 class _SingleUserHomePageState extends State<SingleUserHomePage> {
-  final Themes _themes = Themes();
   bool logIn = true;
   int currentIndex = 0;
   final List<StatefulWidget> _pages = [
@@ -29,34 +27,13 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
     'Website',
   ];
 
-/*
-return Scaffold(
-  drawer: ...,
-  appBar: AppBar(
-    leading: Builder(
-      builder: (BuildContext context) {
-        return IconButton(
-          icon: const Icon(
-            Icons.remove_red_eye_sharp,
-          ),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-          tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-        );
-      },
-    ),
-  ),
-  body: ...,
-);
- */
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: theme2,
         drawer: Drawer(
-          backgroundColor: theme1,
+          backgroundColor: Colors.white,
           child: Column(
             children: <Widget>[
               DrawerHeader(
@@ -89,7 +66,7 @@ return Scaffold(
               ListTile(
                 leading: const Icon(Icons.add_box_outlined),
                 title: const Text('Add account'),
-                onTap: () => Navigator.pushReplacement(
+                onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const AddAccount(),
@@ -99,7 +76,7 @@ return Scaffold(
               ListTile(
                 leading: const Icon(Icons.switch_account_outlined),
                 title: const Text('Switch account'),
-                onTap: () => Navigator.pushReplacement(
+                onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const SwitchAccount(),
@@ -159,10 +136,13 @@ return Scaffold(
               );
             },
           ),
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.all(15),
-              child: Icon(Icons.person),
+              padding: const EdgeInsets.all(15),
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.person),
+              ),
             ),
           ],
         ),
@@ -170,7 +150,7 @@ return Scaffold(
         bottomNavigationBar: GNav(
           onTabChange: (index) => setState(() => currentIndex = index),
           selectedIndex: currentIndex,
-          backgroundColor: theme1,
+          backgroundColor: theme2,
           rippleColor: Colors.white30,
           // the color of the  effect of the click
           hoverColor: Colors.white30,
@@ -182,14 +162,9 @@ return Scaffold(
           iconSize: 24,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           duration: const Duration(milliseconds: 400),
-          color: Colors.black,
+          color: Colors.white,
           tabBackgroundColor: Colors.white60,
           // the back color of the button
-          tabMargin: const EdgeInsets.only(
-            left: 10,
-            bottom: 10,
-            right: 10,
-          ),
           tabs: const [
             GButton(
               icon: Icons.devices_other,

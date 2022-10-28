@@ -13,6 +13,7 @@ class ChooseMode extends StatefulWidget {
 
 // in this variable the user role/mode will be saved
 String userMode = '';
+int userIndex = -1;
 
 class _ChooseModeState extends State<ChooseMode> {
   final Themes _themes = Themes();
@@ -73,6 +74,7 @@ class _ChooseModeState extends State<ChooseMode> {
                         of the app according to user mode chosen */
                         onPressed: () {
                           setState(() {
+                            userIndex = 0;
                             userMode = 'family';
                           });
                           //use this statement to check if the value is stored
@@ -100,6 +102,7 @@ class _ChooseModeState extends State<ChooseMode> {
                         of the app according to user mode chosen */
                         onPressed: () {
                           setState(() {
+                            userIndex = 1;
                             userMode = 'personal';
                           });
                           Navigator.pushReplacement(

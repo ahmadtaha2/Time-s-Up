@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/launch.dart';
+import 'package:pro1/app_themes.dart';
+//import 'package:pro1/launch.dart';
 import 'account.dart';
 import 'login.dart';
 
@@ -15,7 +16,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme2,
+        backgroundColor: background1,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -38,23 +39,9 @@ class _SignUpState extends State<SignUp> {
               const SizedBox(
                 height: 100,
               ),
-              /*Image.asset(
-                'media/images/logo2.png',
-              ),
-              const Text(
-                'Productivity',
-                style: TextStyle(color: Colors.blueAccent, fontSize: 55),
-              ),
-              const Text(
-                'Plus',
-                style: TextStyle(color: Colors.orange, fontSize: 50),
-              ),*/
-              // const Divider(
-              //   color: Colors.transparent,
-              // ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: background2,
                   minimumSize: const Size(200, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -75,7 +62,7 @@ class _SignUpState extends State<SignUp> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: background2,
                   minimumSize: const Size(200, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),

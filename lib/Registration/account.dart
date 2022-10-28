@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pro1/Registration/login.dart';
-import 'package:pro1/launch.dart';
+//import 'package:pro1/launch.dart';
 import 'package:pro1/app_themes.dart';
 
 class Account extends StatefulWidget {
@@ -37,7 +37,7 @@ class _AccountState extends State<Account> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme2,
+        backgroundColor: background1,
         body: Form(
           key: formKey,
           child: SingleChildScrollView(
@@ -74,17 +74,8 @@ class _AccountState extends State<Account> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.close_outlined,
-                              color: Colors.blue[900],
-                            ),
-                          )
-                        ],
+                      const SizedBox(
+                        height: 30,
                       ),
                       _themes.title('SIGN UP'),
                       _themes.trailing('Welcome to On Time'),
@@ -93,6 +84,8 @@ class _AccountState extends State<Account> {
                       ),
                       TextFormField(
                         //username text field
+                        keyboardType: TextInputType.name,
+                        keyboardAppearance: Brightness.dark,
                         controller: _usernameController,
                         decoration: _themes.textFormFieldDecoration('Username'),
                         obscureText: false,
@@ -114,6 +107,7 @@ class _AccountState extends State<Account> {
                         //email text field
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
+                        keyboardAppearance: Brightness.dark,
                         decoration: _themes.textFormFieldDecoration('Email'),
                         obscureText: false,
                         validator: (value) {
@@ -137,6 +131,7 @@ class _AccountState extends State<Account> {
                       ),
                       TextFormField(
                         //password text field
+                        keyboardAppearance: Brightness.dark,
                         validator: (value) {
                           if (value!.length < 6) {
                             return 'Short password';
@@ -158,6 +153,7 @@ class _AccountState extends State<Account> {
                       ),
                       TextFormField(
                         //Confirm password text field
+                        keyboardAppearance: Brightness.dark,
                         controller: _confirmedPasswordController,
                         decoration:
                             _themes.textFormFieldDecoration('Confirm Password'),

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/launch.dart';
+
+Color background1 = const Color.fromRGBO(39, 46, 67, 1);
+Color background2 = const Color.fromRGBO(22, 29, 48, 1);
+Color fontColor = const Color.fromRGBO(180, 180, 180, 1);
 
 class Themes {
   InputDecoration textFormFieldDecoration(String label) {
@@ -20,7 +23,7 @@ class Themes {
         topLeft: Radius.circular(30),
         topRight: Radius.circular(30),
       ),
-      color: theme1,
+      color: background2,
     );
   }
 

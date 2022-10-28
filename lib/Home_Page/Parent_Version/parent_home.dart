@@ -21,25 +21,19 @@ class _ParentHomePageState extends State<ParentHomePage> {
     const App(),
     const Website(),
   ];
-  final List<String> _pagesTitles = [
-    'Device',
-    'App',
-    'Website',
-  ];
 
-//_pages[currentIndex],
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme1,
+        backgroundColor: theme2,
         drawer: Drawer(
-          backgroundColor: theme1,
+          backgroundColor: Colors.white,
           child: Column(
             children: <Widget>[
               DrawerHeader(
-                decoration: const BoxDecoration(
-                  color: Colors.teal,
+                decoration: BoxDecoration(
+                  color: theme2,
                 ),
                 child: Row(
                   children: const [
@@ -67,7 +61,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ListTile(
                 leading: const Icon(Icons.add_box_outlined),
                 title: const Text('Add account'),
-                onTap: () => Navigator.pushReplacement(
+                onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const AddAccount(),
@@ -77,7 +71,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ListTile(
                 leading: const Icon(Icons.switch_account_outlined),
                 title: const Text('Switch account'),
-                onTap: () => Navigator.pushReplacement(
+                onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const SwitchAccount(),
@@ -124,18 +118,34 @@ class _ParentHomePageState extends State<ParentHomePage> {
             ],
           ),
         ),
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              title: Text(_pagesTitles[currentIndex]),
-              backgroundColor: Colors.teal,
+        appBar: AppBar(
+          backgroundColor: theme2,
+          elevation: 0,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: const Icon(Icons.menu),
+              );
+            },
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.person),
+              ),
             ),
           ],
         ),
+        body: _pages[currentIndex],
         bottomNavigationBar: GNav(
           onTabChange: (index) => setState(() => currentIndex = index),
           selectedIndex: currentIndex,
-          backgroundColor: theme1,
+          backgroundColor: theme2,
           rippleColor: Colors.white30,
           // the color of the  effect of the click
           hoverColor: Colors.white30,
@@ -147,8 +157,8 @@ class _ParentHomePageState extends State<ParentHomePage> {
           iconSize: 24,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           duration: const Duration(milliseconds: 400),
-          color: Colors.blueAccent,
-          tabBackgroundColor: Colors.blueAccent[100]!,
+          color: Colors.white,
+          tabBackgroundColor: Colors.white60,
           // the back color of the button
           tabs: const [
             GButton(

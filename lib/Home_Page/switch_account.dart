@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Home_Page/Home_Page.dart';
 import 'package:pro1/Home_Page/add_account.dart';
+import 'package:pro1/Registration/Forgot_Password/verify_email.dart';
 import 'package:pro1/launch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pro1/app_themes.dart';
@@ -49,12 +50,7 @@ class _SwitchAccountState extends State<SwitchAccount> {
                         children: [
                           IconButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const MyHomePage(),
-                                ),
-                              );
+                              Navigator.pop(context);
                             },
                             icon: Icon(
                               Icons.close_outlined,
@@ -72,8 +68,9 @@ class _SwitchAccountState extends State<SwitchAccount> {
                         //email/username text field
                         controller: _emailInput,
                         keyboardType: TextInputType.emailAddress,
+                        keyboardAppearance: Brightness.dark,
                         decoration:
-                            _themes.textFormFieldDecoration('Email/Username'),
+                            _themes.textFormFieldDecoration('Email'),
                         obscureText: false,
                         validator: (value) {
                           if (value!.isEmpty ||
@@ -94,6 +91,7 @@ class _SwitchAccountState extends State<SwitchAccount> {
                       ),
                       TextFormField(
                         //password text field
+                        keyboardAppearance: Brightness.dark,
                         controller: _passwordInput,
                         decoration: _themes.textFormFieldDecoration('Password'),
                         obscureText: true,
@@ -109,10 +107,17 @@ class _SwitchAccountState extends State<SwitchAccount> {
                         },
                       ),
                       Row(
+                        /**Forgot Password Link*/
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const VerifyEmail(),
+                                ),
+                              );
+                            },
                             child: _themes.resetLink('Forgot Password'),
                           ),
                         ],

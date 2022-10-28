@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pro1/Registration/SignUp.dart' as t;
 import 'dart:async';
 
+import 'package:pro1/app_themes.dart';
+
 class Launch extends StatefulWidget {
   const Launch({Key? key}) : super(key: key);
 
@@ -35,7 +37,7 @@ class StartState extends State<Launch> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme2,
+        backgroundColor: background1,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

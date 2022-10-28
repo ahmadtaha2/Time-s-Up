@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Home_Page/Home_Page.dart';
+//import 'package:flutter/services.dart';
+//import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
+//import 'package:pro1/Home_Page/Single_User_Version/single_user_home.dart';
 import 'package:pro1/Home_Page/switch_account.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:pro1/launch.dart';
@@ -16,7 +18,7 @@ class AddAccount extends StatefulWidget {
 class _AddAccountState extends State<AddAccount> {
   final Themes _themes = Themes();
 
-//shared prefrences to capture user inputs
+//shared preferences to capture user inputs
   final TextEditingController _usernameController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
@@ -56,12 +58,7 @@ class _AddAccountState extends State<AddAccount> {
                         children: [
                           IconButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const MyHomePage(),
-                                ),
-                              );
+                              Navigator.pop(context);
                             },
                             icon: Icon(
                               Icons.close_outlined,
@@ -77,6 +74,8 @@ class _AddAccountState extends State<AddAccount> {
                       ),
                       TextFormField(
                         //username text field
+                        keyboardType: TextInputType.name,
+                        keyboardAppearance: Brightness.dark,
                         controller: _usernameController,
                         decoration: _themes.textFormFieldDecoration('Username'),
                         obscureText: false,
@@ -98,6 +97,7 @@ class _AddAccountState extends State<AddAccount> {
                         //email text field
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
+                        keyboardAppearance: Brightness.dark,
                         decoration: _themes.textFormFieldDecoration('Email'),
                         obscureText: false,
                         validator: (value) {
@@ -121,6 +121,7 @@ class _AddAccountState extends State<AddAccount> {
                       ),
                       TextFormField(
                         //password text field
+                        keyboardAppearance: Brightness.dark,
                         controller: _passwordController,
                         decoration: _themes.textFormFieldDecoration('Password'),
                         obscureText: true,
@@ -142,6 +143,7 @@ class _AddAccountState extends State<AddAccount> {
                       ),
                       TextFormField(
                         //Confirm password text field
+                        keyboardAppearance: Brightness.dark,
                         controller: _confirmedPasswordController,
                         decoration:
                             _themes.textFormFieldDecoration('Confirm Password'),
@@ -218,3 +220,4 @@ class _AddAccountState extends State<AddAccount> {
     prefs.setString('password', _passwordController.text);
   }
 }
+
