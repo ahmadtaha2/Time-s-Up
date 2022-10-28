@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 Color background1 = const Color.fromRGBO(39, 46, 67, 1);
 Color background2 = const Color.fromRGBO(22, 29, 48, 1);
-Color fontColor = const Color.fromRGBO(180, 180, 180, 1);
+Color background3 = const Color.fromRGBO(40, 78, 139, 1);
+Color fontColor1 = const Color.fromRGBO(180, 180, 180, 1);
+Color fontColor2 = const Color.fromRGBO(40, 78, 139, 1);
+Color circleImageColor1 = const Color.fromRGBO(255, 202, 165, 1);
+Color circleImageColor2 = const Color.fromRGBO(238, 128, 47, 1);
 
 class Themes {
   InputDecoration textFormFieldDecoration(String label) {
@@ -20,8 +24,8 @@ class Themes {
   BoxDecoration screenDecoration() {
     return BoxDecoration(
       borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(30),
-        topRight: Radius.circular(30),
+        topLeft: Radius.circular(50),
+        topRight: Radius.circular(50),
       ),
       color: background2,
     );
@@ -91,6 +95,15 @@ class Themes {
       txt,
       style: TextStyle(
         color: Colors.orange[700],
+      ),
+    );
+  }
+  Text menuText(String txt){
+    return Text(
+      txt,
+      style: TextStyle(
+        color: fontColor1,
+        fontWeight: FontWeight.bold,
       ),
     );
   }
