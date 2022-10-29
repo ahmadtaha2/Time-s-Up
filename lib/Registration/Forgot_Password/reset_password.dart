@@ -21,12 +21,13 @@ class _ResetPasswordState extends State<ResetPassword> {
     'password': '',
   };
   bool allow = false;
+  bool visible = false;
   final Themes _themes = Themes();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme2,
+        backgroundColor: background1,
         body: Form(
           key: formKey,
           child: SingleChildScrollView(
@@ -121,9 +122,28 @@ class _ResetPasswordState extends State<ResetPassword> {
                             _passwordController.text = newValue;
                           });
                         },
-                        decoration:
-                            _themes.textFormFieldDecoration('New Password'),
-                        obscureText: true,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue[50],
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(color: Colors.blue),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              visible
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                visible = !visible;
+                              });
+                            },
+                          ),
+                        ),
+                        obscureText: visible,
                       ),
                       const SizedBox(
                         height: 20,
@@ -133,9 +153,28 @@ class _ResetPasswordState extends State<ResetPassword> {
                         keyboardAppearance: Brightness.dark,
                         enabled: allow,
                         controller: _confirmedPasswordController,
-                        decoration: _themes
-                            .textFormFieldDecoration('Confirm New Password'),
-                        obscureText: true,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue[50],
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(color: Colors.blue),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              visible
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                visible = !visible;
+                              });
+                            },
+                          ),
+                        ),
+                        obscureText: visible,
                         validator: (value) {
                           if (value!.isEmpty ||
                               value != _passwordController.text) {

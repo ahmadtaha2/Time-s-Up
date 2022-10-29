@@ -33,12 +33,12 @@ class _AddAccountState extends State<AddAccount> {
     'email': '',
     'password': '',
   };
-
+  bool visible =false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme2,
+        backgroundColor: background1,
         body: Form(
           key: formKey,
           child: SingleChildScrollView(
@@ -123,8 +123,28 @@ class _AddAccountState extends State<AddAccount> {
                         //password text field
                         keyboardAppearance: Brightness.dark,
                         controller: _passwordController,
-                        decoration: _themes.textFormFieldDecoration('Password'),
-                        obscureText: true,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue[50],
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(color: Colors.blue),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              visible
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                visible = !visible;
+                              });
+                            },
+                          ),
+                        ),
+                        obscureText: visible,
                         validator: (value) {
                           if (value!.length < 6) {
                             return 'Short password';
@@ -145,9 +165,28 @@ class _AddAccountState extends State<AddAccount> {
                         //Confirm password text field
                         keyboardAppearance: Brightness.dark,
                         controller: _confirmedPasswordController,
-                        decoration:
-                            _themes.textFormFieldDecoration('Confirm Password'),
-                        obscureText: true,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue[50],
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(color: Colors.blue),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              visible
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                visible = !visible;
+                              });
+                            },
+                          ),
+                        ),
+                        obscureText: visible,
                         validator: (value) {
                           if (value != _passwordController.text) {
                             return 'Password doesn\'t match';

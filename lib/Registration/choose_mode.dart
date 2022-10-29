@@ -22,7 +22,7 @@ class _ChooseModeState extends State<ChooseMode> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme2,
+        backgroundColor: background1,
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.only(top: 10),

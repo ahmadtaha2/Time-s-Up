@@ -16,7 +16,7 @@ class _WebsiteState extends State<Website> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: theme2,
+      backgroundColor: background1,
       body: Container(
         height: double.maxFinite,
         width: double.maxFinite,
@@ -27,36 +27,47 @@ class _WebsiteState extends State<Website> {
             Card(
               color: Colors.grey,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)),
+                borderRadius: BorderRadius.circular(30),
+              ),
               child: TextButton(
                 onPressed: () {},
                 child: Row(
                   children: [
                     Icon(
                       Icons.search,
-                      color: theme1,
+                      color: fontColor3,
                     ),
                     Text(
                       'Search',
                       style: TextStyle(
-                          color: theme1,
-                          fontWeight: FontWeight.bold
+                        color: fontColor3,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-            const Center(
+            Center(
               heightFactor: 10,
-              child: Text('Chart'),
+              child: Text(
+                'Chart',
+                style: TextStyle(
+                  color: fontColor1,
+                ),
+              ),
             ),
             Divider(
-              color: Colors.blue[900]!,
+              color: fontColor1,
               thickness: 2,
             ),
-            const ListTile(
-              title: Text('View website Statistics'),
+            ListTile(
+              title: Text(
+                'View device Statistics',
+                style: TextStyle(
+                  color: fontColor1,
+                ),
+              ),
             ),
           ],
         ),

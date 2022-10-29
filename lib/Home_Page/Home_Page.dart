@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pro1/Home_Page/add_account.dart';
 import 'package:pro1/Home_Page/switch_account.dart';
 import 'package:pro1/Registration/login.dart';
+import 'package:pro1/app_themes.dart';
 import 'package:pro1/launch.dart';
 import 'app_tab.dart';
 import 'device_tab.dart';
@@ -43,14 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
-          backgroundColor: theme1,
+          backgroundColor: background1,
           drawer: Drawer(
-            backgroundColor: theme1,
+            backgroundColor: background1,
             child: Column(
               children: <Widget>[
                 DrawerHeader(
                   decoration: BoxDecoration(
-                    color: theme2,
+                    color: background2,
                   ),
                   child: Row(
                     children: const [
@@ -136,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           appBar: AppBar(
-            backgroundColor: theme2,
+            backgroundColor: background2,
             title: Text(
               _pageTitle[_selectedPageIndex],
               style: const TextStyle(fontSize: 18),

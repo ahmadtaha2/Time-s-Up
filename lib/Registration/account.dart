@@ -15,8 +15,6 @@ class Account extends StatefulWidget {
 class _AccountState extends State<Account> {
   final Themes _themes = Themes();
 
-  bool test = false;
-
 //Capture user inputs
   final TextEditingController _usernameController = TextEditingController();
 
@@ -32,7 +30,7 @@ class _AccountState extends State<Account> {
     'email': '',
     'password': '',
   };
-
+  bool visible = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -130,8 +128,9 @@ class _AccountState extends State<Account> {
                         height: 10,
                       ),
                       TextFormField(
-                        //password text field
+                        /*password text field*/
                         keyboardAppearance: Brightness.dark,
+                        keyboardType: TextInputType.visiblePassword,
                         validator: (value) {
                           if (value!.length < 6) {
                             return 'Short password';
@@ -145,8 +144,28 @@ class _AccountState extends State<Account> {
                             _passwordController.text = newValue;
                           });
                         },
-                        decoration: _themes.textFormFieldDecoration('Password'),
-                        obscureText: true,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue[50],
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(color: Colors.blue),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              visible
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                visible = !visible;
+                              });
+                            },
+                          ),
+                        ),
+                        obscureText: visible,
                       ),
                       const SizedBox(
                         height: 10,
@@ -155,9 +174,28 @@ class _AccountState extends State<Account> {
                         //Confirm password text field
                         keyboardAppearance: Brightness.dark,
                         controller: _confirmedPasswordController,
-                        decoration:
-                            _themes.textFormFieldDecoration('Confirm Password'),
-                        obscureText: true,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue[50],
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(color: Colors.blue),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              visible
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                visible = !visible;
+                              });
+                            },
+                          ),
+                        ),
+                        obscureText: visible,
                         validator: (value) {
                           if (value != _passwordController.text) {
                             return 'Password doesn\'t match';
@@ -178,7 +216,6 @@ class _AccountState extends State<Account> {
                         /**Sign up button */
                         onPressed: () {
                           final isValid = formKey.currentState!.validate();
-                          test = isValid;
                           if (isValid) {
                             Navigator.pushReplacement(
                               context,
@@ -190,7 +227,6 @@ class _AccountState extends State<Account> {
                                     : ((context) => const Account()),
                               ),
                             );
-                            test = isValid;
                             getData;
                           }
                         },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:pro1/Home_Page/add_account.dart';
 import 'package:pro1/Home_Page/switch_account.dart';
+import 'package:pro1/Registration/Profile/edit_profile.dart';
 import 'package:pro1/Registration/login.dart';
 import 'package:pro1/app_themes.dart';
 import 'package:pro1/launch.dart';
@@ -22,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: background1,
-        drawer: Drawer(
+        /*drawer: Drawer(
           backgroundColor: background1,
           child: Column(
             children: <Widget>[
@@ -52,12 +53,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.home, color: fontColor1,),
+                leading: Icon(
+                  Icons.home,
+                  color: fontColor1,
+                ),
                 title: _themes.menuText('Home'),
                 onTap: () => {Navigator.of(context).pop()},
               ),
               ListTile(
-                leading: Icon(Icons.add_box_outlined, color: fontColor1,),
+                leading: Icon(
+                  Icons.add_box_outlined,
+                  color: fontColor1,
+                ),
                 title: _themes.menuText('Add Account'),
                 onTap: () => Navigator.push(
                   context,
@@ -67,7 +74,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.switch_account_outlined, color: fontColor1,),
+                leading: Icon(
+                  Icons.switch_account_outlined,
+                  color: fontColor1,
+                ),
                 title: _themes.menuText('Switch Account'),
                 onTap: () => Navigator.push(
                   context,
@@ -77,36 +87,49 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               ListTile(
-                leading: const Icon(Icons.center_focus_strong_outlined),
-                title: const Text('Activate/Deactivate focus mode'),
-                onTap: () => {},
-              ),
-              ListTile(
-                leading: const Icon(Icons.dark_mode_outlined),
-                title: const Text(
-                  'Turn On/Off dark mode',
+                leading: Icon(
+                  Icons.center_focus_strong_outlined,
+                  color: fontColor1,
                 ),
+                title: _themes.menuText('Focus Mode'),
                 onTap: () => {},
               ),
               ListTile(
-                leading: const Icon(Icons.translate_sharp),
-                title: const Text('Change language'),
+                leading: Icon(
+                  Icons.dark_mode_outlined,
+                  color: fontColor1,
+                ),
+                title: _themes.menuText('Dark Mode'),
                 onTap: () => {},
               ),
-              const Divider(
-                color: Colors.black,
-              ),
               ListTile(
-                leading: const Icon(Icons.border_color),
-                title: const Text('Feedback'),
+                leading: Icon(
+                  Icons.translate_sharp,
+                  color: fontColor1,
+                ),
+                title: _themes.menuText('Change Language'),
                 onTap: () => {},
               ),
-              const Divider(
-                color: Colors.black,
+              Divider(
+                color: fontColor1,
               ),
               ListTile(
-                leading: const Icon(Icons.logout),
-                title: const Text('Logout'),
+                leading: Icon(
+                  Icons.border_color,
+                  color: fontColor1,
+                ),
+                title: _themes.menuText('Feedback'),
+                onTap: () => {},
+              ),
+              Divider(
+                color: fontColor1,
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.logout,
+                  color: fontColor1,
+                ),
+                title: _themes.menuText('Logout'),
                 onTap: () => {
                   logIn = false,
                   Navigator.pushReplacement(context,
@@ -115,11 +138,11 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ],
           ),
-        ),
+        ),*/
         appBar: AppBar(
           backgroundColor: background1,
           elevation: 0,
-          leading: Builder(
+          /*leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
                 onPressed: () {
@@ -131,7 +154,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               );
             },
-          ),
+          ),*/
           actions: [
             Padding(
               padding: const EdgeInsets.all(15),
@@ -153,16 +176,35 @@ class _ProfilePageState extends State<ProfilePage> {
               Padding(
                 padding: const EdgeInsets.only(
                   top: 30,
-                  left: 50,
-                  bottom: 50,
+                  left: 30,
+                  right: 10,
+                  bottom: 30,
                 ),
-                child: Text(
-                  'PROFILE',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w900,
-                    color: fontColor2,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'PROFILE',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w900,
+                        color: fontColor2,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) => const EditProfilePage()),
+                          ),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.edit,
+                        color: fontColor2,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Container(
@@ -173,118 +215,285 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   color: Colors.transparent,
                 ),
-                height: 515,
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(
-                          height: 60,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(50),
-                              topRight: Radius.circular(50),
-                            ),
-                            color: background3,
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 40,
-                            ),
-                          ),
-                        ),
-                      ],
+                height: 518.6,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 20,
+                    horizontal: 40,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50),
                     ),
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: circleImageColor1,
-                      child: Icon(
-                        Icons.person,
-                        color: circleImageColor2,
-                        size: 80,
+                    color: background3,
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Name',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Text(
+                                  'name',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: fontColor1,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                      const Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Username',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Text(
+                                  'username',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: fontColor1,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Email',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Text(
+                                  'email',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: fontColor1,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Phone number',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Text(
+                                  'phone',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: fontColor1,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Password',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Text(
+                                  'password',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: fontColor1,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Divider(
+                        color: Colors.white,
+                        thickness: 1,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Birthday',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Text(
+                                  'birthday',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: fontColor1,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => const Login(),
+                            ),
+                          );
+                        },
+                        child: _themes.textButtonStyle('LOGOUT'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
         ),
+        /*bottomNavigationBar: GNav(
+          onTabChange: (index) => setState(() => currentIndex = index),
+          selectedIndex: currentIndex,
+          backgroundColor: background2,
+          rippleColor: background1,
+          hoverColor: background1,
+          gap: 16,
+          activeColor: fontColor3,
+          iconSize: 24,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          duration: const Duration(milliseconds: 400),
+          color: fontColor1,
+          tabBackgroundColor: background4,
+          tabMargin: const EdgeInsets.symmetric(horizontal: 35),
+          tabs: const [
+            GButton(
+              icon: Icons.home,
+              text: 'Home',
+            ),
+            GButton(
+              icon: Icons.settings,
+              text: 'Settings',
+            ),
+          ],
+        ),*/
       ),
     );
   }
 }
-
-/*
-ListView(
-                            //   children: [
-                            //     ListTile(
-                            //       leading: const Text(
-                            //         'Name',
-                            //         style: TextStyle(
-                            //           color: Colors.white,
-                            //           fontWeight: FontWeight.bold,
-                            //           fontSize: 15,
-                            //         ),
-                            //       ),
-                            //       trailing: TextButton(
-                            //         onPressed: () {},
-                            //         child: Row(
-                            //           children: [
-                            //             Text(
-                            //               'name',
-                            //               style: TextStyle(
-                            //                 color: fontColor1,
-                            //               ),
-                            //             ),
-                            //             Icon(
-                            //               Icons.arrow_forward,
-                            //               color: fontColor1,
-                            //             ),
-                            //           ],
-                            //         ),
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
- */
-
-/*
-bottomNavigationBar: GNav(
-          onTabChange: (index) => setState(() => currentIndex = index),
-          selectedIndex: currentIndex,
-          backgroundColor: theme2,
-          rippleColor: Colors.white30,
-          // the color of the  effect of the click
-          hoverColor: Colors.white30,
-          // the color of the button holding or clicking(after the rippleColor occurrence)
-          gap: 8,
-          // is the space between the buttons
-          activeColor: Colors.black,
-          // the color of the active button
-          iconSize: 24,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          duration: const Duration(milliseconds: 400),
-          color: Colors.white,
-          tabBackgroundColor: Colors.white60,
-          // the back color of the button
-          tabs: const [
-            GButton(
-              icon: Icons.devices_other,
-              text: 'Device',
-            ),
-            GButton(
-              icon: Icons.app_registration,
-              text: 'App',
-            ),
-            GButton(
-              icon: Icons.web,
-              text: 'Website',
-            ),
-          ],
-        ),
- */

@@ -13,8 +13,8 @@ class Launch extends StatefulWidget {
   }
 }
 
-Color theme1 = const Color.fromRGBO(226, 228, 229, 1);
-Color theme2 = Colors.blue[300]!;
+// Color theme1 = const Color.fromRGBO(226, 228, 229, 1);
+// Color theme2 = Colors.blue[300]!;
 
 class StartState extends State<Launch> {
   @override

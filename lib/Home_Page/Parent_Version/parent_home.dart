@@ -5,7 +5,9 @@ import 'package:pro1/Home_Page/app_tab.dart';
 import 'package:pro1/Home_Page/device_tab.dart';
 import 'package:pro1/Home_Page/switch_account.dart';
 import 'package:pro1/Home_Page/website_tab.dart';
+import 'package:pro1/Registration/Profile/profile.dart';
 import 'package:pro1/Registration/login.dart';
+import 'package:pro1/app_themes.dart';
 import 'package:pro1/launch.dart';
 
 class ParentHomePage extends StatefulWidget {
@@ -26,41 +28,60 @@ class _ParentHomePageState extends State<ParentHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme2,
+        backgroundColor: background1,
         drawer: Drawer(
-          backgroundColor: Colors.white,
+          backgroundColor: background1,
           child: Column(
             children: <Widget>[
               DrawerHeader(
                 decoration: BoxDecoration(
-                  color: theme2,
+                  color: background2,
                 ),
                 child: Row(
-                  children: const [
+                  children: [
                     Icon(
-                      Icons.list,
-                      size: 40,
-                      color: Colors.white,
+                      Icons.account_circle_rounded,
+                      size: 100,
+                      color: fontColor1,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Text(
-                      'Menu',
+                      'Username',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 25),
+                      style: TextStyle(
+                        color: fontColor1,
+                        fontSize: 30,
+                      ),
                     ),
                   ],
                 ),
               ),
               ListTile(
-                leading: const Icon(Icons.home),
-                title: const Text('Home'),
+                leading: Icon(
+                  Icons.home,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Home',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
+                ),
                 onTap: () => {Navigator.of(context).pop()},
               ),
               ListTile(
-                leading: const Icon(Icons.add_box_outlined),
-                title: const Text('Add account'),
+                leading: Icon(
+                  Icons.add_box_outlined,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Add account',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
+                ),
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -69,8 +90,16 @@ class _ParentHomePageState extends State<ParentHomePage> {
                 ),
               ),
               ListTile(
-                leading: const Icon(Icons.switch_account_outlined),
-                title: const Text('Switch account'),
+                leading: Icon(
+                  Icons.switch_account_outlined,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Switch account',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
+                ),
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -79,36 +108,74 @@ class _ParentHomePageState extends State<ParentHomePage> {
                 ),
               ),
               ListTile(
-                leading: const Icon(Icons.center_focus_strong_outlined),
-                title: const Text('Activate/Deactivate focus mode'),
-                onTap: () => {},
-              ),
-              ListTile(
-                leading: const Icon(Icons.dark_mode_outlined),
-                title: const Text(
-                  'Turn On/Off dark mode',
+                leading: Icon(
+                  Icons.center_focus_strong_outlined,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Activate/Deactivate focus mode',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
                 ),
                 onTap: () => {},
               ),
               ListTile(
-                leading: const Icon(Icons.translate_sharp),
-                title: const Text('Change language'),
+                leading: Icon(
+                  Icons.dark_mode_outlined,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Turn On/Off dark mode',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
+                ),
                 onTap: () => {},
               ),
-              const Divider(
-                color: Colors.black,
-              ),
               ListTile(
-                leading: const Icon(Icons.border_color),
-                title: const Text('Feedback'),
+                leading: Icon(
+                  Icons.translate_sharp,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Change language',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
+                ),
                 onTap: () => {},
               ),
-              const Divider(
-                color: Colors.black,
+              Divider(
+                color: fontColor1,
               ),
               ListTile(
-                leading: const Icon(Icons.exit_to_app),
-                title: const Text('Logout'),
+                leading: Icon(
+                  Icons.border_color,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Feedback',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
+                ),
+                onTap: () => {},
+              ),
+              Divider(
+                color: fontColor1,
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.logout,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Logout',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
+                ),
                 onTap: () => {
                   logIn = false,
                   Navigator.pushReplacement(context,
@@ -119,7 +186,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
           ),
         ),
         appBar: AppBar(
-          backgroundColor: theme2,
+          backgroundColor: background1,
           elevation: 0,
           leading: Builder(
             builder: (BuildContext context) {
@@ -127,7 +194,10 @@ class _ParentHomePageState extends State<ParentHomePage> {
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
-                icon: const Icon(Icons.menu),
+                icon: Icon(
+                  Icons.menu,
+                  color: fontColor4,
+                ),
               );
             },
           ),
@@ -135,8 +205,17 @@ class _ParentHomePageState extends State<ParentHomePage> {
             Padding(
               padding: const EdgeInsets.all(15),
               child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.person),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: ((context) => const ProfilePage()),
+                    ),
+                  );
+                },
+                icon: Icon(
+                  Icons.person,
+                  color: fontColor4,
+                ),
               ),
             ),
           ],
@@ -145,7 +224,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
         bottomNavigationBar: GNav(
           onTabChange: (index) => setState(() => currentIndex = index),
           selectedIndex: currentIndex,
-          backgroundColor: theme2,
+          backgroundColor: background1,
           rippleColor: Colors.white30,
           // the color of the  effect of the click
           hoverColor: Colors.white30,

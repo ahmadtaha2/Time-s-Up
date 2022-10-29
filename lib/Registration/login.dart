@@ -28,6 +28,7 @@ class _LoginState extends State<Login> {
   };
 
   final Themes _themes = Themes();
+  bool visible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -107,8 +108,28 @@ class _LoginState extends State<Login> {
                         //password text field
                         keyboardAppearance: Brightness.dark,
                         controller: _passwordInput,
-                        decoration: _themes.textFormFieldDecoration('Password'),
-                        obscureText: true,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue[50],
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(color: Colors.blue),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              visible
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                visible = !visible;
+                              });
+                            },
+                          ),
+                        ),
+                        obscureText: visible,
                         validator: (value) {
                           if (value!.length < 6) {
                             return 'Short password / Invalid password';

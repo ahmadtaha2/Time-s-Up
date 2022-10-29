@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pro1/Home_Page/Home_Page.dart';
 import 'package:pro1/Home_Page/add_account.dart';
 import 'package:pro1/Registration/Forgot_Password/verify_email.dart';
-import 'package:pro1/launch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pro1/app_themes.dart';
 
@@ -25,12 +24,13 @@ class _SwitchAccountState extends State<SwitchAccount> {
     'email/username': '',
     'password': '',
   };
+  bool visible = false;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme2,
+        backgroundColor: background1,
         body: Form(
           key: formKey,
           child: SingleChildScrollView(
@@ -69,8 +69,7 @@ class _SwitchAccountState extends State<SwitchAccount> {
                         controller: _emailInput,
                         keyboardType: TextInputType.emailAddress,
                         keyboardAppearance: Brightness.dark,
-                        decoration:
-                            _themes.textFormFieldDecoration('Email'),
+                        decoration: _themes.textFormFieldDecoration('Email'),
                         obscureText: false,
                         validator: (value) {
                           if (value!.isEmpty ||
@@ -93,8 +92,28 @@ class _SwitchAccountState extends State<SwitchAccount> {
                         //password text field
                         keyboardAppearance: Brightness.dark,
                         controller: _passwordInput,
-                        decoration: _themes.textFormFieldDecoration('Password'),
-                        obscureText: true,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue[50],
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(color: Colors.blue),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              visible
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                visible = !visible;
+                              });
+                            },
+                          ),
+                        ),
+                        obscureText: visible,
                         validator: (value) {
                           if (value!.length < 6) {
                             return 'Short password';
