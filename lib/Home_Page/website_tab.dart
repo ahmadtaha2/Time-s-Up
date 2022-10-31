@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pro1/Home_Page/chart_data.dart';
 import 'package:pro1/app_themes.dart';
-import 'package:pro1/launch.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 ///This file is not ready yet
 class Website extends StatefulWidget {
@@ -16,7 +17,7 @@ class _WebsiteState extends State<Website> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: background1,
+      backgroundColor: background4,
       body: Container(
         height: double.maxFinite,
         width: double.maxFinite,
@@ -25,7 +26,7 @@ class _WebsiteState extends State<Website> {
         child: ListView(
           children: [
             Card(
-              color: Colors.grey,
+              color: background4,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
@@ -49,11 +50,28 @@ class _WebsiteState extends State<Website> {
               ),
             ),
             Center(
-              heightFactor: 10,
-              child: Text(
-                'Chart',
-                style: TextStyle(
-                  color: fontColor1,
+              heightFactor: 1.2,
+              child: PieChart(
+                dataMap: dataMap,
+                colorList: colorList,
+                chartRadius: MediaQuery.of(context).size.width / 2,
+                chartValuesOptions: ChartValuesOptions(
+                  chartValueStyle: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    color: fontColor1,
+                  ),
+                  showChartValues: true,
+                  showChartValuesOutside: true,
+                  showChartValuesInPercentage: true,
+                  showChartValueBackground: false,
+                ),
+                legendOptions: LegendOptions(
+                  showLegends: true,
+                  legendPosition: LegendPosition.left,
+                  legendTextStyle: TextStyle(
+                    color: fontColor1,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
             ),
@@ -66,6 +84,7 @@ class _WebsiteState extends State<Website> {
                 'View device Statistics',
                 style: TextStyle(
                   color: fontColor1,
+                  fontWeight: FontWeight.w800,
                 ),
               ),
             ),

@@ -28,7 +28,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: background1,
+        backgroundColor: background4,
         drawer: Drawer(
           backgroundColor: background1,
           child: Column(
@@ -151,22 +151,6 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ),
               ListTile(
                 leading: Icon(
-                  Icons.border_color,
-                  color: fontColor1,
-                ),
-                title: Text(
-                  'Feedback',
-                  style: TextStyle(
-                    color: fontColor1,
-                  ),
-                ),
-                onTap: () => {},
-              ),
-              Divider(
-                color: fontColor1,
-              ),
-              ListTile(
-                leading: Icon(
                   Icons.logout,
                   color: fontColor1,
                 ),
@@ -186,7 +170,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
           ),
         ),
         appBar: AppBar(
-          backgroundColor: background1,
+          backgroundColor: background4,
           elevation: 0,
           leading: Builder(
             builder: (BuildContext context) {
@@ -196,7 +180,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
                 },
                 icon: Icon(
                   Icons.menu,
-                  color: fontColor4,
+                  color: fontColor3,
                 ),
               );
             },
@@ -214,7 +198,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
                 },
                 icon: Icon(
                   Icons.person,
-                  color: fontColor4,
+                  color: fontColor3,
                 ),
               ),
             ),

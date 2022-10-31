@@ -61,7 +61,7 @@ class _ChooseModeState extends State<ChooseMode> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       _themes.title('CHOOSE MODE'),
-                      _themes.trailing(
+                      _themes.trailingChooseNode(
                         'Choose what purpose do you want to use the app for',
                       ),
                       const SizedBox(
@@ -93,7 +93,11 @@ class _ChooseModeState extends State<ChooseMode> {
                       ),
                       Text(
                         'Parent (Family)',
-                        style: TextStyle(color: Colors.orange[700]),
+                        style: TextStyle(
+                          color: Colors.orange[700],
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
                       ),
                       IconButton(
                         /* when ever the user clicks
@@ -117,7 +121,11 @@ class _ChooseModeState extends State<ChooseMode> {
                       ),
                       Text(
                         'Single User (Personal)',
-                        style: TextStyle(color: Colors.orange[700]),
+                        style: TextStyle(
+                          color: Colors.orange[700],
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
                       ),
                     ],
                   ),

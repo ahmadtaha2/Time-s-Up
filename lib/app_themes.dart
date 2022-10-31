@@ -19,7 +19,7 @@ class Themes {
       labelText: label,
       labelStyle: const TextStyle(color: Colors.blue),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(30),
       ),
     );
   }
@@ -51,8 +51,21 @@ class Themes {
       style: TextStyle(
         color: Colors.orange[700],
       ),
+      textAlign: TextAlign.center,
     );
   }
+
+  Text trailingChooseNode(String txt) {
+    return Text(
+      txt,
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 12,
+      ),
+      textAlign: TextAlign.center,
+    );
+  }
+
 
   Text textButtonStyle(String txt) {
     return Text(
@@ -74,8 +87,8 @@ class Themes {
   Text linkText1(String txt) {
     return Text(
       txt,
-      style: TextStyle(
-        color: Colors.blue[800],
+      style: const TextStyle(
+        color: Colors.white70,
         fontSize: 15,
         fontWeight: FontWeight.bold,
       ),

@@ -156,22 +156,6 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
               ),
               ListTile(
                 leading: Icon(
-                  Icons.border_color,
-                  color: fontColor1,
-                ),
-                title: Text(
-                  'Feedback',
-                  style: TextStyle(
-                    color: fontColor1,
-                  ),
-                ),
-                onTap: () => {},
-              ),
-              Divider(
-                color: fontColor1,
-              ),
-              ListTile(
-                leading: Icon(
                   Icons.logout,
                   color: fontColor1,
                 ),

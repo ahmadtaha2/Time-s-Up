@@ -150,7 +150,7 @@ class _AccountState extends State<Account> {
                           labelText: 'Password',
                           labelStyle: const TextStyle(color: Colors.blue),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(30),
                           ),
                           suffixIcon: IconButton(
                             icon: Icon(
@@ -180,7 +180,7 @@ class _AccountState extends State<Account> {
                           labelText: 'Password',
                           labelStyle: const TextStyle(color: Colors.blue),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(30),
                           ),
                           suffixIcon: IconButton(
                             icon: Icon(
