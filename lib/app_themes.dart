@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
+// TODO: replace the logo code with a method implemented here
+
+Color theme1 = const Color.fromRGBO(226, 228, 229, 1);
+Color theme2 = Colors.blue[300]!;
 Color background1 = const Color.fromRGBO(39, 46, 67, 1);
 Color background2 = const Color.fromRGBO(22, 29, 48, 1);
 Color background3 = const Color.fromRGBO(40, 78, 139, 1);
 Color background4 = const Color.fromRGBO(180, 180, 180, 1);
+Color background5 = const Color.fromRGBO(238, 128, 47, 1);
 Color fontColor1 = const Color.fromRGBO(180, 180, 180, 1);
 Color fontColor2 = const Color.fromRGBO(40, 78, 139, 1);
 Color fontColor3 = const Color.fromRGBO(22, 29, 48, 1);
 Color fontColor4 = const Color.fromRGBO(238, 128, 47, 1);
 Color circleImageColor1 = const Color.fromRGBO(255, 202, 165, 1);
 Color circleImageColor2 = const Color.fromRGBO(238, 128, 47, 1);
+Color shadowColor1 = Colors.white10;
 
 class Themes {
   InputDecoration textFormFieldDecoration(String label) {
@@ -31,6 +37,16 @@ class Themes {
         topRight: Radius.circular(50),
       ),
       color: background2,
+    );
+  }
+
+  BoxDecoration screenLightDecoration() {
+    return BoxDecoration(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(50),
+        topRight: Radius.circular(50),
+      ),
+      color: background4,
     );
   }
 
@@ -60,12 +76,12 @@ class Themes {
       txt,
       style: const TextStyle(
         color: Colors.white,
+        fontWeight: FontWeight.w800,
         fontSize: 12,
       ),
       textAlign: TextAlign.center,
     );
   }
-
 
   Text textButtonStyle(String txt) {
     return Text(

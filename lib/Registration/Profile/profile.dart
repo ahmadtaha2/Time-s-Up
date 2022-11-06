@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:pro1/Home_Page/add_account.dart';
-import 'package:pro1/Home_Page/switch_account.dart';
+import 'package:pro1/Home_Page/Menu_Pages/add_account.dart';
+import 'package:pro1/Home_Page/Menu_Pages/switch_account.dart';
 import 'package:pro1/Registration/Profile/edit_profile.dart';
 import 'package:pro1/Registration/login.dart';
 import 'package:pro1/app_themes.dart';
@@ -228,6 +228,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     color: background3,
                   ),
+                  // TODO: fix the profile, and edit profile UIs (there is space in the bottom try to fix it)
                   child: Column(
                     children: [
                       Row(

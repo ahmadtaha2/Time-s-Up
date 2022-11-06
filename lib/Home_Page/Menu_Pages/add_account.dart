@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 //import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
 //import 'package:pro1/Home_Page/Single_User_Version/single_user_home.dart';
-import 'package:pro1/Home_Page/switch_account.dart';
+import 'package:pro1/Home_Page/Menu_Pages/switch_account.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:pro1/launch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,7 +33,7 @@ class _AddAccountState extends State<AddAccount> {
     'email': '',
     'password': '',
   };
-  bool visible =false;
+  bool visible = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,7 +45,23 @@ class _AddAccountState extends State<AddAccount> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset('media/images/logo2_small.png'),
+                Row(
+                  children: [
+                    Image.asset(
+                      'media/images/time_exploit.png',
+                      height: 100,
+                      width: 100,
+                    ),
+                    const Text(
+                      'Time Exploit',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 30,
+                      ),
+                    ),
+                  ],
+                ),
                 Container(
                   padding: const EdgeInsets.all(15),
                   height: 775,
@@ -259,4 +275,3 @@ class _AddAccountState extends State<AddAccount> {
     prefs.setString('password', _passwordController.text);
   }
 }
-

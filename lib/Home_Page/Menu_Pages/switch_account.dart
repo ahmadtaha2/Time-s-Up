@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
 import 'package:pro1/Home_Page/Single_User_Version/single_user_home.dart';
+import 'package:pro1/Home_Page/Menu_Pages/add_account.dart';
 import 'package:pro1/Registration/Forgot_Password/verify_email.dart';
-import 'package:pro1/Registration/account.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pro1/app_themes.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class SwitchAccount extends StatefulWidget {
+  const SwitchAccount({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<SwitchAccount> createState() => _SwitchAccountState();
 }
 
-class _LoginState extends State<Login> {
+class _SwitchAccountState extends State<SwitchAccount> {
+  final Themes _themes = Themes();
+
 // user input stored for comparison with the data stored in the database
-  final _emailInput = TextEditingController();
-  final _passwordInput = TextEditingController();
+  final TextEditingController _emailInput = TextEditingController();
+  final TextEditingController _passwordInput = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey();
   final Map<String, String> _authData = {
     'email/username': '',
     'password': '',
   };
-
-  final Themes _themes = Themes();
   bool visible = false;
 
   @override
@@ -37,27 +37,25 @@ class _LoginState extends State<Login> {
           key: formKey,
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'media/images/time_exploit.png',
-                        width: 100,
-                        height: 100,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'media/images/time_exploit.png',
+                      height: 100,
+                      width: 100,
+                    ),
+                    const Text(
+                      'Time Exploit',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 30,
                       ),
-                      const Text(
-                        'Time Exploit',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 30,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 Container(
                   padding: const EdgeInsets.all(15),
@@ -66,19 +64,22 @@ class _LoginState extends State<Login> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      const SizedBox(
-                        height: 30,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: Icon(
+                              Icons.close_outlined,
+                              color: Colors.blue[900],
+                            ),
+                          )
+                        ],
                       ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: Column(
-                          children: [
-                            _themes.title('LOGIN'),
-                            _themes.trailing('Sign in to your account'),
-                          ],
-                        ),
-                      ),
+                      _themes.title('LOGIN'),
+                      _themes.trailing('Login With a Different Account'),
                       const SizedBox(
                         height: 70,
                       ),
@@ -90,8 +91,7 @@ class _LoginState extends State<Login> {
                           controller: _emailInput,
                           keyboardType: TextInputType.emailAddress,
                           keyboardAppearance: Brightness.dark,
-                          decoration:
-                              _themes.textFormFieldDecoration('Email/Username'),
+                          decoration: _themes.textFormFieldDecoration('Email'),
                           obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty ||
@@ -142,7 +142,7 @@ class _LoginState extends State<Login> {
                           obscureText: visible,
                           validator: (value) {
                             if (value!.length < 6) {
-                              return 'Short password / Invalid password';
+                              return 'Short password';
                             }
                             return null;
                           },
@@ -153,7 +153,7 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       Row(
-                        /**Forgot Password link*/
+                        /**Forgot Password Link*/
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
@@ -164,12 +164,7 @@ class _LoginState extends State<Login> {
                                 ),
                               );
                             },
-                            child: Text(
-                              'Forgot Password?',
-                              style: TextStyle(
-                                color: Colors.orange[800],
-                              ),
-                            ),
+                            child: _themes.resetLink('Forgot Password'),
                           ),
                         ],
                       ),
@@ -190,7 +185,7 @@ class _LoginState extends State<Login> {
                                   builder: (_emailInput.text != '' &&
                                           _passwordInput.text != '')
                                       ? (context) => swtch()
-                                      : ((context) => const Login()),
+                                      : ((context) => const SwitchAccount()),
                                 ),
                               );
                               getData;
@@ -203,7 +198,7 @@ class _LoginState extends State<Login> {
                         color: Colors.transparent,
                         elevation: 40,
                         child: Row(
-                          /*Switch to Sign up */
+                          /**Swich to Sign up */
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _themes.linkText1('New User?'),
@@ -212,11 +207,11 @@ class _LoginState extends State<Login> {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder: ((context) => const Account()),
+                                    builder: ((context) => const AddAccount()),
                                   ),
                                 );
                               },
-                              child: _themes.linkText2('SIGN UP'),
+                              child: _themes.linkText2('ADD ACCOUNT'),
                             ),
                           ],
                         ),
@@ -232,7 +227,7 @@ class _LoginState extends State<Login> {
     );
   }
 
-//getter method to save the login user data/input
+  //getter method to save the login user data/input
   get getData async {
     SharedPreferences loginPrefs = await SharedPreferences.getInstance();
     loginPrefs.setString('user', _emailInput.text);
@@ -241,12 +236,12 @@ class _LoginState extends State<Login> {
 
   Widget swtch() {
     if (userMode == 'family') {
-      return ParentHomePage();
+      return SingleUserHomePage();
     }
     if (userMode == 'personal') {
-      return SingleUserHomePage();
+      return ParentHomePage();
     } else {
-      return const Login();
+      return const SwitchAccount();
     }
   }
 }

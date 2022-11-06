@@ -13,9 +13,6 @@ class Launch extends StatefulWidget {
   }
 }
 
-// Color theme1 = const Color.fromRGBO(226, 228, 229, 1);
-// Color theme2 = Colors.blue[300]!;
-
 class StartState extends State<Launch> {
   @override
   void initState() {
@@ -43,15 +40,15 @@ class StartState extends State<Launch> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(
-                'media/images/On_Time.png',
-                width: 200,
-                height: 200,
+                'media/images/time_exploit.png',
+                width: 250,
+                height: 250,
               ),
               const SizedBox(
                 width: 10,
               ),
               const Text(
-                'On Time',
+                'Time Exploit',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w800,

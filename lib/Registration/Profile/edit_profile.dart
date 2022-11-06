@@ -82,171 +82,199 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       /*
                       * the user entries must be saved
                       */
-                      TextFormField(
-                        /*edit name text field*/
-                        keyboardType: TextInputType.name,
-                        keyboardAppearance: Brightness.dark,
-                        //controller: _usernameController,
-                        decoration: _themes.textFormFieldDecoration('Name'),
-                        obscureText: false,
-                        validator: (value) {
-                          if (value!.length < 4) {
-                            return 'Invalid name';
-                          }
-                          return null;
-                        },
-                        onSaved: (newValue) {
-                          //_authData['username'] = newValue!;
-                          //_usernameController.text = newValue;
-                        },
-                      ),
-                      const Divider(
+                      Material(
                         color: Colors.transparent,
-                        thickness: 1,
-                      ),
-                      TextFormField(
-                        //username text field
-                        keyboardType: TextInputType.name,
-                        keyboardAppearance: Brightness.dark,
-                        //controller: _usernameController,
-                        decoration: _themes.textFormFieldDecoration('Username'),
-                        obscureText: false,
-                        validator: (value) {
-                          if (value!.length < 4) {
-                            return 'Invalid username';
-                          }
-                          return null;
-                        },
-                        onSaved: (newValue) {
-                          //_authData['username'] = newValue!;
-                          //_usernameController.text = newValue;
-                        },
-                      ),
-                      const Divider(
-                        color: Colors.transparent,
-                        thickness: 1,
-                      ),
-                      TextFormField(
-                        /* edit email text field*/
-                        keyboardType: TextInputType.emailAddress,
-                        keyboardAppearance: Brightness.dark,
-                        //controller: _usernameController,
-                        decoration: _themes.textFormFieldDecoration('Email'),
-                        obscureText: false,
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !value.contains('@') ||
-                              !value.contains('.com') ||
-                              value.length < 12) {
-                            return 'Invalid email';
-                          }
-                          return null;
-                        },
-                        onSaved: (newValue) {
-                          //_authData['username'] = newValue!;
-                          //_usernameController.text = newValue;
-                        },
-                      ),
-                      const Divider(
-                        color: Colors.transparent,
-                        thickness: 1,
-                      ),
-                      TextFormField(
-                        //edit phone number text field
-                        keyboardType: TextInputType.phone,
-                        keyboardAppearance: Brightness.dark,
-                        //controller: _usernameController,
-                        decoration:
-                            _themes.textFormFieldDecoration('Phone Number'),
-                        obscureText: false,
-                        validator: (value) {
-                          if (value!.length < 10) {
-                            return 'Invalid phone number';
-                          }
-                          return null;
-                        },
-                        onSaved: (newValue) {
-                          //_authData['username'] = newValue!;
-                          //_usernameController.text = newValue;
-                        },
-                      ),
-                      const Divider(
-                        color: Colors.transparent,
-                        thickness: 1,
-                      ),
-                      TextFormField(
-                        //edit password text field
-                        keyboardType: TextInputType.text,
-                        keyboardAppearance: Brightness.dark,
-                        //controller: _usernameController,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.blue[50],
-                          labelText: 'Password',
-                          labelStyle: const TextStyle(color: Colors.blue),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              visible
-                                  ? Icons.visibility_outlined
-                                  : Icons.visibility_off_outlined,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                visible = !visible;
-                              });
-                            },
-                          ),
+                        elevation: 40,
+                        child: TextFormField(
+                          /*edit name text field*/
+                          keyboardType: TextInputType.name,
+                          keyboardAppearance: Brightness.dark,
+                          //controller: _usernameController,
+                          decoration: _themes.textFormFieldDecoration('Name'),
+                          obscureText: false,
+                          validator: (value) {
+                            if (value!.length < 4) {
+                              return 'Invalid name';
+                            }
+                            return null;
+                          },
+                          onSaved: (newValue) {
+                            //_authData['username'] = newValue!;
+                            //_usernameController.text = newValue;
+                          },
                         ),
-                        obscureText: visible,
-                        validator: (value) {
-                          if (value!.length < 6) {
-                            return 'Invalid password';
-                          }
-                          return null;
-                        },
-                        onSaved: (newValue) {
-                          //_authData['username'] = newValue!;
-                          //_usernameController.text = newValue;
-                        },
                       ),
                       const Divider(
                         color: Colors.transparent,
                         thickness: 1,
                       ),
-                      TextFormField(
-                        //Edit birthday text field
-                        keyboardType: TextInputType.datetime,
-                        keyboardAppearance: Brightness.dark,
-                        //controller: _usernameController,
-                        decoration: _themes.textFormFieldDecoration('Birthday'),
-                        obscureText: false,
-                        validator: (value) {
-                          if (value!.length < 10) {
-                            return 'Invalid birthday';
-                          }
-                          return null;
-                        },
-                        onSaved: (newValue) {
-                          //_authData['username'] = newValue!;
-                          //_usernameController.text = newValue;
-                        },
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: TextFormField(
+                          //username text field
+                          keyboardType: TextInputType.name,
+                          keyboardAppearance: Brightness.dark,
+                          //controller: _usernameController,
+                          decoration: _themes.textFormFieldDecoration('Username'),
+                          obscureText: false,
+                          validator: (value) {
+                            if (value!.length < 4) {
+                              return 'Invalid username';
+                            }
+                            return null;
+                          },
+                          onSaved: (newValue) {
+                            //_authData['username'] = newValue!;
+                            //_usernameController.text = newValue;
+                          },
+                        ),
+                      ),
+                      const Divider(
+                        color: Colors.transparent,
+                        thickness: 1,
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: TextFormField(
+                          /* edit email text field*/
+                          keyboardType: TextInputType.emailAddress,
+                          keyboardAppearance: Brightness.dark,
+                          //controller: _usernameController,
+                          decoration: _themes.textFormFieldDecoration('Email'),
+                          obscureText: false,
+                          validator: (value) {
+                            if (value!.isEmpty ||
+                                !value.contains('@') ||
+                                !value.contains('.com') ||
+                                value.length < 12) {
+                              return 'Invalid email';
+                            }
+                            return null;
+                          },
+                          onSaved: (newValue) {
+                            //_authData['username'] = newValue!;
+                            //_usernameController.text = newValue;
+                          },
+                        ),
+                      ),
+                      const Divider(
+                        color: Colors.transparent,
+                        thickness: 1,
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: TextFormField(
+                          //edit phone number text field
+                          keyboardType: TextInputType.phone,
+                          keyboardAppearance: Brightness.dark,
+                          //controller: _usernameController,
+                          decoration:
+                              _themes.textFormFieldDecoration('Phone Number'),
+                          obscureText: false,
+                          validator: (value) {
+                            if (value!.length < 10) {
+                              return 'Invalid phone number';
+                            }
+                            return null;
+                          },
+                          onSaved: (newValue) {
+                            //_authData['username'] = newValue!;
+                            //_usernameController.text = newValue;
+                          },
+                        ),
+                      ),
+                      const Divider(
+                        color: Colors.transparent,
+                        thickness: 1,
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: TextFormField(
+                          //edit password text field
+                          keyboardType: TextInputType.text,
+                          keyboardAppearance: Brightness.dark,
+                          //controller: _usernameController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.blue[50],
+                            labelText: 'Password',
+                            labelStyle: const TextStyle(color: Colors.blue),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                visible
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  visible = !visible;
+                                });
+                              },
+                            ),
+                          ),
+                          obscureText: visible,
+                          validator: (value) {
+                            if (value!.length < 6) {
+                              return 'Invalid password';
+                            }
+                            return null;
+                          },
+                          onSaved: (newValue) {
+                            //_authData['username'] = newValue!;
+                            //_usernameController.text = newValue;
+                          },
+                        ),
+                      ),
+                      const Divider(
+                        color: Colors.transparent,
+                        thickness: 1,
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: TextFormField(
+                          //Edit birthday text field
+                          keyboardType: TextInputType.datetime,
+                          keyboardAppearance: Brightness.dark,
+                          //controller: _usernameController,
+                          decoration: _themes.textFormFieldDecoration('Birthday'),
+                          obscureText: false,
+                          validator: (value) {
+                            if (value!.length < 10) {
+                              return 'Invalid birthday';
+                            }
+                            return null;
+                          },
+                          onSaved: (newValue) {
+                            //_authData['username'] = newValue!;
+                            //_usernameController.text = newValue;
+                          },
+                        ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      TextButton(
-                        onPressed: () {
-                          final bool isValid = formKey.currentState!.validate();
-                          if (isValid) {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(editProfileMessage);
-                            Navigator.of(context).pop(context);
-                          }
-                        },
-                        child: _themes.textButtonStyle('SAVE'),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 30,
+                        child: TextButton(
+                          onPressed: () {
+                            final bool isValid = formKey.currentState!.validate();
+                            if (isValid) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(editProfileMessage);
+                              Navigator.of(context).pop(context);
+                            }
+                          },
+                          child: _themes.textButtonStyle('SAVE'),
+                        ),
                       ),
                     ],
                   ),

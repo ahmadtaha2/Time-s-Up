@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:pro1/Home_Page/add_account.dart';
+import 'package:pro1/Home_Page/Menu_Pages/add_account.dart';
+import 'package:pro1/Home_Page/Menu_Pages/switch_user_mode.dart';
 import 'package:pro1/Home_Page/app_tab.dart';
 import 'package:pro1/Home_Page/device_tab.dart';
-import 'package:pro1/Home_Page/switch_account.dart';
+import 'package:pro1/Home_Page/Menu_Pages/switch_account.dart';
 import 'package:pro1/Home_Page/website_tab.dart';
 import 'package:pro1/Registration/Profile/profile.dart';
 import 'package:pro1/Registration/login.dart';
 import 'package:pro1/app_themes.dart';
-import 'package:pro1/launch.dart';
 
 class SingleUserHomePage extends StatefulWidget {
   @override
@@ -33,7 +33,7 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: background1,
+        backgroundColor: background4,
         drawer: Drawer(
           backgroundColor: background1,
           child: Column(
@@ -114,6 +114,25 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
               ),
               ListTile(
                 leading: Icon(
+                  Icons.swap_horiz_sharp,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Switch user mode',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
+                ),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SwitchUserMode(),
+                  ),
+                ),
+              ),
+              ListTile(
+                //TODO: not active yet
+                leading: Icon(
                   Icons.center_focus_strong_outlined,
                   color: fontColor1,
                 ),
@@ -126,6 +145,7 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
                 onTap: () => {},
               ),
               ListTile(
+                //TODO: not active yet
                 leading: Icon(
                   Icons.dark_mode_outlined,
                   color: fontColor1,
@@ -139,6 +159,7 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
                 onTap: () => {},
               ),
               ListTile(
+                //TODO: not active yet
                 leading: Icon(
                   Icons.translate_sharp,
                   color: fontColor1,
@@ -175,7 +196,7 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
           ),
         ),
         appBar: AppBar(
-          backgroundColor: background1,
+          backgroundColor: background4,
           elevation: 0,
           leading: Builder(
             builder: (BuildContext context) {
@@ -185,7 +206,7 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
                 },
                 icon: Icon(
                   Icons.menu,
-                  color: fontColor4,
+                  color: fontColor3,
                 ),
               );
             },
@@ -203,7 +224,7 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
                 },
                 icon: Icon(
                   Icons.person,
-                  color: fontColor4,
+                  color: fontColor3,
                 ),
               ),
             ),

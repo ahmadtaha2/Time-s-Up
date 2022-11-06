@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Home_Page/chart_data.dart';
+import 'package:pro1/Registration/choose_mode.dart';
 import 'package:pro1/app_themes.dart';
 import 'package:pie_chart/pie_chart.dart';
 
@@ -49,28 +50,31 @@ class _WebsiteState extends State<Website> {
                 ),
               ),
             ),
-            Center(
-              heightFactor: 1.2,
-              child: PieChart(
-                dataMap: dataMap,
-                colorList: colorList,
-                chartRadius: MediaQuery.of(context).size.width / 2,
-                chartValuesOptions: ChartValuesOptions(
-                  chartValueStyle: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    color: fontColor1,
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: Center(
+                heightFactor: 1.2,
+                child: PieChart(
+                  dataMap: (userMode.isNotEmpty && userMode == 'family')? childDataMap : dataMap,
+                  colorList: colorList,
+                  chartRadius: MediaQuery.of(context).size.width / 2,
+                  chartValuesOptions: ChartValuesOptions(
+                    chartValueStyle: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      color: fontColor1,
+                    ),
+                    showChartValues: true,
+                    showChartValuesOutside: true,
+                    showChartValuesInPercentage: true,
+                    showChartValueBackground: false,
                   ),
-                  showChartValues: true,
-                  showChartValuesOutside: true,
-                  showChartValuesInPercentage: true,
-                  showChartValueBackground: false,
-                ),
-                legendOptions: LegendOptions(
-                  showLegends: true,
-                  legendPosition: LegendPosition.left,
-                  legendTextStyle: TextStyle(
-                    color: fontColor1,
-                    fontWeight: FontWeight.w800,
+                  legendOptions: LegendOptions(
+                    showLegends: true,
+                    legendPosition: LegendPosition.left,
+                    legendTextStyle: TextStyle(
+                      color: fontColor1,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                 ),
               ),

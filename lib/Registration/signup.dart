@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pro1/Registration/ChildConfig/child_info.dart';
+import 'package:pro1/Registration/account.dart';
 import 'package:pro1/app_themes.dart';
-//import 'package:pro1/launch.dart';
-import 'account.dart';
 import 'login.dart';
 
 class SignUp extends StatefulWidget {
@@ -21,20 +21,28 @@ class _SignUpState extends State<SignUp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset(
-                'media/images/On_Time.png',
-                width: 150,
-                height: 150,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              const Text(
-                'On Time',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 55),
+              Material(
+                color: Colors.transparent,
+                elevation: 40,
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'media/images/time_exploit.png',
+                      width: 250,
+                      height: 250,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text(
+                      'Time Exploit',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 55),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 100,
@@ -46,9 +54,14 @@ class _SignUpState extends State<SignUp> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
+                  elevation: 40,
                 ),
-                onPressed: () => Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const Account())),
+                onPressed: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Account(),
+                  ),
+                ),
                 child: const Text(
                   'Sign Up',
                   style: TextStyle(
@@ -67,6 +80,7 @@ class _SignUpState extends State<SignUp> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
+                  elevation: 40,
                 ),
                 onPressed: () {
                   Navigator.pushReplacement(context,
@@ -80,7 +94,26 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-              //TextButton(onPressed: onPressed, child: child)
+              Material(
+                color: Colors.transparent,
+                elevation: 40,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: ((context) => const ChildInformation()),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Are you a child?',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

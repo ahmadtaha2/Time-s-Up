@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
 import 'package:pro1/Home_Page/Single_User_Version/single_user_home.dart';
 import 'package:pro1/app_themes.dart';
-import 'package:pro1/launch.dart';
 
 class ChooseMode extends StatefulWidget {
   const ChooseMode({super.key});
@@ -33,19 +32,17 @@ class _ChooseModeState extends State<ChooseMode> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'media/images/On_Time.png',
-                      width: 75,
-                      height: 75,
-                    ),
-                    const SizedBox(
-                      width: 10,
+                      'media/images/time_exploit.png',
+                      width: 100,
+                      height: 100,
                     ),
                     const Text(
-                      'On Time',
+                      'Time Exploit',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 30),
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 30,
+                      ),
                     ),
                   ],
                 ),
@@ -61,17 +58,19 @@ class _ChooseModeState extends State<ChooseMode> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       _themes.title('CHOOSE MODE'),
-                      _themes.trailingChooseNode(
-                        'Choose what purpose do you want to use the app for',
+                      _themes.trailing(
+                        'Please choose your default user type',
                       ),
                       const SizedBox(
                         height: 30,
                       ),
                       IconButton(
-                        /* when ever the user clicks
+                        /*
+                        when ever the user clicks
                         the image of the user mode -for easier use-
                         the user will be redirected to the home page
-                        of the app according to user mode chosen */
+                        of the app according to user mode chosen
+                        */
                         onPressed: () {
                           setState(() {
                             userIndex = 0;
@@ -100,10 +99,12 @@ class _ChooseModeState extends State<ChooseMode> {
                         ),
                       ),
                       IconButton(
-                        /* when ever the user clicks
+                        /*
+                        when ever the user clicks
                         the image of the user mode -for easier use-
                         the user will be redirected to the home page
-                        of the app according to user mode chosen */
+                        of the app according to user mode chosen
+                        */
                         onPressed: () {
                           setState(() {
                             userIndex = 1;
@@ -120,7 +121,7 @@ class _ChooseModeState extends State<ChooseMode> {
                         iconSize: 250,
                       ),
                       Text(
-                        'Single User (Personal)',
+                        'Personal',
                         style: TextStyle(
                           color: Colors.orange[700],
                           fontWeight: FontWeight.bold,
