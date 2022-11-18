@@ -39,20 +39,28 @@ class StartState extends State<Launch> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset(
-                'media/images/time_exploit.png',
-                width: 250,
-                height: 250,
+              Material(
+                color: Colors.transparent,
+                elevation: 40,
+                child: Image.asset(
+                  'media/images/time_exploit.png',
+                  width: 250,
+                  height: 250,
+                ),
               ),
               const SizedBox(
                 width: 10,
               ),
-              const Text(
-                'Time Exploit',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 55),
+              const Material(
+                color: Colors.transparent,
+                elevation: 40,
+                child: Text(
+                  'Time Exploit',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 55),
+                ),
               ),
             ],
           ),

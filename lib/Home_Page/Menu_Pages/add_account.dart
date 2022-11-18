@@ -45,23 +45,8 @@ class _AddAccountState extends State<AddAccount> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'media/images/time_exploit.png',
-                      height: 100,
-                      width: 100,
-                    ),
-                    const Text(
-                      'Time Exploit',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 30,
-                      ),
-                    ),
-                  ],
-                ),
+                Material(
+                    color: Colors.transparent, elevation: 40, child: appLogo()),
                 Container(
                   padding: const EdgeInsets.all(15),
                   height: 775,
@@ -83,177 +68,213 @@ class _AddAccountState extends State<AddAccount> {
                           )
                         ],
                       ),
-                      _themes.title('ADD ACCOUNT'),
-                      _themes.trailing('Sign Up With a New Account'),
+                      Material(
+                          color: Colors.transparent,
+                          elevation: 40,
+                          child: _themes.title('ADD ACCOUNT')),
+                      Material(
+                          color: Colors.transparent,
+                          elevation: 40,
+                          child:
+                              _themes.trailing('Sign Up With a New Account')),
                       const SizedBox(
                         height: 70,
                       ),
-                      TextFormField(
-                        //username text field
-                        keyboardType: TextInputType.name,
-                        keyboardAppearance: Brightness.dark,
-                        controller: _usernameController,
-                        decoration: _themes.textFormFieldDecoration('Username'),
-                        obscureText: false,
-                        validator: (value) {
-                          if (value!.length < 4) {
-                            return 'Invalid username';
-                          }
-                          return null;
-                        },
-                        onSaved: (newValue) {
-                          _authData['username'] = newValue!;
-                          _usernameController.text = newValue;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        //email text field
-                        controller: _emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        keyboardAppearance: Brightness.dark,
-                        decoration: _themes.textFormFieldDecoration('Email'),
-                        obscureText: false,
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !value.contains('@') ||
-                              !value.contains('.com') ||
-                              value.length < 12) {
-                            return 'Invalid email';
-                          }
-                          return null;
-                        },
-                        onSaved: (newValue) {
-                          setState(() {
-                            _authData['email'] = newValue!;
-                            _emailController.text = newValue;
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        //password text field
-                        keyboardAppearance: Brightness.dark,
-                        controller: _passwordController,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.blue[50],
-                          labelText: 'Password',
-                          labelStyle: const TextStyle(color: Colors.blue),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              visible
-                                  ? Icons.visibility_outlined
-                                  : Icons.visibility_off_outlined,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                visible = !visible;
-                              });
-                            },
-                          ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: TextFormField(
+                          //username text field
+                          keyboardType: TextInputType.name,
+                          keyboardAppearance: Brightness.dark,
+                          controller: _usernameController,
+                          decoration:
+                              _themes.textFormFieldDecoration('Username'),
+                          obscureText: false,
+                          validator: (value) {
+                            if (value!.length < 4) {
+                              return 'Invalid username';
+                            }
+                            return null;
+                          },
+                          onSaved: (newValue) {
+                            _authData['username'] = newValue!;
+                            _usernameController.text = newValue;
+                          },
                         ),
-                        obscureText: visible,
-                        validator: (value) {
-                          if (value!.length < 6) {
-                            return 'Short password';
-                          }
-                          return null;
-                        },
-                        onSaved: (newValue) {
-                          setState(() {
-                            _authData['password'] = newValue!;
-                            _passwordController.text = newValue;
-                          });
-                        },
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
-                        //Confirm password text field
-                        keyboardAppearance: Brightness.dark,
-                        controller: _confirmedPasswordController,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.blue[50],
-                          labelText: 'Password',
-                          labelStyle: const TextStyle(color: Colors.blue),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              visible
-                                  ? Icons.visibility_outlined
-                                  : Icons.visibility_off_outlined,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                visible = !visible;
-                              });
-                            },
-                          ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: TextFormField(
+                          //email text field
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          keyboardAppearance: Brightness.dark,
+                          decoration: _themes.textFormFieldDecoration('Email'),
+                          obscureText: false,
+                          validator: (value) {
+                            if (value!.isEmpty ||
+                                !value.contains('@') ||
+                                !value.contains('.com') ||
+                                value.length < 12) {
+                              return 'Invalid email';
+                            }
+                            return null;
+                          },
+                          onSaved: (newValue) {
+                            setState(() {
+                              _authData['email'] = newValue!;
+                              _emailController.text = newValue;
+                            });
+                          },
                         ),
-                        obscureText: visible,
-                        validator: (value) {
-                          if (value != _passwordController.text) {
-                            return 'Password doesn\'t match';
-                          }
-                          return null;
-                        },
-                        onSaved: (newValue) {
-                          setState(() {
-                            _authData['password'] = newValue!;
-                            _confirmedPasswordController.text = newValue;
-                          });
-                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: TextFormField(
+                          //password text field
+                          keyboardAppearance: Brightness.dark,
+                          controller: _passwordController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.blue[50],
+                            labelText: 'Password',
+                            labelStyle: const TextStyle(color: Colors.blue),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                visible
+                                    ? Icons.visibility_off_outlined
+                                    : Icons.visibility_outlined,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  visible = !visible;
+                                });
+                              },
+                            ),
+                          ),
+                          obscureText: visible,
+                          validator: (value) {
+                            if (value!.length < 6) {
+                              return 'Short password';
+                            }
+                            return null;
+                          },
+                          onSaved: (newValue) {
+                            setState(() {
+                              _authData['password'] = newValue!;
+                              _passwordController.text = newValue;
+                            });
+                          },
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: TextFormField(
+                          //Confirm password text field
+                          keyboardAppearance: Brightness.dark,
+                          controller: _confirmedPasswordController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.blue[50],
+                            labelText: 'Password',
+                            labelStyle: const TextStyle(color: Colors.blue),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                visible
+                                    ? Icons.visibility_off_outlined
+                                    : Icons.visibility_outlined,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  visible = !visible;
+                                });
+                              },
+                            ),
+                          ),
+                          obscureText: visible,
+                          validator: (value) {
+                            if (value != _passwordController.text) {
+                              return 'Password doesn\'t match';
+                            }
+                            return null;
+                          },
+                          onSaved: (newValue) {
+                            setState(() {
+                              _authData['password'] = newValue!;
+                              _confirmedPasswordController.text = newValue;
+                            });
+                          },
+                        ),
                       ),
                       const SizedBox(
                         height: 45,
                       ),
-                      TextButton(
-                        /**Sign up button */
-                        onPressed: () {
-                          final isValid = formKey.currentState!.validate();
-                          if (isValid) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_emailController.text != '' &&
-                                        _passwordController.text != '' &&
-                                        _usernameController.text != '')
-                                    ? (context) => const ChooseMode()
-                                    : ((context) => const AddAccount()),
-                              ),
-                            );
-                            getData;
-                          }
-                        },
-                        child: _themes.textButtonStyle('SIGN UP'),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: TextButton(
+                          /**Sign up button */
+                          onPressed: () {
+                            final isValid = formKey.currentState!.validate();
+                            if (isValid) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_emailController.text != '' &&
+                                          _passwordController.text != '' &&
+                                          _usernameController.text != '')
+                                      ? (context) => const ChooseMode()
+                                      : ((context) => const AddAccount()),
+                                ),
+                              );
+                              getData;
+                            }
+                          },
+                          child: _themes.textButtonStyle('SIGN UP'),
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _themes.linkText1('ALREADY A MEMBER?'),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SwitchAccount(),
-                                ),
-                              );
-                              getData;
-                            },
-                            child: _themes.linkText2('SWITCH ACCOUNT'),
+                          Material(
+                            color: Colors.transparent,
+                            elevation: 40,
+                            child: _themes.linkText1('ALREADY A MEMBER?'),
+                          ),
+                          Material(
+                            color: Colors.transparent,
+                            elevation: 40,
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SwitchAccount(),
+                                  ),
+                                );
+                                getData;
+                              },
+                              child: _themes.linkText2('SWITCH ACCOUNT'),
+                            ),
                           ),
                         ],
                       ),

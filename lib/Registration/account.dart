@@ -43,23 +43,7 @@ class _AccountState extends State<Account> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'media/images/time_exploit.png',
-                          width: 100,
-                          height: 100,
-                        ),
-                        const Text(
-                          'Time Exploit',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w800,
-                              fontSize: 30),
-                        ),
-                      ],
-                    ),
+                  child: appLogo(),
                   ),
                 Container(
                   padding: const EdgeInsets.all(15),

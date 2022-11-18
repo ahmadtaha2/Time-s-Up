@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Registration/ChildConfig/child_info.dart';
+import 'package:pro1/Registration/Child_Configurations//child_info.dart';
 import 'package:pro1/Registration/account.dart';
 import 'package:pro1/app_themes.dart';
 import 'login.dart';
@@ -47,50 +47,58 @@ class _SignUpState extends State<SignUp> {
               const SizedBox(
                 height: 100,
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: background2,
-                  minimumSize: const Size(200, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+              Material(
+                color: Colors.transparent,
+                elevation: 40,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: background2,
+                    minimumSize: const Size(200, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    elevation: 40,
                   ),
-                  elevation: 40,
-                ),
-                onPressed: () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Account(),
+                  onPressed: () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Account(),
+                    ),
                   ),
-                ),
-                child: const Text(
-                  'Sign Up',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                  child: const Text(
+                    'Sign Up',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
               const Divider(
                 color: Colors.transparent,
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: background2,
-                  minimumSize: const Size(200, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+              Material(
+                color: Colors.transparent,
+                elevation: 40,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: background2,
+                    minimumSize: const Size(200, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    elevation: 40,
                   ),
-                  elevation: 40,
-                ),
-                onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Login()));
-                },
-                child: const Text(
-                  'Login',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => const Login()));
+                  },
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -106,7 +114,7 @@ class _SignUpState extends State<SignUp> {
                     );
                   },
                   child: const Text(
-                    'Are you a child?',
+                    'Is this the child device?',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,

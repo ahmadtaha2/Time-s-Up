@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Registration/ChildConfig/child_regetration_code.dart';
+import 'package:pro1/Registration/Child_Configurations//child_regetration_code.dart';
 import 'package:pro1/app_themes.dart';
 
 class ChildInformation extends StatefulWidget {

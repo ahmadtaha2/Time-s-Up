@@ -28,27 +28,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "media/images/On_Time.png",
-                        width: 75,
-                        height: 75,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        'On Time',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 30,
-                        ),
-                      )
-                    ],
-                  ),
+                  child: appLogo(),
                 ),
                 Container(
                   padding: const EdgeInsets.all(15),

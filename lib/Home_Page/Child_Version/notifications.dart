@@ -1,1 +1,0 @@
-// TODO: create a design on FIGMA and come back here to build the code

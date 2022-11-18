@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TODO: replace the logo code with a method implemented here
-
 Color theme1 = const Color.fromRGBO(226, 228, 229, 1);
 Color theme2 = Colors.blue[300]!;
 Color background1 = const Color.fromRGBO(39, 46, 67, 1);
@@ -16,6 +14,7 @@ Color fontColor4 = const Color.fromRGBO(238, 128, 47, 1);
 Color circleImageColor1 = const Color.fromRGBO(255, 202, 165, 1);
 Color circleImageColor2 = const Color.fromRGBO(238, 128, 47, 1);
 Color shadowColor1 = Colors.white10;
+Color fillColor1 = const Color.fromRGBO(22, 29, 48, 0.66);
 
 class Themes {
   InputDecoration textFormFieldDecoration(String label) {
@@ -140,4 +139,48 @@ class Themes {
       ),
     );
   }
+}
+
+Row appLogo() {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Image.asset(
+        'media/images/time_exploit.png',
+        width: 100,
+        height: 100,
+      ),
+      const Text(
+        'Time Exploit',
+        style: TextStyle(
+            color: Colors.white, fontWeight: FontWeight.w800, fontSize: 30),
+      ),
+    ],
+  );
+}
+
+TextFormField searchBar() {
+  return TextFormField(
+    keyboardType: TextInputType.text,
+    keyboardAppearance: Brightness.dark,
+    style: TextStyle(
+      color: fontColor1,
+    ),
+    decoration: InputDecoration(
+      hintText: 'Search',
+      hintStyle: TextStyle(
+        color: fontColor1,
+      ),
+      filled: true,
+      fillColor: fillColor1,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(30),
+        borderSide: BorderSide.none,
+      ),
+      prefixIcon: Icon(
+        Icons.search,
+        color: fontColor1,
+      ),
+    ),
+  );
 }

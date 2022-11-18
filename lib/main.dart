@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Home_Page/Child_Version/Child_Home.dart';
 import 'launch.dart';
 
 void main() => runApp(const MyApp());
@@ -17,5 +16,11 @@ class MyApp extends StatelessWidget {
     ); // MaterialApp
   }
 }
+
 // TODO: check the code for any TODOs to finish
-// TODO: build the notification feature
+// build the notification feature
+// TODO: build the search feature (almost done, time for some back-end work)
+// TODO: time limitation feature
+// simplify the code as much as possible...
+// TODO: => similar components
+// TODO: => commons themes and so...

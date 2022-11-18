@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
-import 'package:pro1/Home_Page/chart_data.dart';
+import 'package:pro1/chart_data.dart';
 import 'package:pro1/app_themes.dart';
 
 class ChildHomePage extends StatefulWidget {

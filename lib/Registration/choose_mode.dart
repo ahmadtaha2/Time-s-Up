@@ -28,23 +28,10 @@ class _ChooseModeState extends State<ChooseMode> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'media/images/time_exploit.png',
-                      width: 100,
-                      height: 100,
-                    ),
-                    const Text(
-                      'Time Exploit',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 30,
-                      ),
-                    ),
-                  ],
+                Material(
+                  color: Colors.transparent,
+                  elevation: 40,
+                  child: appLogo(),
                 ),
                 const SizedBox(
                   height: 15,
@@ -57,75 +44,99 @@ class _ChooseModeState extends State<ChooseMode> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      _themes.title('CHOOSE MODE'),
-                      _themes.trailing(
-                        'Please choose your default user type',
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: _themes.title('CHOOSE MODE'),
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: _themes.trailing(
+                          'Please choose your default user type',
+                        ),
                       ),
                       const SizedBox(
                         height: 30,
                       ),
-                      IconButton(
-                        /*
-                        when ever the user clicks
-                        the image of the user mode -for easier use-
-                        the user will be redirected to the home page
-                        of the app according to user mode chosen
-                        */
-                        onPressed: () {
-                          setState(() {
-                            userIndex = 0;
-                            userMode = 'family';
-                          });
-                          //use this statement to check if the value is stored
-                          //print(userMode);
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ParentHomePage(),
-                            ),
-                          );
-                        },
-                        icon: Image.asset(
-                          'media/images/parents_portrait_transparent.png',
-                        ),
-                        iconSize: 250,
-                      ),
-                      Text(
-                        'Parent (Family)',
-                        style: TextStyle(
-                          color: Colors.orange[700],
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: IconButton(
+                          /*
+                          when ever the user clicks
+                          the image of the user mode -for easier use-
+                          the user will be redirected to the home page
+                          of the app according to user mode chosen
+                          */
+                          onPressed: () {
+                            setState(() {
+                              userIndex = 0;
+                              userMode = 'family';
+                            });
+                            //use this statement to check if the value is stored
+                            //print(userMode);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ParentHomePage(),
+                              ),
+                            );
+                          },
+                          icon: Image.asset(
+                            'media/images/parents_portrait_transparent.png',
+                          ),
+                          iconSize: 250,
                         ),
                       ),
-                      IconButton(
-                        /*
-                        when ever the user clicks
-                        the image of the user mode -for easier use-
-                        the user will be redirected to the home page
-                        of the app according to user mode chosen
-                        */
-                        onPressed: () {
-                          setState(() {
-                            userIndex = 1;
-                            userMode = 'personal';
-                          });
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SingleUserHomePage(),
-                            ),
-                          );
-                        },
-                        icon: Image.asset('media/images/User.png'),
-                        iconSize: 250,
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: Text(
+                          'Parent (Family)',
+                          style: TextStyle(
+                            color: Colors.orange[700],
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
                       ),
-                      Text(
-                        'Personal',
-                        style: TextStyle(
-                          color: Colors.orange[700],
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: IconButton(
+                          /*
+                          when ever the user clicks
+                          the image of the user mode -for easier use-
+                          the user will be redirected to the home page
+                          of the app according to user mode chosen
+                          */
+                          onPressed: () {
+                            setState(() {
+                              userIndex = 1;
+                              userMode = 'personal';
+                            });
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SingleUserHomePage(),
+                              ),
+                            );
+                          },
+                          icon: Image.asset('media/images/User.png'),
+                          iconSize: 250,
+                        ),
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: Text(
+                          'Personal',
+                          style: TextStyle(
+                            color: Colors.orange[700],
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
                         ),
                       ),
                     ],

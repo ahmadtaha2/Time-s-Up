@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Registration/login.dart';
 import 'package:pro1/app_themes.dart';
-import 'package:pro1/launch.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
@@ -36,27 +35,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'media/images/On_Time.png',
-                        width: 75,
-                        height: 75,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        'On Time',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 30,
-                        ),
-                      ),
-                    ],
-                  ),
+                  child: appLogo(),
                 ),
                 Container(
                   padding: const EdgeInsets.all(15),

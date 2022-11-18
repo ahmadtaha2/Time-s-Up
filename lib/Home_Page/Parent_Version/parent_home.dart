@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:pro1/Home_Page/Menu_Pages/add_account.dart';
-import 'package:pro1/Home_Page/Menu_Pages/switch_user_mode.dart';
 import 'package:pro1/Home_Page/app_tab.dart';
 import 'package:pro1/Home_Page/device_tab.dart';
 import 'package:pro1/Home_Page/Menu_Pages/switch_account.dart';
 import 'package:pro1/Home_Page/website_tab.dart';
-import 'package:pro1/Registration/Profile/profile.dart';
+import 'package:pro1/Profile/profile.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:pro1/Registration/login.dart';
 import 'package:pro1/app_themes.dart';
@@ -123,7 +121,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const SwitchUserMode(),
+                    builder: (context) => const ChooseMode(),
                   ),
                 ),
               ),

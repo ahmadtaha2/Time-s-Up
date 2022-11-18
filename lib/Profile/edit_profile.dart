@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/app_themes.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   bool logIn = true;
   final Themes _themes = Themes();
   final GlobalKey<FormState> formKey = GlobalKey();
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +47,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         key: formKey,
         child: SingleChildScrollView(
           child: Container(
+            height: 775,
             decoration: _themes.screenDecoration(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -66,6 +69,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                 ),
                 Container(
+                  height: 686,
                   padding: const EdgeInsets.symmetric(
                     vertical: 20,
                     horizontal: 40,
@@ -116,7 +120,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           keyboardType: TextInputType.name,
                           keyboardAppearance: Brightness.dark,
                           //controller: _usernameController,
-                          decoration: _themes.textFormFieldDecoration('Username'),
+                          decoration:
+                              _themes.textFormFieldDecoration('Username'),
                           obscureText: false,
                           validator: (value) {
                             if (value!.length < 4) {
@@ -244,7 +249,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           keyboardType: TextInputType.datetime,
                           keyboardAppearance: Brightness.dark,
                           //controller: _usernameController,
-                          decoration: _themes.textFormFieldDecoration('Birthday'),
+                          decoration:
+                              _themes.textFormFieldDecoration('Birthday'),
                           obscureText: false,
                           validator: (value) {
                             if (value!.length < 10) {
@@ -266,7 +272,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         elevation: 30,
                         child: TextButton(
                           onPressed: () {
-                            final bool isValid = formKey.currentState!.validate();
+                            final bool isValid =
+                                formKey.currentState!.validate();
                             if (isValid) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(editProfileMessage);
@@ -287,133 +294,3 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 }
-
-/*leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              icon: Icon(
-                Icons.menu,
-                color: background3,
-              ),
-            );
-          },
-        ),*/
-/*drawer: Drawer(
-        backgroundColor: background1,
-        child: Column(
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: background2,
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.account_circle_rounded,
-                    size: 100,
-                    color: fontColor1,
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    'Username',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: fontColor1,
-                      fontSize: 30,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.home,
-                color: fontColor1,
-              ),
-              title: _themes.menuText('Home'),
-              onTap: () => {Navigator.of(context).pop()},
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.add_box_outlined,
-                color: fontColor1,
-              ),
-              title: _themes.menuText('Add Account'),
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AddAccount(),
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.switch_account_outlined,
-                color: fontColor1,
-              ),
-              title: _themes.menuText('Switch Account'),
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SwitchAccount(),
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.center_focus_strong_outlined,
-                color: fontColor1,
-              ),
-              title: _themes.menuText('Focus Mode'),
-              onTap: () => {},
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.dark_mode_outlined,
-                color: fontColor1,
-              ),
-              title: _themes.menuText('Dark Mode'),
-              onTap: () => {},
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.translate_sharp,
-                color: fontColor1,
-              ),
-              title: _themes.menuText('Change Language'),
-              onTap: () => {},
-            ),
-            Divider(
-              color: fontColor1,
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.border_color,
-                color: fontColor1,
-              ),
-              title: _themes.menuText('Feedback'),
-              onTap: () => {},
-            ),
-            Divider(
-              color: fontColor1,
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.logout,
-                color: fontColor1,
-              ),
-              title: _themes.menuText('Logout'),
-              onTap: () => {
-                logIn = false,
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const Login()))
-              },
-            ),
-          ],
-        ),
-      ),*/

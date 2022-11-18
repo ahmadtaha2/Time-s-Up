@@ -39,24 +39,7 @@ class _SwitchAccountState extends State<SwitchAccount> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'media/images/time_exploit.png',
-                      height: 100,
-                      width: 100,
-                    ),
-                    const Text(
-                      'Time Exploit',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 30,
-                      ),
-                    ),
-                  ],
-                ),
+                Material(color: Colors.transparent, elevation: 40,child: appLogo()),
                 Container(
                   padding: const EdgeInsets.all(15),
                   height: 775,
@@ -78,8 +61,16 @@ class _SwitchAccountState extends State<SwitchAccount> {
                           )
                         ],
                       ),
-                      _themes.title('LOGIN'),
-                      _themes.trailing('Login With a Different Account'),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: _themes.title('LOGIN'),
+                      ),
+                      Material(
+                          color: Colors.transparent,
+                          elevation: 40,
+                          child: _themes
+                              .trailing('Login With a Different Account')),
                       const SizedBox(
                         height: 70,
                       ),
@@ -156,15 +147,19 @@ class _SwitchAccountState extends State<SwitchAccount> {
                         /**Forgot Password Link*/
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const VerifyEmail(),
-                                ),
-                              );
-                            },
-                            child: _themes.resetLink('Forgot Password'),
+                          Material(
+                            color: Colors.transparent,
+                            elevation: 40,
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => const VerifyEmail(),
+                                  ),
+                                );
+                              },
+                              child: _themes.resetLink('Forgot Password'),
+                            ),
                           ),
                         ],
                       ),
