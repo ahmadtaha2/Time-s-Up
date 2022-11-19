@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Home_Page/Home_Page.dart';
 import 'package:pro1/Registration/account.dart';
 import 'package:pro1/launch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,7 +9,11 @@ import 'package:pro1/Registration/choose_mode.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import '../Home_Page/Parent_Version/parent_home.dart';
+import '../Home_Page/Single_User_Version/single_user_home.dart';
+
 class Login extends StatefulWidget {
+
   const Login({Key? key}) : super(key: key);
 
   @override
@@ -32,6 +35,7 @@ class _LoginState extends State<Login> {
   final Themes _themes = Themes();
 
   signIn() async {
+    await Firebase.initializeApp();
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
       formdata.save();
@@ -190,7 +194,7 @@ class _LoginState extends State<Login> {
                               MaterialPageRoute(
                                 builder: (_emailInput.text != '' &&
                                         _passwordInput.text != '')
-                                    ? (context) => const MyHomePage()
+                                    ? (context) => swtch()
                                     : ((context) => const Login()),
                               ),
                             );
@@ -245,5 +249,16 @@ class _LoginState extends State<Login> {
     SharedPreferences loginPrefs = await SharedPreferences.getInstance();
     loginPrefs.setString('user', _emailInput.text);
     loginPrefs.setString('password', _passwordInput.text);
+  }
+
+  Widget swtch() {
+    if (userMode == 'family') {
+      return ParentHomePage();
+    }
+    if (userMode == 'personal') {
+      return SingleUserHomePage();
+    } else {
+      return const Login();
+    }
   }
 }

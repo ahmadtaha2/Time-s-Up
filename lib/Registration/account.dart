@@ -42,6 +42,7 @@ class _AccountState extends State<Account> {
   var musername, mpassword, memail, cpassword;
 
   signUp() async {
+    await Firebase.initializeApp();
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
       formdata.save();
