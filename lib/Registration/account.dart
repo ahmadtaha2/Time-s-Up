@@ -29,7 +29,7 @@ class _AccountState extends State<Account> {
     'email': '',
     'password': '',
   };
-  bool visible = false;
+  bool hidden = true;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -79,8 +79,13 @@ class _AccountState extends State<Account> {
                           decoration: _themes.textFormFieldDecoration('Username'),
                           obscureText: false,
                           validator: (value) {
-                            if (value!.length < 4) {
-                              return 'Invalid username';
+                            if (value!.isEmpty || value.length < 4) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Invalid username';
+                              }
                             }
                             return null;
                           },
@@ -108,7 +113,12 @@ class _AccountState extends State<Account> {
                                 !value.contains('@') ||
                                 !value.contains('.com') ||
                                 value.length < 12) {
-                              return 'Invalid email';
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else{
+                                return 'Invalid email';
+                              }
                             }
                             return null;
                           },
@@ -131,8 +141,13 @@ class _AccountState extends State<Account> {
                           keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.visiblePassword,
                           validator: (value) {
-                            if (value!.length < 6) {
-                              return 'Short password';
+                            if (value!.isEmpty || value.length < 6) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Short password';
+                              }
                             }
                             return null;
                           },
@@ -153,18 +168,18 @@ class _AccountState extends State<Account> {
                             ),
                             suffixIcon: IconButton(
                               icon: Icon(
-                                visible
+                                hidden
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
                               ),
                               onPressed: () {
                                 setState(() {
-                                  visible = !visible;
+                                  hidden = !hidden;
                                 });
                               },
                             ),
                           ),
-                          obscureText: visible,
+                          obscureText: hidden,
                         ),
                       ),
                       const SizedBox(
@@ -187,21 +202,26 @@ class _AccountState extends State<Account> {
                             ),
                             suffixIcon: IconButton(
                               icon: Icon(
-                                visible
+                                hidden
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
                               ),
                               onPressed: () {
                                 setState(() {
-                                  visible = !visible;
+                                  hidden = !hidden;
                                 });
                               },
                             ),
                           ),
-                          obscureText: visible,
+                          obscureText: hidden,
                           validator: (value) {
-                            if (value != _passwordController.text) {
-                              return 'Password doesn\'t match';
+                            if (value!.isEmpty || value != _passwordController.text) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Password doesn\'t match';
+                              }
                             }
                             return null;
                           },

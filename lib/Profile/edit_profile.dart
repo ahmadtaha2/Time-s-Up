@@ -97,8 +97,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           decoration: _themes.textFormFieldDecoration('Name'),
                           obscureText: false,
                           validator: (value) {
-                            if (value!.length < 4) {
-                              return 'Invalid name';
+                            if (value!.isEmpty || value.length < 4) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Invalid name';
+                              }
                             }
                             return null;
                           },
@@ -124,8 +129,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               _themes.textFormFieldDecoration('Username'),
                           obscureText: false,
                           validator: (value) {
-                            if (value!.length < 4) {
-                              return 'Invalid username';
+                            if (value!.isEmpty || value.length < 4) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Invalid username';
+                              }
                             }
                             return null;
                           },
@@ -154,7 +164,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 !value.contains('@') ||
                                 !value.contains('.com') ||
                                 value.length < 12) {
-                              return 'Invalid email';
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Invalid email';
+                              }
                             }
                             return null;
                           },
@@ -180,8 +195,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               _themes.textFormFieldDecoration('Phone Number'),
                           obscureText: false,
                           validator: (value) {
-                            if (value!.length < 10) {
-                              return 'Invalid phone number';
+                            if (value!.isEmpty || value.length < 10) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Invalid phone number';
+                              }
                             }
                             return null;
                           },
@@ -226,8 +246,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           ),
                           obscureText: visible,
                           validator: (value) {
-                            if (value!.length < 6) {
-                              return 'Invalid password';
+                            if (value!.isEmpty || value.length < 6) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Invalid password';
+                              }
                             }
                             return null;
                           },
@@ -253,8 +278,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               _themes.textFormFieldDecoration('Birthday'),
                           obscureText: false,
                           validator: (value) {
-                            if (value!.length < 10) {
-                              return 'Invalid birthday';
+                            if (value!.isEmpty || value.length < 10) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Invalid birthday';
+                              }
                             }
                             return null;
                           },

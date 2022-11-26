@@ -92,8 +92,13 @@ class _AddAccountState extends State<AddAccount> {
                               _themes.textFormFieldDecoration('Username'),
                           obscureText: false,
                           validator: (value) {
-                            if (value!.length < 4) {
-                              return 'Invalid username';
+                            if (value!.isEmpty || value.length < 4) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Invalid username';
+                              }
                             }
                             return null;
                           },
@@ -121,7 +126,12 @@ class _AddAccountState extends State<AddAccount> {
                                 !value.contains('@') ||
                                 !value.contains('.com') ||
                                 value.length < 12) {
-                              return 'Invalid email';
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Invalid email';
+                              }
                             }
                             return null;
                           },
@@ -166,8 +176,13 @@ class _AddAccountState extends State<AddAccount> {
                           ),
                           obscureText: visible,
                           validator: (value) {
-                            if (value!.length < 6) {
-                              return 'Short password';
+                            if (value!.isEmpty || value.length < 6) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Short password';
+                              }
                             }
                             return null;
                           },
@@ -212,8 +227,13 @@ class _AddAccountState extends State<AddAccount> {
                           ),
                           obscureText: visible,
                           validator: (value) {
-                            if (value != _passwordController.text) {
-                              return 'Password doesn\'t match';
+                            if (value!.isEmpty || value != _passwordController.text) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Password doesn\'t match';
+                              }
                             }
                             return null;
                           },

@@ -89,7 +89,12 @@ class _SwitchAccountState extends State<SwitchAccount> {
                                 !value.contains('@') ||
                                 !value.contains('.com') ||
                                 value.length < 12) {
-                              return 'Invalid email/username';
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Invalid email/username';
+                              }
                             }
                             return null;
                           },
@@ -132,8 +137,13 @@ class _SwitchAccountState extends State<SwitchAccount> {
                           ),
                           obscureText: visible,
                           validator: (value) {
-                            if (value!.length < 6) {
-                              return 'Short password';
+                            if (value!.isEmpty || value.length < 6) {
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Short password';
+                              }
                             }
                             return null;
                           },

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Registration/Child_Configurations//child_registration_code.dart';
+import 'package:pro1/Home_Page/Child_Version/Child_Home.dart';
 import 'package:pro1/app_themes.dart';
 
-class ChildInformation extends StatefulWidget {
-  const ChildInformation({Key? key}) : super(key: key);
+class ChildRegistrationCode extends StatefulWidget {
+  const ChildRegistrationCode({Key? key}) : super(key: key);
 
   @override
-  State<ChildInformation> createState() => _ChildInformationState();
+  State<ChildRegistrationCode> createState() => _ChildRegistrationCodeState();
 }
 
-class _ChildInformationState extends State<ChildInformation> {
-  final TextEditingController _name = TextEditingController();
-  final TextEditingController _age = TextEditingController();
-  final GlobalKey<FormState> formkey = GlobalKey();
+class _ChildRegistrationCodeState extends State<ChildRegistrationCode> {
+  final GlobalKey<FormState> formKey = GlobalKey();
+  TextEditingController connectionCodeController = TextEditingController();
   final Themes _themes = Themes();
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class _ChildInformationState extends State<ChildInformation> {
       child: Scaffold(
         backgroundColor: background1,
         body: Form(
-          key: formkey,
+          key: formKey,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -55,78 +54,59 @@ class _ChildInformationState extends State<ChildInformation> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      _themes.title('Child Info'),
-                      const SizedBox(
-                        height: 70,
-                      ),
+                      //TODO: a code will be revealed here to connect the child's device
                       Material(
                         color: Colors.transparent,
-                        elevation:40,
-                        child: TextFormField(
-                          /*name text field*/
-                          controller: _name,
-                          keyboardType: TextInputType.name,
-                          keyboardAppearance: Brightness.dark,
-                          decoration: _themes.textFormFieldDecoration('Name'),
-                          obscureText: false,
-                          validator: (value) {
-                            if (value!.isEmpty || value.length < 3) {
-                              return 'Invalid name';
-                            }
-                            return null;
-                          },
-                          onSaved: (newValue) =>
-                              setState(() => _name.text = newValue!),
-                        ),
+                        elevation: 40,
+                        child: _themes.title('Connection Code'),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 40,
                       ),
                       Material(
                         color: Colors.transparent,
                         elevation: 40,
                         child: TextFormField(
-                          /*age field*/
-                          controller: _age,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.text,
                           keyboardAppearance: Brightness.dark,
-                          decoration: _themes.textFormFieldDecoration('age'),
-                          obscureText: false,
+                          decoration: _themes.textFormFieldDecoration(
+                              'Enter a connection code'),
                           validator: (value) {
-                            if (value!.isEmpty || value.length >= 3) {
-                              return 'Invalid age';
+                            if (value!.isEmpty || value.length > 25) {
+                              if (value.isEmpty) {
+                                return 'This field is required!';
+                              } else if (value.length > 25) {
+                                return 'Invalid code';
+                              }
                             }
-                            return null;
                           },
-                          onSaved: (newValue) =>
-                              setState(() => _age.text = newValue!),
+                          onSaved: (newValue) {
+                            connectionCodeController.text = newValue!;
+                          },
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 40,
                       ),
                       Material(
                         color: Colors.transparent,
                         elevation: 40,
                         child: TextButton(
-                          /**save button */
                           onPressed: () {
-                            final isValid = formkey.currentState!.validate();
+                            final isValid = formKey.currentState!.validate();
                             if (isValid) {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_name.text != '' && _age.text != '')
-                                      ? (context) => const ChildRegistrationCode()
-                                      : ((context) => const ChildInformation()),
+                                  builder: connectionCodeController.text.isEmpty
+                                      ? (context) =>
+                                          const ChildRegistrationCode()
+                                      : (context) => const ChildHomePage(),
                                 ),
                               );
                             }
                           },
-                          child: _themes.textButtonStyle('SAVE'),
+                          child: _themes.textButtonStyle('Connect'),
                         ),
                       ),
                     ],

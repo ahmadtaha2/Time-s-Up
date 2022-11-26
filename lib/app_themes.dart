@@ -56,6 +56,12 @@ class Themes {
         color: fontColor4,
         fontSize: 35,
         fontWeight: FontWeight.w800,
+        shadows: const [
+          Shadow(
+            color: Colors.black,
+            offset: Offset(0, 2),
+          ),
+        ],
       ),
     );
   }
@@ -92,7 +98,7 @@ class Themes {
         shadows: const [
           Shadow(
             color: Colors.black,
-            offset: Offset(0, 1),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -151,7 +157,7 @@ Row appLogo() {
         height: 100,
       ),
       const Text(
-        'Time Exploit',
+        'Total Control',
         style: TextStyle(
             color: Colors.white, fontWeight: FontWeight.w800, fontSize: 30),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Registration/Forgot_Password/reset_password.dart';
 import 'package:pro1/app_themes.dart';
+
 class VerifyEmail extends StatefulWidget {
   const VerifyEmail({super.key});
 
@@ -80,7 +81,11 @@ class _VerifyEmailState extends State<VerifyEmail> {
                                 !value.contains('@') ||
                                 !value.contains('.com') ||
                                 value.length < 12) {
-                              return 'Invalid email/username';
+                              if (value.isEmpty) {
+                                return 'This field is required!';
+                              } else {
+                                return 'Invalid email/username';
+                              }
                             }
                             return null;
                           },
@@ -98,25 +103,24 @@ class _VerifyEmailState extends State<VerifyEmail> {
                         elevation: 40,
                         child: TextButton(
                           onPressed: () {
-                            SnackBar verificationMesage = const SnackBar(
+                            SnackBar verificationMessage = const SnackBar(
                               content: Text(
                                 'Verification message is sent to your email',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               duration: Duration(seconds: 4),
                             );
-
                             final isValid = formKey.currentState!.validate();
                             if (isValid) {
                               ScaffoldMessenger.of(context)
-                                  .showSnackBar(verificationMesage);
+                                  .showSnackBar(verificationMessage);
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (_emailInput.text != '')
                                       ? (context) => const VerifyEmail()
-                                      : ((context) =>
-                                          const ResetPassword()), // fix it
+                                      : (context) =>
+                                          const ResetPassword(), // fix it
                                 ),
                               );
                             }

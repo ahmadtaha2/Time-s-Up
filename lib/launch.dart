@@ -8,9 +8,7 @@ class Launch extends StatefulWidget {
   const Launch({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return StartState();
-  }
+  State<StatefulWidget> createState() => StartState();
 }
 
 class StartState extends State<Launch> {

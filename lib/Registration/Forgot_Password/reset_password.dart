@@ -15,7 +15,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   final TextEditingController _confirmedPasswordController =
       TextEditingController();
   final SnackBar successfulReset =
-      const SnackBar(content: Text('Password Changed Successfuly!'));
+      const SnackBar(content: Text('Password Changed Successfully!'));
   final Map<String, String> _authData = {
     'email/username': '',
     'password': '',
@@ -80,7 +80,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                               setState(() {
                                 allow = false;
                               });
-                              return 'Invalid code';
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else{
+                                return 'Invalid code';
+                              }
                             } else {
                               setState(() {
                                 allow = true;
@@ -102,7 +107,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                           enabled: allow,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 6) {
-                              return 'Short password';
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Short password';
+                              }
                             }
                             return null;
                           },
@@ -173,7 +183,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                           validator: (value) {
                             if (value!.isEmpty ||
                                 value != _passwordController.text) {
-                              return 'Password doesn\'t match';
+                              if(value.isEmpty){
+                                return 'This field is required!';
+                              }
+                              else {
+                                return 'Password doesn\'t match';
+                              }
                             }
                             return null;
                           },
