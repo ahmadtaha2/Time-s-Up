@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Registration/Child_Configurations//child_registration_code.dart';
+import 'package:pro1/Home_Page/Child_Version/Child_Home.dart';
+import 'package:pro1/Registration/child_registration_code.dart';
 import 'package:pro1/app_themes.dart';
 
 class ChildInformation extends StatefulWidget {
@@ -120,7 +121,7 @@ class _ChildInformationState extends State<ChildInformation> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (_name.text != '' && _age.text != '')
-                                      ? (context) => const ChildRegistrationCode()
+                                      ? (context) => const ChildHomePage()
                                       : ((context) => const ChildInformation()),
                                 ),
                               );

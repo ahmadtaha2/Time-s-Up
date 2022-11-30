@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
 import 'package:pro1/Home_Page/Single_User_Version/single_user_home.dart';
+import 'package:pro1/Registration/child_registration_code.dart';
 import 'package:pro1/app_themes.dart';
 
 class ChooseMode extends StatefulWidget {
@@ -79,7 +80,7 @@ class _ChooseModeState extends State<ChooseMode> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ParentHomePage(),
+                                builder: (context) => const ChildRegistrationCode(),
                               ),
                             );
                           },

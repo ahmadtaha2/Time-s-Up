@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Home_Page/Child_Version/Child_Home.dart';
+import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
 import 'package:pro1/app_themes.dart';
 
 class ChildRegistrationCode extends StatefulWidget {
@@ -79,6 +79,7 @@ class _ChildRegistrationCodeState extends State<ChildRegistrationCode> {
                                 return 'Invalid code';
                               }
                             }
+                            return null;
                           },
                           onSaved: (newValue) {
                             connectionCodeController.text = newValue!;
@@ -98,10 +99,10 @@ class _ChildRegistrationCodeState extends State<ChildRegistrationCode> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: connectionCodeController.text.isEmpty
+                                  builder: connectionCodeController.text != ''
                                       ? (context) =>
                                           const ChildRegistrationCode()
-                                      : (context) => const ChildHomePage(),
+                                      : (context) => ParentHomePage(),
                                 ),
                               );
                             }
