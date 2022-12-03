@@ -8,19 +8,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SafeArea(
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+      ),
+      themeMode: ThemeMode.system,
+      home: const SafeArea(
         child: Launch(),
       ),
     ); // MaterialApp
   }
 }
-
-// TODO: check the code for any TODOs to finish
-// build the notification feature
-// TODO: build the search feature (almost done, time for some back-end work)
-// TODO: time limitation feature
-// simplify the code as much as possible...
-// TODO: => similar components
-// TODO: => commons themes and so...

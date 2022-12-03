@@ -133,20 +133,6 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
               ListTile(
                 //TODO: not active yet
                 leading: Icon(
-                  Icons.center_focus_strong_outlined,
-                  color: fontColor1,
-                ),
-                title: Text(
-                  'Activate/Deactivate focus mode',
-                  style: TextStyle(
-                    color: fontColor1,
-                  ),
-                ),
-                onTap: () => {},
-              ),
-              ListTile(
-                //TODO: not active yet
-                leading: Icon(
                   Icons.dark_mode_outlined,
                   color: fontColor1,
                 ),
@@ -263,3 +249,26 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
     );
   }
 }
+
+
+
+/**
+ * This is the foucus mode feature.
+ * I removed it as you reqested...
+ * 
+ * 
+ * ListTile(
+                leading: Icon(
+                  Icons.center_focus_strong_outlined,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Activate/Deactivate focus mode',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
+                ),
+                onTap: () => {},
+              ),
+ *
+ */

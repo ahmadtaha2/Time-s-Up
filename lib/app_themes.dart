@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 
 Color theme1 = const Color.fromRGBO(226, 228, 229, 1);
 Color theme2 = Colors.blue[300]!;
+
+///Dark Theme
 Color background1 = const Color.fromRGBO(39, 46, 67, 1);
 Color background2 = const Color.fromRGBO(22, 29, 48, 1);
 Color background3 = const Color.fromRGBO(40, 78, 139, 1);
+Color fontColor2 = const Color.fromRGBO(40, 78, 139, 1);
+Color fontColor3 = const Color.fromRGBO(22, 29, 48, 1);
+
+///Light Theme
 Color background4 = const Color.fromRGBO(180, 180, 180, 1);
 Color background5 = const Color.fromRGBO(238, 128, 47, 1);
 Color fontColor1 = const Color.fromRGBO(180, 180, 180, 1);
-Color fontColor2 = const Color.fromRGBO(40, 78, 139, 1);
-Color fontColor3 = const Color.fromRGBO(22, 29, 48, 1);
 Color fontColor4 = const Color.fromRGBO(238, 128, 47, 1);
+
+///Images Theme
 Color circleImageColor1 = const Color.fromRGBO(255, 202, 165, 1);
 Color circleImageColor2 = const Color.fromRGBO(238, 128, 47, 1);
 Color shadowColor1 = Colors.white10;

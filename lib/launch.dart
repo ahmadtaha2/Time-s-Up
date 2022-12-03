@@ -4,6 +4,8 @@ import 'dart:async';
 
 import 'package:pro1/app_themes.dart';
 
+//TODO: think about adding Animated Screen after launching
+
 class Launch extends StatefulWidget {
   const Launch({Key? key}) : super(key: key);
 

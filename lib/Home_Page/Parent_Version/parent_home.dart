@@ -8,9 +8,10 @@ import 'package:pro1/Profile/profile.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:pro1/Registration/login.dart';
 import 'package:pro1/app_themes.dart';
-import 'package:pro1/launch.dart';
 
 class ParentHomePage extends StatefulWidget {
+  const ParentHomePage({super.key});
+
   @override
   State<ParentHomePage> createState() => _ParentHomePageState();
 }
@@ -124,19 +125,6 @@ class _ParentHomePageState extends State<ParentHomePage> {
                     builder: (context) => const ChooseMode(),
                   ),
                 ),
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.center_focus_strong_outlined,
-                  color: fontColor1,
-                ),
-                title: Text(
-                  'Activate/Deactivate focus mode',
-                  style: TextStyle(
-                    color: fontColor1,
-                  ),
-                ),
-                onTap: () => {},
               ),
               ListTile(
                 leading: Icon(
@@ -260,3 +248,22 @@ class _ParentHomePageState extends State<ParentHomePage> {
     );
   }
 }
+
+
+
+/**
+ * 
+ * ListTile(
+                leading: Icon(
+                  Icons.center_focus_strong_outlined,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Activate/Deactivate focus mode',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
+                ),
+                onTap: () => {},
+              ),
+ */

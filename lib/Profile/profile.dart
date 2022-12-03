@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:pro1/Profile/edit_profile.dart';
 import 'package:pro1/Registration/login.dart';
 import 'package:pro1/app_themes.dart';
@@ -96,7 +95,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     color: background3,
                   ),
-                  // TODO: fix and edit profile UIs (there is space in the bottom try to fix it)
+                  // FIXME: fix and edit profile UIs (there is space in the bottom try to fix it)
                   child: Column(
                     children: [
                       Row(

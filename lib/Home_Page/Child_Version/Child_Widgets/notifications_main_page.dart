@@ -1,4 +1,3 @@
-// TODO: after building this page make sure to show it to the team for feedbacks
 import 'package:flutter/material.dart';
 import 'package:pro1/app_themes.dart';
 

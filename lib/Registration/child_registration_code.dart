@@ -54,7 +54,6 @@ class _ChildRegistrationCodeState extends State<ChildRegistrationCode> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      //TODO: a code will be revealed here to connect the child's device
                       Material(
                         color: Colors.transparent,
                         elevation: 40,
