@@ -1,6 +1,13 @@
+import 'dart:math';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:pro1/Home_Page/Child_Version/Child_Home.dart';
 import 'package:pro1/Home_Page/Child_Version/Child_Widgets/Code_Config/code_generator.dart';
-import 'package:pro1/Theme/app_themes.dart';
+import 'package:pro1/Registration/child_registration_code.dart';
+import 'package:pro1/Theme//app_themes.dart';
 
 class ChildInformation extends StatefulWidget {
   const ChildInformation({Key? key}) : super(key: key);
@@ -10,9 +17,12 @@ class ChildInformation extends StatefulWidget {
 }
 
 class _ChildInformationState extends State<ChildInformation> {
+  final GlobalKey<FormState> formkey = GlobalKey();
+
+
   final TextEditingController _name = TextEditingController();
   final TextEditingController _age = TextEditingController();
-  final GlobalKey<FormState> formkey = GlobalKey();
+
   final Themes _themes = Themes();
   @override
   Widget build(BuildContext context) {
@@ -26,7 +36,27 @@ class _ChildInformationState extends State<ChildInformation> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: appLogo(),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'media/images/On_Time.png',
+                        width: 75,
+                        height: 75,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text(
+                        'On Time',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 30,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Container(
                   padding: const EdgeInsets.all(15),
@@ -47,15 +77,13 @@ class _ChildInformationState extends State<ChildInformation> {
                         elevation:40,
                         child: TextFormField(
                           /*name text field*/
-                          style: const TextStyle(
-                            color: Colors.black,
-                          ),
                           controller: _name,
                           keyboardType: TextInputType.name,
                           keyboardAppearance: Brightness.dark,
-                          decoration: _themes.textFormFieldDecoration('Name'),
+                          decoration: _themes.textFormFieldDecoration('Child Name'),
                           obscureText: false,
                           validator: (value) {
+                            var childn = value;
                             if (value!.isEmpty || value.length < 3) {
                               return 'Invalid name';
                             }
@@ -73,13 +101,10 @@ class _ChildInformationState extends State<ChildInformation> {
                         elevation: 40,
                         child: TextFormField(
                           /*age field*/
-                          style: const TextStyle(
-                            color: Colors.black,
-                          ),
                           controller: _age,
                           keyboardType: TextInputType.number,
                           keyboardAppearance: Brightness.dark,
-                          decoration: _themes.textFormFieldDecoration('age'),
+                          decoration: _themes.textFormFieldDecoration(' Child Age'),
                           obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty || value.length >= 3) {
@@ -99,7 +124,17 @@ class _ChildInformationState extends State<ChildInformation> {
                         elevation: 40,
                         child: TextButton(
                           /**save button */
-                          onPressed: () {
+                          onPressed: () async {
+
+                            FirebaseDatabase database = FirebaseDatabase.instance;
+                            DatabaseReference ref = FirebaseDatabase.instance.ref().child('Users');
+                            Random random = new Random();
+                            int randomNumber = random.nextInt(10000);
+                            String randID= randomNumber.toString();
+                            ref.child(randID).set({
+                              "User_type": "Child"
+                            });
+
                             final isValid = formkey.currentState!.validate();
                             if (isValid) {
                               Navigator.pushReplacement(

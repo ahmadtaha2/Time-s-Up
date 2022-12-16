@@ -3,11 +3,13 @@ import 'package:pro1/Registration/choose_mode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pro1/Registration/login.dart';
 import 'package:pro1/launch.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_database/firebase_database.dart';
+
+import '../Theme/app_themes.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -235,8 +237,15 @@ class _AccountState extends State<Account> {
                       TextButton(
                         /**Sign up button */
                         onPressed: () async {
-                          userRef.child('password').set(4124);
-                          UserCredential response = await signUp();
+                          UserCredential? response = await signUp();
+                          FirebaseDatabase database = FirebaseDatabase.instance;
+                          DatabaseReference ref = FirebaseDatabase.instance.ref().child('Users');
+                          String? uid = response?.user?.uid;
+                          ref.child(uid!).set({
+                            "Name": musername,
+                            "User_Type": "Normal",
+                            "User_Mode": "0"
+                          });
                           if (response != null) {
                             Navigator.pushReplacement(
                               context,

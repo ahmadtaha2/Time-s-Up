@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
 import 'package:pro1/Home_Page/Single_User_Version/single_user_home.dart';
 import 'package:pro1/Registration/child_registration_code.dart';
 import 'package:pro1/Theme/app_themes.dart';
@@ -73,6 +76,7 @@ class _ChooseModeState extends State<ChooseMode> {
                             setState(() {
                               userIndex = 0;
                               userMode = 'family';
+                              assiginModeToDatabase(userMode);
                             });
                             //use this statement to check if the value is stored
                             //print(userMode);
@@ -93,7 +97,7 @@ class _ChooseModeState extends State<ChooseMode> {
                         color: Colors.transparent,
                         elevation: 40,
                         child: Text(
-                          'Family',
+                          'Parent (Family)',
                           style: TextStyle(
                             color: Colors.orange[700],
                             fontWeight: FontWeight.bold,
@@ -115,6 +119,7 @@ class _ChooseModeState extends State<ChooseMode> {
                             setState(() {
                               userIndex = 1;
                               userMode = 'personal';
+                              assiginModeToDatabase(userMode);
                             });
                             Navigator.pushReplacement(
                               context,
@@ -131,7 +136,7 @@ class _ChooseModeState extends State<ChooseMode> {
                         color: Colors.transparent,
                         elevation: 40,
                         child: Text(
-                          'Personal / Individual',
+                          'Personal',
                           style: TextStyle(
                             color: Colors.orange[700],
                             fontWeight: FontWeight.bold,
@@ -149,4 +154,13 @@ class _ChooseModeState extends State<ChooseMode> {
       ),
     );
   }
+}
+
+void assiginModeToDatabase<Widget>(userMode) async {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final User? user = auth.currentUser;
+  final uid = user?.uid;
+  FirebaseDatabase database = FirebaseDatabase.instance;
+  DatabaseReference ref = FirebaseDatabase.instance.ref().child("Users");
+  await ref.child("$uid/User_Mode").set(userMode);
 }

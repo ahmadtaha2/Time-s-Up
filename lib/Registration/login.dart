@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pro1/Registration/account.dart';
 import 'package:pro1/launch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:pro1/Registration/choose_mode.dart';
@@ -35,6 +35,7 @@ class _LoginState extends State<Login> {
   final Themes _themes = Themes();
 
   signIn() async {
+
     await Firebase.initializeApp();
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
@@ -65,7 +66,7 @@ class _LoginState extends State<Login> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     return SafeArea(
       child: Scaffold(
         backgroundColor: theme2,
@@ -188,13 +189,18 @@ class _LoginState extends State<Login> {
                         /**Login button */
                         onPressed: () async {
                           UserCredential response = await signIn();
+                          final FirebaseAuth auth = FirebaseAuth.instance;
+                          final User? user = auth.currentUser;
+                          final uid = user?.uid;
+                          final ref = FirebaseDatabase.instance.ref();
+                          final snapshot = await ref.child('Users/$uid/User_Mode').get();
                           if (response != null) {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (_emailInput.text != '' &&
                                         _passwordInput.text != '')
-                                    ? (context) => swtch()
+                                    ? (context) => swtch(snapshot.value)
                                     : ((context) => const Login()),
                               ),
                             );
@@ -251,14 +257,16 @@ class _LoginState extends State<Login> {
     loginPrefs.setString('password', _passwordInput.text);
   }
 
-  Widget swtch() {
-    if (userMode == 'family') {
-      return ParentHomePage();
-    }
-    if (userMode == 'personal') {
-      return SingleUserHomePage();
-    } else {
-      return const Login();
-    }
+
+}
+swtch(userMode){
+
+  if (userMode == 'family') {
+    return ParentHomePage();
+  }
+  if (userMode == 'personal') {
+    return SingleUserHomePage();
+  } else {
+    return Login();
   }
 }
