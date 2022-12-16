@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Profile/edit_profile.dart';
 import 'package:pro1/Registration/login.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

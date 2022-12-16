@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
 import 'package:pro1/Home_Page/Single_User_Version/single_user_home.dart';
 import 'package:pro1/Registration/child_registration_code.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 
 class ChooseMode extends StatefulWidget {
   const ChooseMode({super.key});
@@ -94,7 +93,7 @@ class _ChooseModeState extends State<ChooseMode> {
                         color: Colors.transparent,
                         elevation: 40,
                         child: Text(
-                          'Parent (Family)',
+                          'Family',
                           style: TextStyle(
                             color: Colors.orange[700],
                             fontWeight: FontWeight.bold,
@@ -132,7 +131,7 @@ class _ChooseModeState extends State<ChooseMode> {
                         color: Colors.transparent,
                         elevation: 40,
                         child: Text(
-                          'Personal',
+                          'Personal / Individual',
                           style: TextStyle(
                             color: Colors.orange[700],
                             fontWeight: FontWeight.bold,

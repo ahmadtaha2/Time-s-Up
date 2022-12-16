@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/chart_data.dart';
 import 'package:pro1/Registration/choose_mode.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 ///This file is not ready yet
@@ -24,15 +24,18 @@ class _AppState extends State<App> {
         width: double.maxFinite,
         padding: const EdgeInsets.all(10),
         decoration: _themes.screenDecoration(),
-        child: Column(
+        child: ListView(
           children: [
-            searchBar(),
+            // FIXME: change this to the Search Delegate when it's ready
+            searchBar(context),
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: Center(
                 heightFactor: 1.2,
                 child: PieChart(
-                  dataMap: (userMode.isNotEmpty && userMode == 'family')? childDataMap : dataMap,
+                  dataMap: (userMode.isNotEmpty && userMode == 'family')
+                      ? childDataMap
+                      : dataMap,
                   colorList: colorList,
                   chartRadius: MediaQuery.of(context).size.width / 2,
                   chartValuesOptions: ChartValuesOptions(
@@ -63,10 +66,8 @@ class _AppState extends State<App> {
             ListTile(
               title: Text(
                 'View app Statistics',
-                style: TextStyle(
-                  color: fontColor1,
-                  fontWeight: FontWeight.w800
-                ),
+                style:
+                    TextStyle(color: fontColor1, fontWeight: FontWeight.w800),
               ),
             ),
             Divider(
@@ -98,15 +99,6 @@ class _AppState extends State<App> {
             Divider(
               color: fontColor1,
               thickness: 2,
-            ),
-            ListTile(
-              title: Text(
-                'View app Statistics',
-                style: TextStyle(
-                  color: fontColor1,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
             ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro1/Search/search_engine.dart';
 
 Color theme1 = const Color.fromRGBO(226, 228, 229, 1);
 Color theme2 = Colors.blue[300]!;
@@ -6,13 +7,16 @@ Color theme2 = Colors.blue[300]!;
 ///Dark Theme
 Color background1 = const Color.fromRGBO(39, 46, 67, 1);
 Color background2 = const Color.fromRGBO(22, 29, 48, 1);
-Color background3 = const Color.fromRGBO(40, 78, 139, 1);
 Color fontColor2 = const Color.fromRGBO(40, 78, 139, 1);
 Color fontColor3 = const Color.fromRGBO(22, 29, 48, 1);
 
-///Light Theme
+///fits with both light & dark theme
 Color background4 = const Color.fromRGBO(180, 180, 180, 1);
+Color background3 = const Color.fromRGBO(40, 78, 139, 1);
+
+///Light Theme
 Color background5 = const Color.fromRGBO(238, 128, 47, 1);
+Color background6 = const Color.fromRGBO(255, 202, 165, 1);
 Color fontColor1 = const Color.fromRGBO(180, 180, 180, 1);
 Color fontColor4 = const Color.fromRGBO(238, 128, 47, 1);
 
@@ -23,18 +27,27 @@ Color shadowColor1 = Colors.white10;
 Color fillColor1 = const Color.fromRGBO(22, 29, 48, 0.66);
 
 class Themes {
+  ///dark? applied
+  ///light?
   InputDecoration textFormFieldDecoration(String label) {
     return InputDecoration(
-      filled: true,
-      fillColor: Colors.blue[50],
       labelText: label,
-      labelStyle: const TextStyle(color: Colors.blue),
+      labelStyle: TextStyle(
+        color: fontColor4,
+      ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
       ),
     );
   }
 
+  //not aplicable to dark / light switching
+  TextStyle inputStyle() {
+    return TextStyle(color: fontColor4);
+  }
+
+  //not aplicabile
+  //this is for dark
   BoxDecoration screenDecoration() {
     return BoxDecoration(
       borderRadius: const BorderRadius.only(
@@ -45,6 +58,8 @@ class Themes {
     );
   }
 
+  //not aplicable
+  //this is for light theme
   BoxDecoration screenLightDecoration() {
     return BoxDecoration(
       borderRadius: const BorderRadius.only(
@@ -55,6 +70,8 @@ class Themes {
     );
   }
 
+  //not aplicable
+  //make another one but with light colors
   Text title(String txt) {
     return Text(
       txt,
@@ -72,6 +89,8 @@ class Themes {
     );
   }
 
+  //not aplicable
+  //make another one but with light colors
   Text trailing(String txt) {
     return Text(
       txt,
@@ -82,6 +101,8 @@ class Themes {
     );
   }
 
+  //not aplicable
+  //make another one but with light colors
   Text trailingChooseNode(String txt) {
     return Text(
       txt,
@@ -94,6 +115,8 @@ class Themes {
     );
   }
 
+  //not aplicable
+  //make another one but with light colors
   Text textButtonStyle(String txt) {
     return Text(
       txt,
@@ -111,6 +134,8 @@ class Themes {
     );
   }
 
+  //not aplicable
+  //make another one but with light colors
   Text linkText1(String txt) {
     return Text(
       txt,
@@ -122,6 +147,8 @@ class Themes {
     );
   }
 
+  //not aplicable
+  //make another one but with light colors
   Text linkText2(String txt) {
     return Text(
       txt,
@@ -133,6 +160,8 @@ class Themes {
     );
   }
 
+  //not aplicable
+  //make another one but with light colors
   Text resetLink(String txt) {
     return Text(
       txt,
@@ -142,6 +171,8 @@ class Themes {
     );
   }
 
+  //not aplicable
+  //make another one but with light colors
   Text menuText(String txt) {
     return Text(
       txt,
@@ -158,41 +189,47 @@ Row appLogo() {
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Image.asset(
-        'media/images/time_exploit.png',
+        'media/images/TotalControl_Logo.png',
         width: 100,
         height: 100,
       ),
-      const Text(
+      Text(
         'Total Control',
         style: TextStyle(
-            color: Colors.white, fontWeight: FontWeight.w800, fontSize: 30),
+          color: fontColor4,
+          fontWeight: FontWeight.w800,
+          fontSize: 30,
+        ),
       ),
     ],
   );
 }
 
-TextFormField searchBar() {
-  return TextFormField(
-    keyboardType: TextInputType.text,
-    keyboardAppearance: Brightness.dark,
-    style: TextStyle(
-      color: fontColor1,
-    ),
-    decoration: InputDecoration(
-      hintText: 'Search',
-      hintStyle: TextStyle(
-        color: fontColor1,
-      ),
-      filled: true,
-      fillColor: fillColor1,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
-        borderSide: BorderSide.none,
-      ),
-      prefixIcon: Icon(
-        Icons.search,
-        color: fontColor1,
-      ),
+Widget searchBar(BuildContext context) {
+  return IconButton(
+    onPressed: () {
+      showSearch(
+        context: context,
+        delegate: SearchEngine(),
+      );
+    },
+    icon: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Icon(
+          Icons.search,
+          color: fontColor1,
+          size: 30,
+        ),
+        Text(
+          'Search',
+          style: TextStyle(
+            color: fontColor1,
+            fontWeight: FontWeight.w800,
+            fontSize: 15,
+          ),
+        ),
+      ],
     ),
   );
 }

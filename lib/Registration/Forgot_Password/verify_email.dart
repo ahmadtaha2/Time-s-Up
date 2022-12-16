@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Registration/Forgot_Password/reset_password.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 
 class VerifyEmail extends StatefulWidget {
   const VerifyEmail({super.key});

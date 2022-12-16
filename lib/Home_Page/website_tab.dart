@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/chart_data.dart';
 import 'package:pro1/Registration/choose_mode.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 ///This file is not ready yet
@@ -26,13 +26,16 @@ class _WebsiteState extends State<Website> {
         decoration: _themes.screenDecoration(),
         child: ListView(
           children: [
-            searchBar(),
+            // FIXME: change this to the Search Delegate when it's ready`
+            searchBar(context),
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: Center(
                 heightFactor: 1.2,
                 child: PieChart(
-                  dataMap: (userMode.isNotEmpty && userMode == 'family')? childDataMap : dataMap,
+                  dataMap: (userMode.isNotEmpty && userMode == 'family')
+                      ? childDataMap
+                      : dataMap,
                   colorList: colorList,
                   chartRadius: MediaQuery.of(context).size.width / 2,
                   chartValuesOptions: ChartValuesOptions(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -93,15 +93,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           /*edit name text field*/
                           keyboardType: TextInputType.name,
                           keyboardAppearance: Brightness.dark,
+                          style: _themes.inputStyle(),
                           //controller: _usernameController,
                           decoration: _themes.textFormFieldDecoration('Name'),
                           obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 4) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Invalid name';
                               }
                             }
@@ -124,16 +124,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           //username text field
                           keyboardType: TextInputType.name,
                           keyboardAppearance: Brightness.dark,
+                          style: _themes.inputStyle(),
                           //controller: _usernameController,
                           decoration:
                               _themes.textFormFieldDecoration('Username'),
                           obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 4) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Invalid username';
                               }
                             }
@@ -156,6 +156,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           /* edit email text field*/
                           keyboardType: TextInputType.emailAddress,
                           keyboardAppearance: Brightness.dark,
+                          style: _themes.inputStyle(),
                           //controller: _usernameController,
                           decoration: _themes.textFormFieldDecoration('Email'),
                           obscureText: false,
@@ -164,10 +165,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 !value.contains('@') ||
                                 !value.contains('.com') ||
                                 value.length < 12) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Invalid email';
                               }
                             }
@@ -190,16 +190,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           //edit phone number text field
                           keyboardType: TextInputType.phone,
                           keyboardAppearance: Brightness.dark,
+                          style: _themes.inputStyle(),
                           //controller: _usernameController,
                           decoration:
                               _themes.textFormFieldDecoration('Phone Number'),
                           obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 10) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Invalid phone number';
                               }
                             }
@@ -222,10 +222,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           //edit password text field
                           keyboardType: TextInputType.text,
                           keyboardAppearance: Brightness.dark,
+                          style: _themes.inputStyle(),
                           //controller: _usernameController,
                           decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue[50],
                             labelText: 'Password',
                             labelStyle: const TextStyle(color: Colors.blue),
                             border: OutlineInputBorder(
@@ -236,6 +235,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 visible
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
+                                color: background5,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -247,10 +247,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           obscureText: visible,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 6) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Invalid password';
                               }
                             }
@@ -273,16 +272,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           //Edit birthday text field
                           keyboardType: TextInputType.datetime,
                           keyboardAppearance: Brightness.dark,
+                          style: _themes.inputStyle(),
                           //controller: _usernameController,
                           decoration:
                               _themes.textFormFieldDecoration('Birthday'),
                           obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 10) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Invalid birthday';
                               }
                             }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Registration/login.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});

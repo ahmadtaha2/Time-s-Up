@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pro1/Registration/SignUp.dart' as t;
 import 'dart:async';
 
-import 'package:pro1/app_themes.dart';
-
-//TODO: think about adding Animated Screen after launching
+import 'package:pro1/Theme/app_themes.dart';
+import 'package:pro1/splash.dart';
 
 class Launch extends StatefulWidget {
   const Launch({Key? key}) : super(key: key);
@@ -22,12 +21,19 @@ class StartState extends State<Launch> {
 
   startTimer() async {
     Duration duration = const Duration(seconds: 2);
-    return Timer(duration, route);
+    return Timer(
+      duration,
+      route,
+    );
   }
 
   route() {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const t.SignUp()));
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Splash(),
+      ),
+    );
   }
 
   @override
@@ -43,7 +49,7 @@ class StartState extends State<Launch> {
                 color: Colors.transparent,
                 elevation: 40,
                 child: Image.asset(
-                  'media/images/time_exploit.png',
+                  'media/images/TotalControl_Logo.png',
                   width: 250,
                   height: 250,
                 ),
@@ -51,15 +57,16 @@ class StartState extends State<Launch> {
               const SizedBox(
                 width: 10,
               ),
-              const Material(
+              Material(
                 color: Colors.transparent,
                 elevation: 40,
                 child: Text(
-                  'Time Exploit',
+                  'Total Control',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 55),
+                    color: fontColor4,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 55,
+                  ),
                 ),
               ),
             ],

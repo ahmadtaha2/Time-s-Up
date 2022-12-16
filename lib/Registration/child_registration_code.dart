@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Registration/Child_Configurations/get_child_info.dart';
+import 'package:pro1/Theme/app_themes.dart';
 
 class ChildRegistrationCode extends StatefulWidget {
   const ChildRegistrationCode({Key? key}) : super(key: key);
@@ -25,27 +25,7 @@ class _ChildRegistrationCodeState extends State<ChildRegistrationCode> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'media/images/On_Time.png',
-                        width: 75,
-                        height: 75,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        'On Time',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 30,
-                        ),
-                      ),
-                    ],
-                  ),
+                  child: appLogo(),
                 ),
                 Container(
                   padding: const EdgeInsets.all(15),
@@ -60,6 +40,16 @@ class _ChildRegistrationCodeState extends State<ChildRegistrationCode> {
                         child: _themes.title('Connection Code'),
                       ),
                       const SizedBox(
+                        height: 20,
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 40,
+                        child: _themes.trailing(
+                          'One last step!, a code will be generated on your child device, enter the code to proceed',
+                        ),
+                      ),
+                      const SizedBox(
                         height: 40,
                       ),
                       Material(
@@ -68,6 +58,9 @@ class _ChildRegistrationCodeState extends State<ChildRegistrationCode> {
                         child: TextFormField(
                           keyboardType: TextInputType.text,
                           keyboardAppearance: Brightness.dark,
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           decoration: _themes.textFormFieldDecoration(
                               'Enter a connection code'),
                           validator: (value) {
@@ -95,18 +88,18 @@ class _ChildRegistrationCodeState extends State<ChildRegistrationCode> {
                           onPressed: () {
                             final isValid = formKey.currentState!.validate();
                             if (isValid) {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: connectionCodeController.text != ''
                                       ? (context) =>
                                           const ChildRegistrationCode()
-                                      : (context) => ParentHomePage(),
+                                      : (context) => const GetChildInfo(),
                                 ),
                               );
                             }
                           },
-                          child: _themes.textButtonStyle('Connect'),
+                          child: _themes.textButtonStyle('Add'),
                         ),
                       ),
                     ],

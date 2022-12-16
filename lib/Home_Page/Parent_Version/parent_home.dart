@@ -7,7 +7,7 @@ import 'package:pro1/Home_Page/website_tab.dart';
 import 'package:pro1/Profile/profile.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:pro1/Registration/login.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 
 class ParentHomePage extends StatefulWidget {
   const ParentHomePage({super.key});
@@ -17,6 +17,7 @@ class ParentHomePage extends StatefulWidget {
 }
 
 class _ParentHomePageState extends State<ParentHomePage> {
+  bool value = true;
   bool logIn = true;
   int currentIndex = 0;
   final List<StatefulWidget> _pages = [
@@ -128,19 +129,6 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ),
               ListTile(
                 leading: Icon(
-                  Icons.dark_mode_outlined,
-                  color: fontColor1,
-                ),
-                title: Text(
-                  'Turn On/Off dark mode',
-                  style: TextStyle(
-                    color: fontColor1,
-                  ),
-                ),
-                onTap: () => {},
-              ),
-              ListTile(
-                leading: Icon(
                   Icons.translate_sharp,
                   color: fontColor1,
                 ),
@@ -249,9 +237,56 @@ class _ParentHomePageState extends State<ParentHomePage> {
   }
 }
 
-
-
 /**
+ * import 'package:pro1/Theme/theme_manager.dart';
+ * 
+ * 
+ * 
+ * final ThemeManager _themeManager = ThemeManager();
+
+  @override
+  void dispose() {
+    _themeManager.removeListener(themeListener);
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    _themeManager.addListener(themeListener);
+    super.initState();
+  }
+
+  themeListener() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
+ * 
+ * 
+ * 
+ * 
+ * ListTile(
+                leading: Icon(
+                  Icons.dark_mode_outlined,
+                  color: fontColor1,
+                ),
+                title: Text(
+                  'Turn On/Off dark mode',
+                  style: TextStyle(
+                    color: fontColor1,
+                  ),
+                ),
+                trailing: Switch.adaptive(
+                  value: _themeManager.themeMode == ThemeMode.dark,
+                  onChanged: (value) {
+                    _themeManager.toggleTheme(value);
+                  },
+                ),
+              ),
+ * 
+ * 
+ * 
+ * 
  * 
  * ListTile(
                 leading: Icon(

@@ -5,7 +5,7 @@ import 'package:pro1/Registration/Forgot_Password/verify_email.dart';
 import 'package:pro1/Registration/account.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -73,6 +73,9 @@ class _LoginState extends State<Login> {
                           controller: _emailInput,
                           keyboardType: TextInputType.emailAddress,
                           keyboardAppearance: Brightness.dark,
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           decoration:
                               _themes.textFormFieldDecoration('Email/Username'),
                           obscureText: false,
@@ -81,10 +84,9 @@ class _LoginState extends State<Login> {
                                 !value.contains('@') ||
                                 !value.contains('.com') ||
                                 value.length < 12) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Invalid email/username';
                               }
                             }
@@ -105,12 +107,16 @@ class _LoginState extends State<Login> {
                         child: TextFormField(
                           //password text field
                           keyboardAppearance: Brightness.dark,
+                          keyboardType: TextInputType.visiblePassword,
                           controller: _passwordInput,
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue[50],
                             labelText: 'Password',
-                            labelStyle: const TextStyle(color: Colors.blue),
+                            labelStyle: TextStyle(
+                              color: fontColor4,
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -119,6 +125,7 @@ class _LoginState extends State<Login> {
                                 visible
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
+                                color: background5,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -129,12 +136,11 @@ class _LoginState extends State<Login> {
                           ),
                           obscureText: visible,
                           validator: (value) {
-                            if (value!.isEmpty || value.length < 6){
+                            if (value!.isEmpty || value.length < 6) {
                               if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else{
-                                return'Short password / Invalid password';
+                              } else {
+                                return 'Short password / Invalid password';
                               }
                             }
                             return null;

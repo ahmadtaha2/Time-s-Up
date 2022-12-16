@@ -8,7 +8,8 @@ import 'package:pro1/Home_Page/website_tab.dart';
 import 'package:pro1/Profile/profile.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:pro1/Registration/login.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
+
 
 class SingleUserHomePage extends StatefulWidget {
   @override
@@ -16,17 +17,16 @@ class SingleUserHomePage extends StatefulWidget {
 }
 
 class _SingleUserHomePageState extends State<SingleUserHomePage> {
+
+///TODO: add the profile_image picker.dart content here instead
+
+  bool value = true;
   bool logIn = true;
   int currentIndex = 0;
   final List<StatefulWidget> _pages = [
     const Device(),
     const App(),
     const Website(),
-  ];
-  final List<String> _pagesTitles = [
-    'Device',
-    'App',
-    'Website',
   ];
 
   @override
@@ -44,22 +44,19 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.account_circle_rounded,
-                      size: 100,
-                      color: fontColor1,
+                    CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      radius: 50,
+                      child: GestureDetector(
+                          onTap: () {},
+                          child: const Icon(
+                            Icons.camera_alt,
+                            color: Colors.white,
+                            size: 50,
+                          ),
+                        ),
                     ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      'Username',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: fontColor1,
-                        fontSize: 30,
-                      ),
-                    ),
+                    const Text('username'),
                   ],
                 ),
               ),
@@ -131,7 +128,7 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
                 ),
               ),
               ListTile(
-                //TODO: not active yet
+                //FIXME: not active yet
                 leading: Icon(
                   Icons.dark_mode_outlined,
                   color: fontColor1,
@@ -142,7 +139,7 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
                     color: fontColor1,
                   ),
                 ),
-                onTap: () => {},
+                trailing: switchTheme(),
               ),
               ListTile(
                 //TODO: not active yet
@@ -248,8 +245,17 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
       ),
     );
   }
-}
 
+  //FIXME: fix the theme button
+  Widget switchTheme() => Switch.adaptive(
+        activeTrackColor: Colors.white60,
+        activeColor: Colors.white,
+        value: value,
+        onChanged: ((value) => setState(
+              () => this.value = value,
+            )),
+      );
+}
 
 
 /**

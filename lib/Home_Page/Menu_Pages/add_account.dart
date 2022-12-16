@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter/services.dart';
-//import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
-//import 'package:pro1/Home_Page/Single_User_Version/single_user_home.dart';
 import 'package:pro1/Home_Page/Menu_Pages/switch_account.dart';
 import 'package:pro1/Registration/choose_mode.dart';
-import 'package:pro1/launch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 
 class AddAccount extends StatefulWidget {
   const AddAccount({Key? key}) : super(key: key);
@@ -90,13 +86,15 @@ class _AddAccountState extends State<AddAccount> {
                           controller: _usernameController,
                           decoration:
                               _themes.textFormFieldDecoration('Username'),
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 4) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Invalid username';
                               }
                             }
@@ -120,16 +118,18 @@ class _AddAccountState extends State<AddAccount> {
                           keyboardType: TextInputType.emailAddress,
                           keyboardAppearance: Brightness.dark,
                           decoration: _themes.textFormFieldDecoration('Email'),
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty ||
                                 !value.contains('@') ||
                                 !value.contains('.com') ||
                                 value.length < 12) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Invalid email';
                               }
                             }
@@ -152,12 +152,16 @@ class _AddAccountState extends State<AddAccount> {
                         child: TextFormField(
                           //password text field
                           keyboardAppearance: Brightness.dark,
+                          keyboardType: TextInputType.visiblePassword,
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           controller: _passwordController,
                           decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue[50],
                             labelText: 'Password',
-                            labelStyle: const TextStyle(color: Colors.blue),
+                            labelStyle: TextStyle(
+                              color: background5,
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -166,6 +170,7 @@ class _AddAccountState extends State<AddAccount> {
                                 visible
                                     ? Icons.visibility_off_outlined
                                     : Icons.visibility_outlined,
+                                color: background5,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -177,10 +182,9 @@ class _AddAccountState extends State<AddAccount> {
                           obscureText: visible,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 6) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Short password';
                               }
                             }
@@ -204,11 +208,14 @@ class _AddAccountState extends State<AddAccount> {
                           //Confirm password text field
                           keyboardAppearance: Brightness.dark,
                           controller: _confirmedPasswordController,
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue[50],
                             labelText: 'Password',
-                            labelStyle: const TextStyle(color: Colors.blue),
+                            labelStyle: TextStyle(
+                              color: fontColor4,
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -217,6 +224,7 @@ class _AddAccountState extends State<AddAccount> {
                                 visible
                                     ? Icons.visibility_off_outlined
                                     : Icons.visibility_outlined,
+                                color: background5,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -227,11 +235,11 @@ class _AddAccountState extends State<AddAccount> {
                           ),
                           obscureText: visible,
                           validator: (value) {
-                            if (value!.isEmpty || value != _passwordController.text) {
-                              if(value.isEmpty){
+                            if (value!.isEmpty ||
+                                value != _passwordController.text) {
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Password doesn\'t match';
                               }
                             }

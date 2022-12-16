@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Home_Page/Child_Version/Child_Home.dart';
-import 'package:pro1/Registration/child_registration_code.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Home_Page/Child_Version/Child_Widgets/Code_Config/code_generator.dart';
+import 'package:pro1/Theme/app_themes.dart';
 
 class ChildInformation extends StatefulWidget {
   const ChildInformation({Key? key}) : super(key: key);
@@ -27,27 +26,7 @@ class _ChildInformationState extends State<ChildInformation> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'media/images/On_Time.png',
-                        width: 75,
-                        height: 75,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        'On Time',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 30,
-                        ),
-                      ),
-                    ],
-                  ),
+                  child: appLogo(),
                 ),
                 Container(
                   padding: const EdgeInsets.all(15),
@@ -68,6 +47,9 @@ class _ChildInformationState extends State<ChildInformation> {
                         elevation:40,
                         child: TextFormField(
                           /*name text field*/
+                          style: const TextStyle(
+                            color: Colors.black,
+                          ),
                           controller: _name,
                           keyboardType: TextInputType.name,
                           keyboardAppearance: Brightness.dark,
@@ -91,6 +73,9 @@ class _ChildInformationState extends State<ChildInformation> {
                         elevation: 40,
                         child: TextFormField(
                           /*age field*/
+                          style: const TextStyle(
+                            color: Colors.black,
+                          ),
                           controller: _age,
                           keyboardType: TextInputType.number,
                           keyboardAppearance: Brightness.dark,
@@ -121,7 +106,7 @@ class _ChildInformationState extends State<ChildInformation> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (_name.text != '' && _age.text != '')
-                                      ? (context) => const ChildHomePage()
+                                      ? (context) => const CodeGenerator()
                                       : ((context) => const ChildInformation()),
                                 ),
                               );

@@ -5,7 +5,7 @@ import 'package:pro1/Home_Page/Menu_Pages/add_account.dart';
 import 'package:pro1/Registration/Forgot_Password/verify_email.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 
 class SwitchAccount extends StatefulWidget {
   const SwitchAccount({Key? key}) : super(key: key);
@@ -39,7 +39,8 @@ class _SwitchAccountState extends State<SwitchAccount> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Material(color: Colors.transparent, elevation: 40,child: appLogo()),
+                Material(
+                    color: Colors.transparent, elevation: 40, child: appLogo()),
                 Container(
                   padding: const EdgeInsets.all(15),
                   height: 775,
@@ -83,16 +84,18 @@ class _SwitchAccountState extends State<SwitchAccount> {
                           keyboardType: TextInputType.emailAddress,
                           keyboardAppearance: Brightness.dark,
                           decoration: _themes.textFormFieldDecoration('Email'),
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty ||
                                 !value.contains('@') ||
                                 !value.contains('.com') ||
                                 value.length < 12) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Invalid email/username';
                               }
                             }
@@ -113,12 +116,16 @@ class _SwitchAccountState extends State<SwitchAccount> {
                         child: TextFormField(
                           //password text field
                           keyboardAppearance: Brightness.dark,
+                          keyboardType: TextInputType.visiblePassword,
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           controller: _passwordInput,
                           decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue[50],
                             labelText: 'Password',
-                            labelStyle: const TextStyle(color: Colors.blue),
+                            labelStyle: TextStyle(
+                              color: fontColor4,
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -127,6 +134,7 @@ class _SwitchAccountState extends State<SwitchAccount> {
                                 visible
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
+                                color: background5,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -138,10 +146,9 @@ class _SwitchAccountState extends State<SwitchAccount> {
                           obscureText: visible,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 6) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Short password';
                               }
                             }

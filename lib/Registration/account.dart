@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pro1/Registration/login.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class _AccountState extends State<Account> {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: appLogo(),
-                  ),
+                ),
                 Container(
                   padding: const EdgeInsets.all(15),
                   height: 775,
@@ -76,14 +76,18 @@ class _AccountState extends State<Account> {
                           keyboardType: TextInputType.name,
                           keyboardAppearance: Brightness.dark,
                           controller: _usernameController,
-                          decoration: _themes.textFormFieldDecoration('Username'),
+
+                          decoration:
+                              _themes.textFormFieldDecoration('Username'),
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 4) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Invalid username';
                               }
                             }
@@ -107,16 +111,18 @@ class _AccountState extends State<Account> {
                           keyboardType: TextInputType.emailAddress,
                           keyboardAppearance: Brightness.dark,
                           decoration: _themes.textFormFieldDecoration('Email'),
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty ||
                                 !value.contains('@') ||
                                 !value.contains('.com') ||
                                 value.length < 12) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else{
+                              } else {
                                 return 'Invalid email';
                               }
                             }
@@ -140,12 +146,14 @@ class _AccountState extends State<Account> {
                           /*password text field*/
                           keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.visiblePassword,
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           validator: (value) {
                             if (value!.isEmpty || value.length < 6) {
-                              if(value.isEmpty){
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Short password';
                               }
                             }
@@ -159,10 +167,10 @@ class _AccountState extends State<Account> {
                             });
                           },
                           decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue[50],
                             labelText: 'Password',
-                            labelStyle: const TextStyle(color: Colors.blue),
+                            labelStyle: TextStyle(
+                              color: fontColor4,
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -171,6 +179,7 @@ class _AccountState extends State<Account> {
                                 hidden
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
+                                color: background5,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -191,12 +200,16 @@ class _AccountState extends State<Account> {
                         child: TextFormField(
                           //Confirm password text field
                           keyboardAppearance: Brightness.dark,
+                          keyboardType: TextInputType.visiblePassword,
                           controller: _confirmedPasswordController,
+                          style: TextStyle(
+                            color: fontColor4,
+                          ),
                           decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue[50],
                             labelText: 'Password',
-                            labelStyle: const TextStyle(color: Colors.blue),
+                            labelStyle: TextStyle(
+                              color: fontColor4,
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -205,6 +218,7 @@ class _AccountState extends State<Account> {
                                 hidden
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
+                                color: background5,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -215,11 +229,11 @@ class _AccountState extends State<Account> {
                           ),
                           obscureText: hidden,
                           validator: (value) {
-                            if (value!.isEmpty || value != _passwordController.text) {
-                              if(value.isEmpty){
+                            if (value!.isEmpty ||
+                                value != _passwordController.text) {
+                              if (value.isEmpty) {
                                 return 'This field is required!';
-                              }
-                              else {
+                              } else {
                                 return 'Password doesn\'t match';
                               }
                             }
@@ -300,15 +314,4 @@ class _AccountState extends State<Account> {
     prefs.setString('user', _emailController.text);
     prefs.setString('password', _passwordController.text);
   }
-
-  // Widget swtch() {
-  //   if (userMode == 'family') {
-  //     return ParentHomePage();
-  //   }
-  //   if (userMode == 'personal') {
-  //     return SingleUserHomePage();
-  //   } else {
-  //     return const Login();
-  //   }
-  // }
 }

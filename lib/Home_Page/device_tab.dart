@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/chart_data.dart';
 import 'package:pro1/Registration/choose_mode.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
 import 'package:pie_chart/pie_chart.dart';
-import 'package:pro1/launch.dart';
 
 //This file is not ready yet
 class Device extends StatefulWidget {
@@ -27,13 +26,17 @@ class _DeviceState extends State<Device> {
         decoration: _themes.screenDecoration(),
         child: ListView(
           children: [
-            searchBar(),
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: Center(
+                /**
+                 * I don't see the need of the chart in the device tab
+                 */
                 heightFactor: 1.2,
                 child: PieChart(
-                  dataMap: (userMode.isNotEmpty && userMode == 'family')? childDataMap : dataMap,
+                  dataMap: (userMode.isNotEmpty && userMode == 'family')
+                      ? childDataMap
+                      : dataMap,
                   colorList: colorList,
                   chartRadius: MediaQuery.of(context).size.width / 2,
                   chartValuesOptions: ChartValuesOptions(

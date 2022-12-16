@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Registration/Child_Configurations//child_info.dart';
 import 'package:pro1/Registration/account.dart';
-import 'package:pro1/app_themes.dart';
+import 'package:pro1/Theme/app_themes.dart';
+import 'package:pro1/Theme/theme_const.dart';
 import 'login.dart';
 
 class SignUp extends StatefulWidget {
@@ -16,6 +17,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        //TODO: you stopped right here while working on the theme
         backgroundColor: background1,
         body: Center(
           child: Column(
@@ -27,17 +29,17 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   children: [
                     Image.asset(
-                      'media/images/time_exploit.png',
+                      'media/images/TotalControl_Logo.png',
                       width: 250,
                       height: 250,
                     ),
                     const SizedBox(
                       width: 10,
                     ),
-                    const Text(
+                    Text(
                       'Total Control',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: fontColor4,
                           fontWeight: FontWeight.w800,
                           fontSize: 55),
                     ),
@@ -46,6 +48,30 @@ class _SignUpState extends State<SignUp> {
               ),
               const SizedBox(
                 height: 100,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: background2,
+                  minimumSize: const Size(200, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  elevation: 40,
+                ),
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => const Login()));
+                },
+                child: const Text(
+                  'Login',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const Divider(
+                color: Colors.transparent,
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -70,30 +96,6 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-              const Divider(
-                color: Colors.transparent,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: background2,
-                  minimumSize: const Size(200, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  elevation: 40,
-                ),
-                onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Login()));
-                },
-                child: const Text(
-                  'Login',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
               Material(
                 color: Colors.transparent,
                 elevation: 40,
@@ -105,11 +107,11 @@ class _SignUpState extends State<SignUp> {
                       ),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     'Is this the child device?',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: fontColor4,
                     ),
                   ),
                 ),
