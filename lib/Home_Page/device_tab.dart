@@ -23,14 +23,14 @@ class _DeviceState extends State<Device> {
         height: double.maxFinite,
         width: double.maxFinite,
         padding: const EdgeInsets.all(10),
-        decoration: _themes.screenDecoration(),
+        decoration: _themes.screenDecoration(context),
         child: ListView(
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: Center(
                 /**
-                 * I don't see the need of the chart in the device tab
+                 * FIXME: I don't see the need of the chart in the device tab
                  */
                 heightFactor: 1.2,
                 child: PieChart(
@@ -73,9 +73,68 @@ class _DeviceState extends State<Device> {
                 ),
               ),
             ),
+            ListTile(
+              title: (userMode.isNotEmpty && userMode == 'family')
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          'Lock / Unlock Device',
+                          style: TextStyle(
+                            color: fontColor1,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () {},
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                              ),
+                              child: const Text(
+                                'lock',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                              ),
+                              child: const Text(
+                                'unlock',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  : null,
+            ),
           ],
         ),
       ),
     );
   }
 }
+
+/*
+Text(
+                'NOTE: add Lock / unlock feature here',
+                style: TextStyle(
+                  color: fontColor1,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+ */

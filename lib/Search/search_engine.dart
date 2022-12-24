@@ -23,20 +23,17 @@ class SearchEngine extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    /* TODO: 
-    this will show the result of the search,
-    and a\in our case this will take me to another
-    scareen which is the choosen app / website
-    */
+    //TODO: this will show the result of the search, and in our case this will take me to another screen which is the chosen app / website
+    // }
+
     return Center(
       child: Text(query),
     );
   }
 
   /**
-   * TODO:
-   * create a list that stores the search suggestions the filter them
-   * 
+   * TODO: create a list that stores the search suggestions then filter them
+   *
    * I've create an example below
    */
 
@@ -56,7 +53,7 @@ class SearchEngine extends SearchDelegate {
           (element) => element.toString().toLowerCase().contains(query),
         )
         .toList();
-    // TODO: this will the show filtered search suggestions
+    // TODO: this will show the filtered search suggestions
     return ListView.builder(
       itemCount: query == '' ? apps.length : filteredInput.length,
       itemBuilder: (context, index) {

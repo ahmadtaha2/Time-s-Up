@@ -15,7 +15,6 @@ class _CodeGeneratorState extends State<CodeGenerator> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: background1,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -46,7 +45,7 @@ class _CodeGeneratorState extends State<CodeGenerator> {
               Container(
                 padding: const EdgeInsets.all(15),
                 height: 775,
-                decoration: _themes.screenDecoration(),
+                decoration: _themes.screenDecoration(context),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -57,61 +56,48 @@ class _CodeGeneratorState extends State<CodeGenerator> {
                     const SizedBox(
                       height: 70,
                     ),
-                    Material(
-                      color: Colors.transparent,
-                      elevation: 40,
-                      child: TextFormField(
-                        /*
-                        connection code text field
-                        */
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
-                        keyboardType: TextInputType.name,
-                        keyboardAppearance: Brightness.dark,
+                    TextFormField(
+                      /*
+                      connection code text field
+                      */
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
+                      keyboardType: TextInputType.name,
+                      keyboardAppearance: Brightness.dark,
+                      /**
+                       * TODO: here you need to enter the generated code to be revealed for the user ( child & parent)
+                       */
+                      decoration:
+                          _themes.textFormFieldDecoration('connection code'),
+                      obscureText: false,
+                      enabled: false,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TextButton(
+                      /**Generate button*/
+                      onPressed: () {
                         /**
-                         * TODO:
-                         * here you need to enter the generated code to revealed for the user ( child & parent)
+                         * code generator config
                          */
-                        decoration:
-                            _themes.textFormFieldDecoration('connection code'),
-                        obscureText: false,
-                        enabled: false,
-                      ),
+                      },
+                      child: _themes.textButtonStyle('Generate'),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    Material(
-                      color: Colors.transparent,
-                      elevation: 40,
-                      child: TextButton(
-                        /**Generate button*/
-                        onPressed: () {
-                          /**
-                           * code generator config
-                           */
-                        },
-                        child: _themes.textButtonStyle('Generate'),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      elevation: 40,
-                      child: TextButton(
-                        /**Connect button*/
-                        onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => const ChildHomePage(),
-                            ),
-                          );
-                        },
-                        child: _themes.textButtonStyle('Connect'),
-                      ),
+                    TextButton(
+                      /**Connect button*/
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const ChildHomePage(),
+                          ),
+                        );
+                      },
+                      child: _themes.textButtonStyle('Connect'),
                     ),
                   ],
                 ),

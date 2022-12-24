@@ -21,7 +21,6 @@ class _VerifyEmailState extends State<VerifyEmail> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: background1,
         body: Form(
           key: formKey,
           child: SingleChildScrollView(
@@ -34,7 +33,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                 Container(
                   padding: const EdgeInsets.all(15),
                   height: 775,
-                  decoration: _themes.screenDecoration(),
+                  decoration: _themes.screenDecoration(context),
                   child: Column(
                     children: [
                       Row(
@@ -46,7 +45,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                             },
                             icon: Icon(
                               Icons.close_outlined,
-                              color: Colors.blue[900],
+                              color: background4,
                             ),
                           )
                         ],
@@ -54,79 +53,67 @@ class _VerifyEmailState extends State<VerifyEmail> {
                       const SizedBox(
                         height: 30,
                       ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: Column(
-                          children: [
-                            _themes.title('Verify Email'),
-                            _themes.trailing(
-                                'Verify your email address to reset your password'),
-                          ],
-                        ),
+                      Column(
+                        children: [
+                          _themes.title('Verify Email'),
+                          _themes.trailing(
+                              'Verify your email address to reset your password'),
+                        ],
                       ),
                       const SizedBox(
                         height: 70,
                       ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          keyboardAppearance: Brightness.dark,
-                          decoration: _themes.textFormFieldDecoration('Email'),
-                          obscureText: false,
-                          validator: (value) {
-                            if (value!.isEmpty ||
-                                !value.contains('@') ||
-                                !value.contains('.com') ||
-                                value.length < 12) {
-                              if (value.isEmpty) {
-                                return 'This field is required!';
-                              } else {
-                                return 'Invalid email/username';
-                              }
+                      TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        keyboardAppearance: Brightness.dark,
+                        decoration: _themes.textFormFieldDecoration('Email'),
+                        obscureText: false,
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !value.contains('@') ||
+                              !value.contains('.com') ||
+                              value.length < 12) {
+                            if (value.isEmpty) {
+                              return 'This field is required!';
+                            } else {
+                              return 'Invalid email/username';
                             }
-                            return null;
-                          },
-                          onSaved: (newValue) {
-                            _authData['email/username'] = newValue!;
-                            _emailInput.text = newValue;
-                          },
-                        ),
+                          }
+                          return null;
+                        },
+                        onSaved: (newValue) {
+                          _authData['email/username'] = newValue!;
+                          _emailInput.text = newValue;
+                        },
                       ),
                       const SizedBox(
                         height: 30,
                       ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextButton(
-                          onPressed: () {
-                            SnackBar verificationMessage = const SnackBar(
-                              content: Text(
-                                'Verification message is sent to your email',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                      TextButton(
+                        onPressed: () {
+                          SnackBar verificationMessage = const SnackBar(
+                            content: Text(
+                              'Verification message is sent to your email',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            duration: Duration(seconds: 4),
+                          );
+                          final isValid = formKey.currentState!.validate();
+                          if (isValid) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(verificationMessage);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_emailInput.text != '')
+                                    ? (context) => const VerifyEmail()
+                                    : (context) =>
+                                        const ResetPassword(), // fix it
                               ),
-                              duration: Duration(seconds: 4),
                             );
-                            final isValid = formKey.currentState!.validate();
-                            if (isValid) {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(verificationMessage);
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_emailInput.text != '')
-                                      ? (context) => const VerifyEmail()
-                                      : (context) =>
-                                          const ResetPassword(), // fix it
-                                ),
-                              );
-                            }
-                          },
-                          child: _themes.textButtonStyle('VERIFY'),
-                        ),
+                          }
+                        },
+                        child: _themes.textButtonStyle('VERIFY'),
                       ),
                     ],
                   ),

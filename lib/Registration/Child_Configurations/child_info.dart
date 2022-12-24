@@ -19,7 +19,6 @@ class ChildInformation extends StatefulWidget {
 class _ChildInformationState extends State<ChildInformation> {
   final GlobalKey<FormState> formkey = GlobalKey();
 
-
   final TextEditingController _name = TextEditingController();
   final TextEditingController _age = TextEditingController();
 
@@ -28,7 +27,6 @@ class _ChildInformationState extends State<ChildInformation> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: background1,
         body: Form(
           key: formkey,
           child: SingleChildScrollView(
@@ -36,32 +34,12 @@ class _ChildInformationState extends State<ChildInformation> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'media/images/On_Time.png',
-                        width: 75,
-                        height: 75,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        'On Time',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 30,
-                        ),
-                      ),
-                    ],
-                  ),
+                  child: appLogo(),
                 ),
                 Container(
                   padding: const EdgeInsets.all(15),
                   height: 775,
-                  decoration: _themes.screenDecoration(),
+                  decoration: _themes.screenDecoration(context),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
@@ -72,83 +50,71 @@ class _ChildInformationState extends State<ChildInformation> {
                       const SizedBox(
                         height: 70,
                       ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation:40,
-                        child: TextFormField(
-                          /*name text field*/
-                          controller: _name,
-                          keyboardType: TextInputType.name,
-                          keyboardAppearance: Brightness.dark,
-                          decoration: _themes.textFormFieldDecoration('Child Name'),
-                          obscureText: false,
-                          validator: (value) {
-                            var childn = value;
-                            if (value!.isEmpty || value.length < 3) {
-                              return 'Invalid name';
-                            }
-                            return null;
-                          },
-                          onSaved: (newValue) =>
-                              setState(() => _name.text = newValue!),
-                        ),
+                      TextFormField(
+                        /*name text field*/
+                        controller: _name,
+                        keyboardType: TextInputType.name,
+                        keyboardAppearance: Brightness.dark,
+                        decoration:
+                            _themes.textFormFieldDecoration('Child Name'),
+                        obscureText: false,
+                        validator: (value) {
+                          var childn = value;
+                          if (value!.isEmpty || value.length < 3) {
+                            return 'Invalid name';
+                          }
+                          return null;
+                        },
+                        onSaved: (newValue) =>
+                            setState(() => _name.text = newValue!),
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
-                          /*age field*/
-                          controller: _age,
-                          keyboardType: TextInputType.number,
-                          keyboardAppearance: Brightness.dark,
-                          decoration: _themes.textFormFieldDecoration(' Child Age'),
-                          obscureText: false,
-                          validator: (value) {
-                            if (value!.isEmpty || value.length >= 3) {
-                              return 'Invalid age';
-                            }
-                            return null;
-                          },
-                          onSaved: (newValue) =>
-                              setState(() => _age.text = newValue!),
-                        ),
+                      TextFormField(
+                        /*age field*/
+                        controller: _age,
+                        keyboardType: TextInputType.number,
+                        keyboardAppearance: Brightness.dark,
+                        decoration:
+                            _themes.textFormFieldDecoration(' Child Age'),
+                        obscureText: false,
+                        validator: (value) {
+                          if (value!.isEmpty || value.length >= 3) {
+                            return 'Invalid age';
+                          }
+                          return null;
+                        },
+                        onSaved: (newValue) =>
+                            setState(() => _age.text = newValue!),
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextButton(
-                          /**save button */
-                          onPressed: () async {
+                      TextButton(
+                        /**save button */
+                        onPressed: () async {
+                          FirebaseDatabase database = FirebaseDatabase.instance;
+                          DatabaseReference ref =
+                              FirebaseDatabase.instance.ref().child('Users');
+                          Random random = new Random();
+                          int randomNumber = random.nextInt(10000);
+                          String randID = randomNumber.toString();
+                          ref.child(randID).set({"User_type": "Child"});
 
-                            FirebaseDatabase database = FirebaseDatabase.instance;
-                            DatabaseReference ref = FirebaseDatabase.instance.ref().child('Users');
-                            Random random = new Random();
-                            int randomNumber = random.nextInt(10000);
-                            String randID= randomNumber.toString();
-                            ref.child(randID).set({
-                              "User_type": "Child"
-                            });
-
-                            final isValid = formkey.currentState!.validate();
-                            if (isValid) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_name.text != '' && _age.text != '')
-                                      ? (context) => const CodeGenerator()
-                                      : ((context) => const ChildInformation()),
-                                ),
-                              );
-                            }
-                          },
-                          child: _themes.textButtonStyle('SAVE'),
-                        ),
+                          final isValid = formkey.currentState!.validate();
+                          if (isValid) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_name.text != '' && _age.text != '')
+                                    ? (context) => const CodeGenerator()
+                                    : ((context) => const ChildInformation()),
+                              ),
+                            );
+                          }
+                        },
+                        child: _themes.textButtonStyle('SAVE'),
                       ),
                     ],
                   ),

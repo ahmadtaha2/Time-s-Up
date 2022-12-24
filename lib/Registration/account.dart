@@ -2,19 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pro1/Registration/login.dart';
-import 'package:pro1/launch.dart';
 import 'package:pro1/Theme/app_themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import '../Theme/app_themes.dart';
-
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
 
-  
   @override
   State<Account> createState() => _AccountState();
 }
@@ -23,7 +19,7 @@ class _AccountState extends State<Account> {
   final Themes _themes = Themes();
   DatabaseReference userRef = FirebaseDatabase.instance.ref();
 
-  bool test = false;
+  bool hidden = true;
 
 //Capture user inputs
   final TextEditingController _usernameController = TextEditingController();
@@ -33,14 +29,7 @@ class _AccountState extends State<Account> {
       TextEditingController();
 
   final TextEditingController _emailController = TextEditingController();
-
-  //final GlobalKey<FormState> formKey = GlobalKey();
-  //final Map<String, String> _authData = {
-  // 'username': '',
-  // 'email': '',
-  //'password': '',
-  // };
-  GlobalKey<FormState> formstate = new GlobalKey<FormState>();
+  GlobalKey<FormState> formstate = GlobalKey<FormState>();
   var musername, mpassword, memail, cpassword;
 
   signUp() async {
@@ -59,16 +48,17 @@ class _AccountState extends State<Account> {
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           AwesomeDialog(
-              context: context,
-              title: "Erorr",
-              body: Text("The password provided is too weak."))
-            ..show();
+                  context: context,
+                  title: "Erorr",
+                  body: const Text("The password provided is too weak."))
+              .show();
         } else if (e.code == 'email-already-in-use') {
           AwesomeDialog(
-              context: context,
-              title: "Erorr",
-              body: Text("The account already exists for that email."))
-            ..show();
+                  context: context,
+                  title: "Erorr",
+                  body:
+                      const Text("The account already exists for that email."))
+              .show();
         }
       } catch (e) {
         print(e);
@@ -82,7 +72,6 @@ class _AccountState extends State<Account> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme2,
         body: Form(
           key: formstate,
           child: SingleChildScrollView(
@@ -91,45 +80,17 @@ class _AccountState extends State<Account> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'media/images/On_Time.png',
-                        width: 75,
-                        height: 75,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        'On Time',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 30),
-                      ),
-                    ],
-                  ),
+                  child: appLogo(),
                 ),
                 Container(
                   padding: const EdgeInsets.all(15),
                   height: 775,
-                  decoration: _themes.screenDecoration(),
+                  decoration: _themes.screenDecoration(context),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.close_outlined,
-                              color: Colors.blue[900],
-                            ),
-                          )
-                        ],
+                      const SizedBox(
+                        height: 20,
                       ),
                       _themes.title('SIGN UP'),
                       _themes.trailing('Welcome to On Time'),
@@ -197,14 +158,27 @@ class _AccountState extends State<Account> {
                         onSaved: (val) {
                           mpassword = val;
                         },
-                        //onSaved: (newValue) {
-                        //setState(() {
-                        //_authData['password'] = newValue!;
-                        //   _passwordController.text = newValue;
-                        // });
-                        // },
-                        decoration: _themes.textFormFieldDecoration('Password'),
-                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          labelStyle: TextStyle(
+                            color: fontColor4,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                hidden = !hidden;
+                              });
+                            },
+                            color: background5,
+                            icon: hidden
+                                ? const Icon(Icons.visibility)
+                                : const Icon(Icons.visibility_off_outlined),
+                          ),
+                        ),
+                        obscureText: hidden,
                       ),
                       const SizedBox(
                         height: 10,
@@ -212,9 +186,27 @@ class _AccountState extends State<Account> {
                       TextFormField(
                         //Confirm password text field
                         controller: _confirmedPasswordController,
-                        decoration:
-                            _themes.textFormFieldDecoration('Confirm Password'),
-                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          labelStyle: TextStyle(
+                            color: fontColor4,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                hidden = !hidden;
+                              });
+                            },
+                            color: background5,
+                            icon: hidden
+                                ? const Icon(Icons.visibility)
+                                : const Icon(Icons.visibility_off_outlined),
+                          ),
+                        ),
+                        obscureText: hidden,
                         validator: (value) {
                           if (value != _passwordController.text) {
                             return 'Password doesn\'t match';
@@ -224,12 +216,6 @@ class _AccountState extends State<Account> {
                         onSaved: (val) {
                           cpassword = val;
                         },
-                        // onSaved: (newValue) {
-                        // setState(() {
-                        // _authData['password'] = newValue!;
-                        //_confirmedPasswordController.text = newValue;
-                        // });
-                        //},
                       ),
                       const SizedBox(
                         height: 45,
@@ -239,7 +225,8 @@ class _AccountState extends State<Account> {
                         onPressed: () async {
                           UserCredential? response = await signUp();
                           FirebaseDatabase database = FirebaseDatabase.instance;
-                          DatabaseReference ref = FirebaseDatabase.instance.ref().child('Users');
+                          DatabaseReference ref =
+                              FirebaseDatabase.instance.ref().child('Users');
                           String? uid = response?.user?.uid;
                           ref.child(uid!).set({
                             "Name": musername,

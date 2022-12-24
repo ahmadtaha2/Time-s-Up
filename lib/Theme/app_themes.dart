@@ -13,12 +13,14 @@ Color fontColor3 = const Color.fromRGBO(22, 29, 48, 1);
 ///fits with both light & dark theme
 Color background4 = const Color.fromRGBO(180, 180, 180, 1);
 Color background3 = const Color.fromRGBO(40, 78, 139, 1);
+Color background7 = const Color.fromRGBO(40, 78, 130, 1);
 
 ///Light Theme
 Color background5 = const Color.fromRGBO(238, 128, 47, 1);
 Color background6 = const Color.fromRGBO(255, 202, 165, 1);
 Color fontColor1 = const Color.fromRGBO(180, 180, 180, 1);
 Color fontColor4 = const Color.fromRGBO(238, 128, 47, 1);
+Color fontColor6 = const Color.fromRGBO(255, 202, 165, 1);
 
 ///Images Theme
 Color circleImageColor1 = const Color.fromRGBO(255, 202, 165, 1);
@@ -27,8 +29,6 @@ Color shadowColor1 = Colors.white10;
 Color fillColor1 = const Color.fromRGBO(22, 29, 48, 0.66);
 
 class Themes {
-  ///dark? applied
-  ///light?
   InputDecoration textFormFieldDecoration(String label) {
     return InputDecoration(
       labelText: label,
@@ -41,37 +41,49 @@ class Themes {
     );
   }
 
-  //not aplicable to dark / light switching
+  InputDecoration passwordFieldDecoration(String label, bool visible) {
+    return InputDecoration(
+      labelText: label,
+      labelStyle: TextStyle(
+        color: fontColor4,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+      suffixIcon: IconButton(
+        onPressed: () => visible = !visible,
+        color: background5,
+        icon: visible
+            ? const Icon(Icons.visibility)
+            : const Icon(Icons.visibility_off_outlined),
+      ),
+    );
+  }
+
   TextStyle inputStyle() {
     return TextStyle(color: fontColor4);
   }
 
-  //not aplicabile
-  //this is for dark
-  BoxDecoration screenDecoration() {
+  BoxDecoration screenDecoration(BuildContext ctx) {
     return BoxDecoration(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(50),
         topRight: Radius.circular(50),
       ),
-      color: background2,
+      color: Theme.of(ctx).canvasColor,
     );
   }
 
-  //not aplicable
-  //this is for light theme
-  BoxDecoration screenLightDecoration() {
+  BoxDecoration screenLightDecoration(BuildContext ctx) {
     return BoxDecoration(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(50),
         topRight: Radius.circular(50),
       ),
-      color: background4,
+      color: Theme.of(ctx).canvasColor,
     );
   }
 
-  //not aplicable
-  //make another one but with light colors
   Text title(String txt) {
     return Text(
       txt,
@@ -89,8 +101,6 @@ class Themes {
     );
   }
 
-  //not aplicable
-  //make another one but with light colors
   Text trailing(String txt) {
     return Text(
       txt,
@@ -101,8 +111,6 @@ class Themes {
     );
   }
 
-  //not aplicable
-  //make another one but with light colors
   Text trailingChooseNode(String txt) {
     return Text(
       txt,
@@ -115,8 +123,6 @@ class Themes {
     );
   }
 
-  //not aplicable
-  //make another one but with light colors
   Text textButtonStyle(String txt) {
     return Text(
       txt,
@@ -134,8 +140,6 @@ class Themes {
     );
   }
 
-  //not aplicable
-  //make another one but with light colors
   Text linkText1(String txt) {
     return Text(
       txt,
@@ -147,8 +151,6 @@ class Themes {
     );
   }
 
-  //not aplicable
-  //make another one but with light colors
   Text linkText2(String txt) {
     return Text(
       txt,
@@ -160,8 +162,6 @@ class Themes {
     );
   }
 
-  //not aplicable
-  //make another one but with light colors
   Text resetLink(String txt) {
     return Text(
       txt,
@@ -171,8 +171,6 @@ class Themes {
     );
   }
 
-  //not aplicable
-  //make another one but with light colors
   Text menuText(String txt) {
     return Text(
       txt,

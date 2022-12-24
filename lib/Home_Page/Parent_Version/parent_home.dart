@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:pro1/Home_Page/Menu_Pages/add_account.dart';
 import 'package:pro1/Home_Page/app_tab.dart';
 import 'package:pro1/Home_Page/device_tab.dart';
 import 'package:pro1/Home_Page/Menu_Pages/switch_account.dart';
@@ -8,6 +9,8 @@ import 'package:pro1/Profile/profile.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:pro1/Registration/login.dart';
 import 'package:pro1/Theme/app_themes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ParentHomePage extends StatefulWidget {
   const ParentHomePage({super.key});
@@ -18,7 +21,6 @@ class ParentHomePage extends StatefulWidget {
 
 class _ParentHomePageState extends State<ParentHomePage> {
   bool value = true;
-  bool logIn = true;
   int currentIndex = 0;
   final List<StatefulWidget> _pages = [
     const Device(),
@@ -26,32 +28,77 @@ class _ParentHomePageState extends State<ParentHomePage> {
     const Website(),
   ];
 
+  late bool logIn;
+  double rating = 0;
+
+  void showRating() => showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text(
+            'Rate This App',
+            textAlign: TextAlign.center,
+          ),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Please leave a 5 star rating.',
+                style: TextStyle(
+                  fontSize: 15,
+                ),
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              buildRating(),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text(
+                'OK',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
+  Widget buildRating() => RatingBar.builder(
+        initialRating: rating,
+        maxRating: 1,
+        itemSize: 35,
+        itemPadding: const EdgeInsets.symmetric(horizontal: 4),
+        itemBuilder: (context, _) => const Icon(
+          Icons.star,
+          color: Colors.yellow,
+        ),
+        updateOnDrag: true,
+        onRatingUpdate: (rating) => setState(() {
+          this.rating = rating;
+        }),
+      );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: background4,
         drawer: Drawer(
-          backgroundColor: background1,
+          backgroundColor: Theme.of(context).drawerTheme.backgroundColor,
           child: Column(
             children: <Widget>[
               DrawerHeader(
                 decoration: BoxDecoration(
-                  color: background2,
+                  color: Theme.of(context).canvasColor,
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.account_circle_rounded,
-                      size: 100,
-                      color: fontColor1,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
                     Text(
                       'Username',
-                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: fontColor1,
                         fontSize: 30,
@@ -63,12 +110,12 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ListTile(
                 leading: Icon(
                   Icons.home,
-                  color: fontColor1,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
                   'Home',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
                 onTap: () => {Navigator.of(context).pop()},
@@ -76,30 +123,30 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ListTile(
                 leading: Icon(
                   Icons.add_box_outlined,
-                  color: fontColor1,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
                   'Add account',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ChooseMode(),
+                    builder: (context) => const AddAccount(),
                   ),
                 ),
               ),
               ListTile(
                 leading: Icon(
                   Icons.switch_account_outlined,
-                  color: fontColor1,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
                   'Switch account',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
                 onTap: () => Navigator.push(
@@ -112,12 +159,12 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ListTile(
                 leading: Icon(
                   Icons.swap_horiz_sharp,
-                  color: fontColor1,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
                   'Switch user mode',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
                 onTap: () => Navigator.push(
@@ -129,16 +176,16 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ),
               ListTile(
                 leading: Icon(
-                  Icons.translate_sharp,
-                  color: fontColor1,
+                  Icons.feedback,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
-                  'Change language',
+                  'Send Feedback',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
-                onTap: () => {},
+                onTap: () => showRating(),
               ),
               Divider(
                 color: fontColor1,
@@ -146,18 +193,41 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ListTile(
                 leading: Icon(
                   Icons.logout,
-                  color: fontColor1,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
                   'Logout',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
-                onTap: () => {
-                  logIn = false,
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Login()))
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+                  var user = FirebaseAuth.instance.currentUser;
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Login(),
+                    ),
+                  );
+
+                  if (user == null) {
+                    logIn = false;
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Login(),
+                      ),
+                    );
+                  } else {
+                    logIn = true;
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Login(),
+                      ),
+                    );
+                  }
                 },
               ),
             ],
@@ -201,22 +271,18 @@ class _ParentHomePageState extends State<ParentHomePage> {
         body: _pages[currentIndex],
         bottomNavigationBar: GNav(
           onTabChange: (index) => setState(() => currentIndex = index),
+          backgroundColor:
+              Theme.of(context).navigationBarTheme.backgroundColor!,
           selectedIndex: currentIndex,
-          backgroundColor: background1,
-          rippleColor: Colors.white30,
-          // the color of the  effect of the click
-          hoverColor: Colors.white30,
-          // the color of the button holding or clicking(after the rippleColor occurrence)
-          gap: 8,
-          // is the space between the buttons
-          activeColor: Colors.black,
-          // the color of the active button
+          rippleColor: background1,
+          hoverColor: background1,
+          gap: 16,
+          activeColor: background2,
           iconSize: 24,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          duration: const Duration(milliseconds: 400),
-          color: Colors.white,
-          tabBackgroundColor: Colors.white60,
-          // the back color of the button
+          duration: const Duration(milliseconds: 50),
+          color: background4,
+          tabBackgroundColor: background4,
           tabs: const [
             GButton(
               icon: Icons.devices_other,
@@ -236,69 +302,3 @@ class _ParentHomePageState extends State<ParentHomePage> {
     );
   }
 }
-
-/**
- * import 'package:pro1/Theme/theme_manager.dart';
- * 
- * 
- * 
- * final ThemeManager _themeManager = ThemeManager();
-
-  @override
-  void dispose() {
-    _themeManager.removeListener(themeListener);
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    _themeManager.addListener(themeListener);
-    super.initState();
-  }
-
-  themeListener() {
-    if (mounted) {
-      setState(() {});
-    }
-  }
- * 
- * 
- * 
- * 
- * ListTile(
-                leading: Icon(
-                  Icons.dark_mode_outlined,
-                  color: fontColor1,
-                ),
-                title: Text(
-                  'Turn On/Off dark mode',
-                  style: TextStyle(
-                    color: fontColor1,
-                  ),
-                ),
-                trailing: Switch.adaptive(
-                  value: _themeManager.themeMode == ThemeMode.dark,
-                  onChanged: (value) {
-                    _themeManager.toggleTheme(value);
-                  },
-                ),
-              ),
- * 
- * 
- * 
- * 
- * 
- * ListTile(
-                leading: Icon(
-                  Icons.center_focus_strong_outlined,
-                  color: fontColor1,
-                ),
-                title: Text(
-                  'Activate/Deactivate focus mode',
-                  style: TextStyle(
-                    color: fontColor1,
-                  ),
-                ),
-                onTap: () => {},
-              ),
- */

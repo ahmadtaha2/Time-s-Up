@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pro1/Registration/Forgot_Password/verify_email.dart';
 import 'package:pro1/Registration/account.dart';
-import 'package:pro1/launch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pro1/Theme/app_themes.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:pro1/Registration/choose_mode.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -13,7 +12,6 @@ import '../Home_Page/Parent_Version/parent_home.dart';
 import '../Home_Page/Single_User_Version/single_user_home.dart';
 
 class Login extends StatefulWidget {
-
   const Login({Key? key}) : super(key: key);
 
   @override
@@ -25,17 +23,13 @@ class _LoginState extends State<Login> {
   final _emailInput = TextEditingController();
   final _passwordInput = TextEditingController();
 
-  // final GlobalKey<FormState> formKey = GlobalKey();
-  //final Map<String, String> _authData = {
-  //'email/username': '',
-  //'password': '',
-  //};
+  bool hidden = true;
+
   GlobalKey<FormState> formstate = new GlobalKey<FormState>();
   var mpassword, memail;
   final Themes _themes = Themes();
 
   signIn() async {
-
     await Firebase.initializeApp();
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
@@ -48,16 +42,16 @@ class _LoginState extends State<Login> {
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           AwesomeDialog(
-              context: context,
-              title: "Erorr",
-              body: Text("No user found for that email."))
-            ..show();
+            context: context,
+            title: "Erorr",
+            body: const Text("No user found for that email."),
+          ).show();
         } else if (e.code == 'wrong-password') {
           AwesomeDialog(
-              context: context,
-              title: "Erorr",
-              body: Text("Wrong password provided for that user."))
-            ..show();
+            context: context,
+            title: "Erorr",
+            body: const Text("Wrong password provided for that user."),
+          ).show();
         }
       }
     } else {
@@ -66,10 +60,10 @@ class _LoginState extends State<Login> {
   }
 
   @override
-  Widget build(BuildContext context)  {
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme2,
+        //backgroundColor: background1,
         body: Form(
           key: formstate,
           child: SingleChildScrollView(
@@ -77,45 +71,17 @@ class _LoginState extends State<Login> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'media/images/On_Time.png',
-                        width: 75,
-                        height: 75,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        'On Time',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 30),
-                      ),
-                    ],
-                  ),
+                  child: appLogo(),
                 ),
                 Container(
                   padding: const EdgeInsets.all(15),
                   height: 775,
-                  decoration: _themes.screenDecoration(),
+                  decoration: _themes.screenLightDecoration(context),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.close_outlined,
-                              color: Colors.blue[900],
-                            ),
-                          )
-                        ],
+                      const SizedBox(
+                        height: 20,
                       ),
                       _themes.title('LOGIN'),
                       _themes.trailing('Sign in to your account'),
@@ -124,6 +90,9 @@ class _LoginState extends State<Login> {
                       ),
                       TextFormField(
                         //email/username text field
+                        style: TextStyle(
+                          color: fontColor4,
+                        ),
                         controller: _emailInput,
                         keyboardType: TextInputType.emailAddress,
                         decoration:
@@ -152,8 +121,30 @@ class _LoginState extends State<Login> {
                       TextFormField(
                         //password text field
                         controller: _passwordInput,
-                        decoration: _themes.textFormFieldDecoration('Password'),
-                        obscureText: true,
+                        style: TextStyle(
+                          color: fontColor4,
+                        ),
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          // labelStyle: TextStyle(
+                          //   color: fontColor4,
+                          // ),
+                          // border: OutlineInputBorder(
+                          //   borderRadius: BorderRadius.circular(30),
+                          // ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                hidden = !hidden;
+                              });
+                            },
+                            color: background5,
+                            icon: hidden
+                                ? const Icon(Icons.visibility)
+                                : const Icon(Icons.visibility_off_outlined),
+                          ),
+                        ),
+                        obscureText: hidden,
                         validator: (value) {
                           if (value!.length < 6) {
                             return 'Short password / Invalid password';
@@ -163,16 +154,17 @@ class _LoginState extends State<Login> {
                         onSaved: (val) {
                           mpassword = val;
                         },
-                        // onSaved: (newValue) {
-                        // _authData['password'] = newValue!;
-                        //_passwordInput.text = newValue;
-                        // },
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) => const VerifyEmail()),
+                              );
+                            },
                             child: Text(
                               'Forgot Password?',
                               style: TextStyle(
@@ -193,7 +185,8 @@ class _LoginState extends State<Login> {
                           final User? user = auth.currentUser;
                           final uid = user?.uid;
                           final ref = FirebaseDatabase.instance.ref();
-                          final snapshot = await ref.child('Users/$uid/User_Mode').get();
+                          final snapshot =
+                              await ref.child('Users/$uid/User_Mode').get();
                           if (response != null) {
                             Navigator.pushReplacement(
                               context,
@@ -256,17 +249,15 @@ class _LoginState extends State<Login> {
     loginPrefs.setString('user', _emailInput.text);
     loginPrefs.setString('password', _passwordInput.text);
   }
-
-
 }
-swtch(userMode){
 
+swtch(userMode) {
   if (userMode == 'family') {
-    return ParentHomePage();
+    return const ParentHomePage();
   }
   if (userMode == 'personal') {
-    return SingleUserHomePage();
+    return const SingleUserHomePage();
   } else {
-    return Login();
+    return const Login();
   }
 }

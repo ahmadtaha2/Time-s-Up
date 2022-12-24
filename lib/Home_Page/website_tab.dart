@@ -1,3 +1,4 @@
+import 'package:counter_button/counter_button.dart';
 import 'package:flutter/material.dart';
 import 'package:pro1/chart_data.dart';
 import 'package:pro1/Registration/choose_mode.dart';
@@ -14,6 +15,136 @@ class Website extends StatefulWidget {
 
 class _WebsiteState extends State<Website> {
   final Themes _themes = Themes();
+  final List _items = [
+    'Hello1',
+    'Hello2',
+    'Hello3',
+    'Hello4',
+    'Hello5',
+    'Hello6',
+  ];
+  String? selectedItem = 'Hello1';
+
+  int _counterValue = 0;
+
+  void showAddLimit() => showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(
+            "Time Limit",
+            style: TextStyle(
+              color: fontColor6,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          content: Column(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                child: Card(
+                  shadowColor: shadowColor1,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
+                  color: background4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Select App:'),
+                        DropdownButton<String>(
+                          value: selectedItem,
+                          items: _items
+                              .map(
+                                (item) => DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(item),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (item) =>
+                              setState(() => selectedItem = item),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: Card(
+                  shadowColor: shadowColor1,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
+                  color: background4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Set Limit:'),
+                        CounterButton(
+                          loading: false,
+                          onChange: (int val) {
+                            setState(() {
+                              _counterValue = val;
+                            });
+                          },
+                          count: _counterValue,
+                          countColor: fontColor4,
+                          buttonColor: fontColor2,
+                          progressColor: fontColor3,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    'Add',
+                    style: TextStyle(
+                      color: fontColor6,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(
+                      color: fontColor6,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+          elevation: 30,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +154,9 @@ class _WebsiteState extends State<Website> {
         height: double.maxFinite,
         width: double.maxFinite,
         padding: const EdgeInsets.all(10),
-        decoration: _themes.screenDecoration(),
+        decoration: _themes.screenDecoration(context),
         child: ListView(
           children: [
-            // FIXME: change this to the Search Delegate when it's ready`
             searchBar(context),
             Padding(
               padding: const EdgeInsets.only(right: 20),
@@ -65,7 +195,7 @@ class _WebsiteState extends State<Website> {
             ),
             ListTile(
               title: Text(
-                'View device Statistics',
+                'View website Statistics',
                 style: TextStyle(
                   color: fontColor1,
                   fontWeight: FontWeight.w800,
@@ -74,6 +204,23 @@ class _WebsiteState extends State<Website> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text(
+          'Add limit',
+          style: TextStyle(
+            color: fontColor3,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        icon: Icon(
+          Icons.add,
+          color: fontColor3,
+        ),
+        onPressed: () => showAddLimit(),
+        backgroundColor: background4,
+        enableFeedback: true,
+        tooltip: 'Add website limit',
       ),
     );
   }

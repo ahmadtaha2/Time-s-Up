@@ -15,7 +15,6 @@ class _GetChildInfoState extends State<GetChildInfo> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: background1,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -27,7 +26,7 @@ class _GetChildInfoState extends State<GetChildInfo> {
                 padding: const EdgeInsets.all(15),
                 height: 775,
                 width: double.infinity,
-                decoration: _themes.screenDecoration(),
+                decoration: _themes.screenDecoration(context),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -42,7 +41,6 @@ class _GetChildInfoState extends State<GetChildInfo> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
-                      color: background1,
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
@@ -99,21 +97,17 @@ class _GetChildInfoState extends State<GetChildInfo> {
                     const SizedBox(
                       height: 40,
                     ),
-                    Material(
-                      color: Colors.transparent,
-                      elevation: 40,
-                      child: TextButton(
-                        /**child confirmation button */
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ParentHomePage(),
-                            ),
-                          );
-                        },
-                        child: _themes.textButtonStyle('Confirm'),
-                      ),
+                    TextButton(
+                      /**child confirmation button */
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ParentHomePage(),
+                          ),
+                        );
+                      },
+                      child: _themes.textButtonStyle('Confirm'),
                     ),
                   ],
                 ),

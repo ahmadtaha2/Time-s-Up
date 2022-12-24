@@ -9,19 +9,19 @@ import 'package:pro1/Profile/profile.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:pro1/Registration/login.dart';
 import 'package:pro1/Theme/app_themes.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class SingleUserHomePage extends StatefulWidget {
+  const SingleUserHomePage({super.key});
+
   @override
   State<SingleUserHomePage> createState() => _SingleUserHomePageState();
 }
 
 class _SingleUserHomePageState extends State<SingleUserHomePage> {
-
-///TODO: add the profile_image picker.dart content here instead
-
   bool value = true;
-  bool logIn = true;
+
   int currentIndex = 0;
   final List<StatefulWidget> _pages = [
     const Device(),
@@ -29,46 +29,97 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
     const Website(),
   ];
 
+  late bool logIn;
+  double rating = 0;
+
+  void showRating() => showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text(
+            'Rate This App',
+            style: TextStyle(
+              color: Colors.white70,
+            ),
+          ),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Please leave a 5 star rating.',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white70,
+                ),
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              buildRating(),
+            ],
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text(
+                'OK',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
+  Widget buildRating() => RatingBar.builder(
+        initialRating: rating,
+        maxRating: 1,
+        itemSize: 46,
+        itemPadding: const EdgeInsets.symmetric(horizontal: 4),
+        itemBuilder: (context, _) => const Icon(
+          Icons.star,
+          color: Colors.yellow,
+        ),
+        updateOnDrag: true,
+        onRatingUpdate: (rating) => setState(() {
+          this.rating = rating;
+        }),
+      );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: background4,
         drawer: Drawer(
-          backgroundColor: background1,
+          backgroundColor: Theme.of(context).drawerTheme.backgroundColor,
           child: Column(
             children: <Widget>[
               DrawerHeader(
                 decoration: BoxDecoration(
-                  color: background2,
+                  color: Theme.of(context).canvasColor,
                 ),
                 child: Row(
                   children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 50,
-                      child: GestureDetector(
-                          onTap: () {},
-                          child: const Icon(
-                            Icons.camera_alt,
-                            color: Colors.white,
-                            size: 50,
-                          ),
-                        ),
+                    Text(
+                      'Username',
+                      style: TextStyle(
+                        color: fontColor1,
+                        fontSize: 30,
+                      ),
                     ),
-                    const Text('username'),
                   ],
                 ),
               ),
               ListTile(
                 leading: Icon(
                   Icons.home,
-                  color: fontColor1,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
                   'Home',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
                 onTap: () => {Navigator.of(context).pop()},
@@ -76,12 +127,12 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
               ListTile(
                 leading: Icon(
                   Icons.add_box_outlined,
-                  color: fontColor1,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
                   'Add account',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
                 onTap: () => Navigator.push(
@@ -94,12 +145,12 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
               ListTile(
                 leading: Icon(
                   Icons.switch_account_outlined,
-                  color: fontColor1,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
                   'Switch account',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
                 onTap: () => Navigator.push(
@@ -112,12 +163,12 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
               ListTile(
                 leading: Icon(
                   Icons.swap_horiz_sharp,
-                  color: fontColor1,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
                   'Switch user mode',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
                 onTap: () => Navigator.pushReplacement(
@@ -128,32 +179,17 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
                 ),
               ),
               ListTile(
-                //FIXME: not active yet
                 leading: Icon(
-                  Icons.dark_mode_outlined,
-                  color: fontColor1,
+                  Icons.feedback,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
-                  'Turn On/Off dark mode',
+                  'Send Feedback',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
-                trailing: switchTheme(),
-              ),
-              ListTile(
-                //TODO: not active yet
-                leading: Icon(
-                  Icons.translate_sharp,
-                  color: fontColor1,
-                ),
-                title: Text(
-                  'Change language',
-                  style: TextStyle(
-                    color: fontColor1,
-                  ),
-                ),
-                onTap: () => {},
+                onTap: () => showRating(),
               ),
               Divider(
                 color: fontColor1,
@@ -161,18 +197,41 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
               ListTile(
                 leading: Icon(
                   Icons.logout,
-                  color: fontColor1,
+                  color: Theme.of(context).shadowColor,
                 ),
                 title: Text(
                   'Logout',
                   style: TextStyle(
-                    color: fontColor1,
+                    color: Theme.of(context).shadowColor,
                   ),
                 ),
-                onTap: () => {
-                  logIn = false,
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Login()))
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+                  var user = FirebaseAuth.instance.currentUser;
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Login(),
+                    ),
+                  );
+
+                  if (user == null) {
+                    logIn = false;
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Login(),
+                      ),
+                    );
+                  } else {
+                    logIn = true;
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Login(),
+                      ),
+                    );
+                  }
                 },
               ),
             ],
@@ -216,16 +275,17 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
         body: _pages[currentIndex],
         bottomNavigationBar: GNav(
           onTabChange: (index) => setState(() => currentIndex = index),
+          backgroundColor:
+              Theme.of(context).navigationBarTheme.backgroundColor!,
           selectedIndex: currentIndex,
-          backgroundColor: background2,
           rippleColor: background1,
           hoverColor: background1,
           gap: 16,
-          activeColor: fontColor3,
+          activeColor: background2,
           iconSize: 24,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          duration: const Duration(milliseconds: 400),
-          color: fontColor1,
+          duration: const Duration(milliseconds: 50),
+          color: background4,
           tabBackgroundColor: background4,
           tabs: const [
             GButton(
@@ -245,36 +305,4 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
       ),
     );
   }
-
-  //FIXME: fix the theme button
-  Widget switchTheme() => Switch.adaptive(
-        activeTrackColor: Colors.white60,
-        activeColor: Colors.white,
-        value: value,
-        onChanged: ((value) => setState(
-              () => this.value = value,
-            )),
-      );
 }
-
-
-/**
- * This is the foucus mode feature.
- * I removed it as you reqested...
- * 
- * 
- * ListTile(
-                leading: Icon(
-                  Icons.center_focus_strong_outlined,
-                  color: fontColor1,
-                ),
-                title: Text(
-                  'Activate/Deactivate focus mode',
-                  style: TextStyle(
-                    color: fontColor1,
-                  ),
-                ),
-                onTap: () => {},
-              ),
- *
- */

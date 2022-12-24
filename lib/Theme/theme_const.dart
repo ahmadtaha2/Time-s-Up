@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 
-//this import to use the defined colors in the theme mode
 import 'package:pro1/Theme/app_themes.dart';
 
 Themes _themes = Themes();
 
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-);
-
-ThemeData darkTheme = ThemeData(
-  brightness: Brightness.dark,
+  scaffoldBackgroundColor: background4,
   inputDecorationTheme: InputDecorationTheme(
     labelStyle: TextStyle(
       color: fontColor4,
@@ -19,12 +15,89 @@ ThemeData darkTheme = ThemeData(
       borderRadius: BorderRadius.circular(30),
     ),
   ),
-  
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      elevation: MaterialStateProperty.all<double>(10),
+      backgroundColor: MaterialStateProperty.all<Color>(
+        background3,
+      ),
+      minimumSize: MaterialStateProperty.all<Size>(
+        const Size(200, 50),
+      ),
+      shape: MaterialStateProperty.all<OutlinedBorder>(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+      ),
+    ),
+  ),
+  canvasColor: background3,
+  drawerTheme: DrawerThemeData(
+    backgroundColor: background4,
+  ),
+  dialogBackgroundColor: background3,
+  navigationBarTheme: NavigationBarThemeData(
+    backgroundColor: background7,
+  ),
+  shadowColor: fontColor3,
+  cardTheme: CardTheme(
+    color: background4,
+  ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    elevation: 0,
+  ),
+);
+
+ThemeData darkTheme = ThemeData(
+  brightness: Brightness.dark,
+  scaffoldBackgroundColor: background1,
+  inputDecorationTheme: InputDecorationTheme(
+    labelStyle: TextStyle(
+      color: fontColor4,
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(30),
+    ),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      elevation: MaterialStateProperty.all<double>(20),
+      shadowColor: MaterialStateProperty.all<Color>(
+        background2,
+      ),
+      backgroundColor: MaterialStateProperty.all<Color>(
+        background2,
+      ),
+      minimumSize: MaterialStateProperty.all<Size>(
+        const Size(200, 50),
+      ),
+      shape: MaterialStateProperty.all<OutlinedBorder>(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+      ),
+    ),
+  ),
+  canvasColor: background2,
+  drawerTheme: DrawerThemeData(
+    backgroundColor: background1,
+  ),
+  dialogBackgroundColor: background1,
+  navigationBarTheme: NavigationBarThemeData(
+    backgroundColor: background1,
+  ),
+  shadowColor: fontColor1,
+  cardTheme: CardTheme(
+    color: background3,
+  ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    elevation: 0,
+  ),
 );
 
 /**
- * TODO: those are the widgets used in our app
- * 
+ * NOTE: those are the widgets used in our app
+ *
  * TextFormField
  * ElevatedButton
  * TextButton
@@ -41,5 +114,5 @@ ThemeData darkTheme = ThemeData(
  * GNav
  * Search
  * Material
- * 
+ *
  */

@@ -25,17 +25,8 @@ class _ChildHomePageState extends State<ChildHomePage> {
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.account_circle_rounded,
-                      size: 100,
-                      color: fontColor1,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
                     Text(
                       'Username',
-                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: fontColor1,
                         fontSize: 30,
@@ -70,19 +61,6 @@ class _ChildHomePageState extends State<ChildHomePage> {
                 ),
                 onTap: () => {},
               ),
-              ListTile(
-                leading: Icon(
-                  Icons.translate_sharp,
-                  color: fontColor1,
-                ),
-                title: Text(
-                  'Change language',
-                  style: TextStyle(
-                    color: fontColor1,
-                  ),
-                ),
-                onTap: () => {},
-              ),
             ],
           ),
         ),
@@ -106,7 +84,7 @@ class _ChildHomePageState extends State<ChildHomePage> {
         body: Container(
           height: double.maxFinite,
           width: double.maxFinite,
-          decoration: _themes.screenDecoration(),
+          decoration: _themes.screenDecoration(context),
           padding: const EdgeInsets.only(
             left: 20,
             right: 20,

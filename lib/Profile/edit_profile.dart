@@ -10,9 +10,10 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  bool visible = false;
-  SnackBar editProfileMessage = const SnackBar(
-    content: Text(
+  bool hidden = true;
+  SnackBar editProfileMessage = SnackBar(
+    backgroundColor: background5,
+    content: const Text(
       'Saved!',
       style: TextStyle(
         fontWeight: FontWeight.bold,
@@ -25,71 +26,69 @@ class _EditProfilePageState extends State<EditProfilePage> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: background1,
-      appBar: AppBar(
-        backgroundColor: background1,
-        elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.person,
-                color: circleImageColor2,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          elevation: 0,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.person,
+                  color: circleImageColor2,
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-      body: Form(
-        key: formKey,
-        child: SingleChildScrollView(
-          child: Container(
-            height: 775,
-            decoration: _themes.screenDecoration(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 30,
-                    left: 30,
-                    right: 10,
-                    bottom: 30,
-                  ),
-                  child: Text(
-                    'Edit Profile',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w900,
-                      color: fontColor2,
+          ],
+        ),
+        body: Form(
+          key: formKey,
+          child: SingleChildScrollView(
+            child: Container(
+              height: 775,
+              decoration: _themes.screenDecoration(context),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 30,
+                      left: 30,
+                      right: 10,
+                      bottom: 30,
+                    ),
+                    child: Text(
+                      'Edit Profile',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w900,
+                        color: fontColor1,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  height: 686,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 20,
-                    horizontal: 40,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(50),
-                      topRight: Radius.circular(50),
+                  Container(
+                    ///FIXME: The UI needs fixing
+                    height: 686,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: 40,
                     ),
-                    color: background3,
-                  ),
-                  child: Column(
-                    children: [
-                      /*
-                      * the user entries must be saved
-                      */
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50),
+                      ),
+                      color: background3,
+                    ),
+                    child: Column(
+                      children: [
+                        /*
+                        * the user entries must be saved
+                        */
+                        TextFormField(
                           /*edit name text field*/
                           keyboardType: TextInputType.name,
                           keyboardAppearance: Brightness.dark,
@@ -112,15 +111,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             //_usernameController.text = newValue;
                           },
                         ),
-                      ),
-                      const Divider(
-                        color: Colors.transparent,
-                        thickness: 1,
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
+                        const Divider(
+                          color: Colors.transparent,
+                          thickness: 1,
+                        ),
+                        TextFormField(
                           //username text field
                           keyboardType: TextInputType.name,
                           keyboardAppearance: Brightness.dark,
@@ -144,15 +139,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             //_usernameController.text = newValue;
                           },
                         ),
-                      ),
-                      const Divider(
-                        color: Colors.transparent,
-                        thickness: 1,
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
+                        const Divider(
+                          color: Colors.transparent,
+                          thickness: 1,
+                        ),
+                        TextFormField(
                           /* edit email text field*/
                           keyboardType: TextInputType.emailAddress,
                           keyboardAppearance: Brightness.dark,
@@ -178,15 +169,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             //_usernameController.text = newValue;
                           },
                         ),
-                      ),
-                      const Divider(
-                        color: Colors.transparent,
-                        thickness: 1,
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
+                        const Divider(
+                          color: Colors.transparent,
+                          thickness: 1,
+                        ),
+                        TextFormField(
                           //edit phone number text field
                           keyboardType: TextInputType.phone,
                           keyboardAppearance: Brightness.dark,
@@ -210,41 +197,38 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             //_usernameController.text = newValue;
                           },
                         ),
-                      ),
-                      const Divider(
-                        color: Colors.transparent,
-                        thickness: 1,
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
+                        const Divider(
+                          color: Colors.transparent,
+                          thickness: 1,
+                        ),
+                        TextFormField(
                           //edit password text field
                           keyboardType: TextInputType.text,
                           keyboardAppearance: Brightness.dark,
                           style: _themes.inputStyle(),
-                          //controller: _usernameController,
                           decoration: InputDecoration(
                             labelText: 'Password',
-                            labelStyle: const TextStyle(color: Colors.blue),
+                            labelStyle: TextStyle(
+                              color: fontColor4,
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
                             suffixIcon: IconButton(
                               icon: Icon(
-                                visible
+                                hidden
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
                                 color: background5,
                               ),
                               onPressed: () {
                                 setState(() {
-                                  visible = !visible;
+                                  hidden = !hidden;
                                 });
                               },
                             ),
                           ),
-                          obscureText: visible,
+                          obscureText: hidden,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 6) {
                               if (value.isEmpty) {
@@ -260,15 +244,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             //_usernameController.text = newValue;
                           },
                         ),
-                      ),
-                      const Divider(
-                        color: Colors.transparent,
-                        thickness: 1,
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextFormField(
+                        const Divider(
+                          color: Colors.transparent,
+                          thickness: 1,
+                        ),
+                        TextFormField(
                           //Edit birthday text field
                           keyboardType: TextInputType.datetime,
                           keyboardAppearance: Brightness.dark,
@@ -292,14 +272,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             //_usernameController.text = newValue;
                           },
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 30,
-                        child: TextButton(
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextButton(
                           onPressed: () {
                             final bool isValid =
                                 formKey.currentState!.validate();
@@ -311,11 +287,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           },
                           child: _themes.textButtonStyle('SAVE'),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

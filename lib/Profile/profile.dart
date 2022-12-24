@@ -18,9 +18,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: background1,
         appBar: AppBar(
-          backgroundColor: background1,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 0,
           actions: [
             Padding(
@@ -36,7 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
         ),
         body: Container(
-          decoration: _themes.screenDecoration(),
+          decoration: _themes.screenDecoration(context),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -55,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w900,
-                        color: fontColor2,
+                        color: fontColor1,
                       ),
                     ),
                     IconButton(
@@ -68,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                       icon: Icon(
                         Icons.edit,
-                        color: fontColor2,
+                        color: fontColor1,
                       ),
                     ),
                   ],
@@ -80,37 +79,21 @@ class _ProfilePageState extends State<ProfilePage> {
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50),
                   ),
-                  color: Colors.transparent,
                 ),
                 height: 565,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 20,
-                    horizontal: 40,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(50),
-                      topRight: Radius.circular(50),
-                    ),
-                    color: background3,
-                  ),
-                  // FIXME: fix and edit profile UIs (there is space in the bottom try to fix it)
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Material(
-                            color: Colors.transparent,
-                            elevation: 15,
-                            child: Text(
-                              'Name',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                          const Text(
+                            'Name',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
                           TextButton(
@@ -124,277 +107,205 @@ class _ProfilePageState extends State<ProfilePage> {
                             },
                             child: Row(
                               children: [
-                                Material(
-                                  color: Colors.transparent,
-                                  elevation: 15,
-                                  child: Text(
-                                    'name',
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: fontColor1,
-                                    ),
-                                  ),
-                                ),
-                                Material(
-                                  color: Colors.transparent,
-                                  elevation: 15,
-                                  child: Icon(
-                                    Icons.arrow_forward,
-                                    size: 15,
+                                Text(
+                                  'name',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
                                     color: fontColor1,
                                   ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
                                 ),
                               ],
                             ),
                           ),
                         ],
                       ),
-                      const Material(
-                        color: Colors.transparent,
-                        elevation: 15,
-                        child: Divider(
-                          color: Colors.white,
-                          thickness: 1,
-                        ),
+                      const Divider(
+                        color: Colors.white,
+                        thickness: 1,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Material(
-                            color: Colors.transparent,
-                            elevation: 15,
-                            child: Text(
-                              'Username',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                          const Text(
+                            'Username',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
                           TextButton(
                             onPressed: () {},
                             child: Row(
                               children: [
-                                Material(
-                                  color: Colors.transparent,
-                                  elevation: 15,
-                                  child: Text(
-                                    'username',
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: fontColor1,
-                                    ),
-                                  ),
-                                ),
-                                Material(
-                                  color: Colors.transparent,
-                                  elevation: 15,
-                                  child: Icon(
-                                    Icons.arrow_forward,
-                                    size: 15,
+                                Text(
+                                  'username',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
                                     color: fontColor1,
                                   ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
                                 ),
                               ],
                             ),
                           ),
                         ],
                       ),
-                      const Material(
-                        color: Colors.transparent,
-                        elevation: 15,
-                        child: Divider(
-                          color: Colors.white,
-                          thickness: 1,
-                        ),
+                      const Divider(
+                        color: Colors.white,
+                        thickness: 1,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Material(
-                            color: Colors.transparent,
-                            elevation: 15,
-                            child: Text(
-                              'Email',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                          const Text(
+                            'Email',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
-                          Material(
-                            color: Colors.transparent,
-                            elevation: 15,
-                            child: TextButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'email',
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: fontColor1,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    size: 15,
+                          TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Text(
+                                  'email',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
                                     color: fontColor1,
                                   ),
-                                ],
-                              ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                      const Material(
-                        color: Colors.transparent,
-                        elevation: 15,
-                        child: Divider(
-                          color: Colors.white,
-                          thickness: 1,
-                        ),
+                      const Divider(
+                        color: Colors.white,
+                        thickness: 1,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Material(
-                            color: Colors.transparent,
-                            elevation: 15,
-                            child: Text(
-                              'Phone number',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                          const Text(
+                            'Phone number',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
-                          Material(
-                            color: Colors.transparent,
-                            elevation: 15,
-                            child: TextButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'phone',
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: fontColor1,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    size: 15,
+                          TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Text(
+                                  'phone',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
                                     color: fontColor1,
                                   ),
-                                ],
-                              ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                      const Material(
-                        color: Colors.transparent,
-                        elevation: 15,
-                        child: Divider(
-                          color: Colors.white,
-                          thickness: 1,
-                        ),
+                      const Divider(
+                        color: Colors.white,
+                        thickness: 1,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Material(
-                            color: Colors.transparent,
-                            elevation: 15,
-                            child: Text(
-                              'Password',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                          const Text(
+                            'Password',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
-                          Material(
-                            color: Colors.transparent,
-                            elevation: 15,
-                            child: TextButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'password',
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: fontColor1,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    size: 15,
+                          TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Text(
+                                  'password',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
                                     color: fontColor1,
                                   ),
-                                ],
-                              ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                      const Material(
-                        color: Colors.transparent,
-                        elevation: 15,
-                        child: Divider(
-                          color: Colors.white,
-                          thickness: 1,
-                        ),
+                      const Divider(
+                        color: Colors.white,
+                        thickness: 1,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Material(
-                            color: Colors.transparent,
-                            elevation: 15,
-                            child: Text(
-                              'Birthday',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                          const Text(
+                            'Birthday',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
-                          Material(
-                            color: Colors.transparent,
-                            elevation: 15,
-                            child: TextButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'birthday',
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: fontColor1,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    size: 15,
+                          TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Text(
+                                  'birthday',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
                                     color: fontColor1,
                                   ),
-                                ],
-                              ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  size: 15,
+                                  color: fontColor1,
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -402,19 +313,15 @@ class _ProfilePageState extends State<ProfilePage> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 40,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => const Login(),
-                              ),
-                            );
-                          },
-                          child: _themes.textButtonStyle('LOGOUT'),
-                        ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => const Login(),
+                            ),
+                          );
+                        },
+                        child: _themes.textButtonStyle('LOGOUT'),
                       ),
                     ],
                   ),

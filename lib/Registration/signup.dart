@@ -17,47 +17,34 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        //TODO: you stopped right here while working on the theme
-        backgroundColor: background1,
+        //backgroundColor: background1,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Material(
-                color: Colors.transparent,
-                elevation: 40,
-                child: Column(
-                  children: [
-                    Image.asset(
-                      'media/images/TotalControl_Logo.png',
-                      width: 250,
-                      height: 250,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Total Control',
-                      style: TextStyle(
-                          color: fontColor4,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 55),
-                    ),
-                  ],
-                ),
+              Column(
+                children: [
+                  Image.asset(
+                    'media/images/TotalControl_Logo.png',
+                    width: 250,
+                    height: 250,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Total Control',
+                    style: TextStyle(
+                        color: fontColor4,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 55),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 100,
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: background2,
-                  minimumSize: const Size(200, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  elevation: 40,
-                ),
                 onPressed: () {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => const Login()));
@@ -74,14 +61,6 @@ class _SignUpState extends State<SignUp> {
                 color: Colors.transparent,
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: background2,
-                  minimumSize: const Size(200, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  elevation: 40,
-                ),
                 onPressed: () => Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
@@ -96,23 +75,22 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-              Material(
-                color: Colors.transparent,
-                elevation: 40,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: ((context) => const ChildInformation()),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'Is this the child device?',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: fontColor4,
+              const SizedBox(
+                height: 10,
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: ((context) => const ChildInformation()),
                     ),
+                  );
+                },
+                child: Text(
+                  'Is this the child device?',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: fontColor4,
                   ),
                 ),
               ),

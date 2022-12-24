@@ -40,33 +40,25 @@ class StartState extends State<Launch> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: background1,
+        //backgroundColor: background1,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Material(
-                color: Colors.transparent,
-                elevation: 40,
-                child: Image.asset(
-                  'media/images/TotalControl_Logo.png',
-                  width: 250,
-                  height: 250,
-                ),
+              Image.asset(
+                'media/images/TotalControl_Logo.png',
+                width: 250,
+                height: 250,
               ),
               const SizedBox(
                 width: 10,
               ),
-              Material(
-                color: Colors.transparent,
-                elevation: 40,
-                child: Text(
-                  'Total Control',
-                  style: TextStyle(
-                    color: fontColor4,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 55,
-                  ),
+              Text(
+                'Total Control',
+                style: TextStyle(
+                  color: fontColor4,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 55,
                 ),
               ),
             ],

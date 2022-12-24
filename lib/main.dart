@@ -1,35 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Theme/theme_const.dart';
-import 'package:pro1/Theme/theme_manager.dart';
 import 'launch.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:firebase_database/firebase_database.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:firebase_database/firebase_database.dart';
-
 import 'package:get/get.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
 
-
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
-
-
+  void main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    runApp(const MyApp());
+  }
 }
-}
-
-final ThemeManager _themeManager = ThemeManager();
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -39,9 +24,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-// themeMode: ThemeMode.system,
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -59,10 +41,21 @@ class _MyAppState extends State<MyApp> {
 }
 
 
+
 /*
+
+Data needed for device, apps and websites are just the
+time spent + name of the app and the website
+
+
 TODO:
-  fix dark mode
-  continue image_picker
-  continue language files
-  font family
-*/
+remove add account + switch account (hussam)
+
+Notifications, app statistics (hadeel)
+
+Device, website statistics back-end (ahmad)
+
+logout back-end (rama)
+
+ */
+

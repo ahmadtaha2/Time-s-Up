@@ -36,7 +36,7 @@ class _SplashState extends State<Splash> {
     return SafeArea(
       child: Scaffold(
         body: AnimatedSplashScreen(
-          backgroundColor: background1,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           duration: 100000,
           splash: Lottie.asset(
             'media/images/splash7.json',
