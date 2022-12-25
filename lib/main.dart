@@ -48,14 +48,15 @@ Data needed for device, apps and websites are just the
 time spent + name of the app and the website
 
 
-TODO:
-remove add account + switch account (hussam)
+TODO: team tasks
 
 Notifications, app statistics (hadeel)
 
 Device, website statistics back-end (ahmad)
 
 logout back-end (rama)
+
+Search engine back-end
 
  */
 

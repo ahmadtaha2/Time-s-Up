@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:pro1/Home_Page/Menu_Pages/add_account.dart';
 import 'package:pro1/Home_Page/app_tab.dart';
 import 'package:pro1/Home_Page/device_tab.dart';
-import 'package:pro1/Home_Page/Menu_Pages/switch_account.dart';
 import 'package:pro1/Home_Page/website_tab.dart';
 import 'package:pro1/Profile/profile.dart';
 import 'package:pro1/Registration/choose_mode.dart';
@@ -123,42 +121,6 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
                   ),
                 ),
                 onTap: () => {Navigator.of(context).pop()},
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.add_box_outlined,
-                  color: Theme.of(context).shadowColor,
-                ),
-                title: Text(
-                  'Add account',
-                  style: TextStyle(
-                    color: Theme.of(context).shadowColor,
-                  ),
-                ),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddAccount(),
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.switch_account_outlined,
-                  color: Theme.of(context).shadowColor,
-                ),
-                title: Text(
-                  'Switch account',
-                  style: TextStyle(
-                    color: Theme.of(context).shadowColor,
-                  ),
-                ),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SwitchAccount(),
-                  ),
-                ),
               ),
               ListTile(
                 leading: Icon(

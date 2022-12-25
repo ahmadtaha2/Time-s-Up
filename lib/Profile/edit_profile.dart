@@ -70,7 +70,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
                   ),
                   Container(
-                    ///FIXME: The UI needs fixing
+                    ///FIXME: The UI needs fixing (just on the android studio emulator)
                     height: 686,
                     padding: const EdgeInsets.symmetric(
                       vertical: 20,
