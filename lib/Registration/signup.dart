@@ -3,6 +3,7 @@ import 'package:pro1/Registration/Child_Configurations//child_info.dart';
 import 'package:pro1/Registration/account.dart';
 import 'package:pro1/Theme/app_themes.dart';
 import 'package:pro1/Theme/theme_const.dart';
+import 'Child_Configurations/ParentLoginFromChild.dart';
 import 'login.dart';
 
 class SignUp extends StatefulWidget {
@@ -82,7 +83,7 @@ class _SignUpState extends State<SignUp> {
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: ((context) => const ChildInformation()),
+                      builder: (context) => const LoginFromChild(),
                     ),
                   );
                 },

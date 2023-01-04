@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Home_Page/Child_Version/Child_Home.dart';
+import 'package:pro1/Registration/Child_Configurations/child_info.dart';
 import 'package:pro1/Theme/app_themes.dart';
 
 class CodeGenerator extends StatefulWidget {
-  const CodeGenerator({super.key});
+  CodeGenerator({super.key,});
+
 
   @override
   State<CodeGenerator> createState() => _CodeGeneratorState();
@@ -54,7 +56,11 @@ class _CodeGeneratorState extends State<CodeGenerator> {
                     ),
                     _themes.title('Connection Code'),
                     const SizedBox(
-                      height: 70,
+                      height: 10,
+                    ),
+                    _themes.trailing('Use the code below to connect your child\'s device'),
+                    const SizedBox(
+                      height: 50,
                     ),
                     TextFormField(
                       /*
@@ -69,35 +75,12 @@ class _CodeGeneratorState extends State<CodeGenerator> {
                        * TODO: here you need to enter the generated code to be revealed for the user ( child & parent)
                        */
                       decoration:
-                          _themes.textFormFieldDecoration('connection code'),
+                          _themes.textFormFieldDecoration(code),
                       obscureText: false,
                       enabled: false,
                     ),
                     const SizedBox(
                       height: 20,
-                    ),
-                    TextButton(
-                      /**Generate button*/
-                      onPressed: () {
-                        /**
-                         * code generator config
-                         */
-                      },
-                      child: _themes.textButtonStyle('Generate'),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextButton(
-                      /**Connect button*/
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const ChildHomePage(),
-                          ),
-                        );
-                      },
-                      child: _themes.textButtonStyle('Connect'),
                     ),
                   ],
                 ),

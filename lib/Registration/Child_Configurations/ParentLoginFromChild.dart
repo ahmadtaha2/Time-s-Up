@@ -7,18 +7,19 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import '../../Home_Page/Parent_Version/parent_home.dart';
+import '../../Home_Page/Single_User_Version/single_user_home.dart';
+import 'child_info.dart';
 
-import '../Home_Page/Parent_Version/parent_home.dart';
-import '../Home_Page/Single_User_Version/single_user_home.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class LoginFromChild extends StatefulWidget {
+  const LoginFromChild({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<LoginFromChild> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<LoginFromChild> {
 // user input stored for comparison with the data stored in the database
   final _emailInput = TextEditingController();
   final _passwordInput = TextEditingController();
@@ -83,8 +84,8 @@ class _LoginState extends State<Login> {
                       const SizedBox(
                         height: 20,
                       ),
-                      _themes.title('LOGIN'),
-                      _themes.trailing('Sign in to your account'),
+                      _themes.title('Parent Sing in'),
+                      _themes.trailing('Sign in as a Parent to Continue'),
                       const SizedBox(
                         height: 70,
                       ),
@@ -96,7 +97,7 @@ class _LoginState extends State<Login> {
                         controller: _emailInput,
                         keyboardType: TextInputType.emailAddress,
                         decoration:
-                            _themes.textFormFieldDecoration('Email/Username'),
+                        _themes.textFormFieldDecoration('Email/Username'),
                         obscureText: false,
                         validator: (value) {
                           if (value!.isEmpty ||
@@ -186,15 +187,15 @@ class _LoginState extends State<Login> {
                           final uid = user?.uid;
                           final ref = FirebaseDatabase.instance.ref();
                           final snapshot =
-                              await ref.child('Users/$uid/User_Mode').get();
+                          await ref.child('Users/$uid/User_Mode').get();
                           if (response != null) {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (_emailInput.text != '' &&
-                                        _passwordInput.text != '')
-                                    ? (context) => swtch(snapshot.value)
-                                    : ((context) => const Login()),
+                                    _passwordInput.text != '')
+                                    ? ((context) => const ChildInformation())
+                                    : ((context) => const LoginFromChild()),
                               ),
                             );
                           }
@@ -251,14 +252,3 @@ class _LoginState extends State<Login> {
   }
 }
 
-swtch(userMode) {
-
-  if (userMode == 'family') {
-    return const ParentHomePage();
-  }
-  if (userMode == 'personal') {
-    return const SingleUserHomePage();
-  } else {
-    return const Login();
-  }
-}

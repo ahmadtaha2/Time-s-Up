@@ -9,12 +9,21 @@ import 'package:pro1/Home_Page/Child_Version/Child_Widgets/Code_Config/code_gene
 import 'package:pro1/Registration/child_registration_code.dart';
 import 'package:pro1/Theme//app_themes.dart';
 
+import 'ExtractChildInformation.dart';
+
+
+
+
 class ChildInformation extends StatefulWidget {
   const ChildInformation({Key? key}) : super(key: key);
 
   @override
   State<ChildInformation> createState() => _ChildInformationState();
+
+  final String Code = '';
 }
+
+String code = '';
 
 class _ChildInformationState extends State<ChildInformation> {
   final GlobalKey<FormState> formkey = GlobalKey();
@@ -23,6 +32,7 @@ class _ChildInformationState extends State<ChildInformation> {
   final TextEditingController _age = TextEditingController();
 
   final Themes _themes = Themes();
+  final ChildInformation obj = new ChildInformation();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,7 +56,7 @@ class _ChildInformationState extends State<ChildInformation> {
                       const SizedBox(
                         height: 30,
                       ),
-                      _themes.title('Child Info'),
+                      _themes.title('Enter the Child Information'),
                       const SizedBox(
                         height: 70,
                       ),
@@ -94,13 +104,26 @@ class _ChildInformationState extends State<ChildInformation> {
                       TextButton(
                         /**save button */
                         onPressed: () async {
+                          final FirebaseAuth auth = FirebaseAuth.instance;
+                          final User? user = auth.currentUser;
+                          final uid = user?.uid;
                           FirebaseDatabase database = FirebaseDatabase.instance;
-                          DatabaseReference ref =
-                              FirebaseDatabase.instance.ref().child('Users');
+                          DatabaseReference ref = FirebaseDatabase.instance.ref().child("Users/$uid/Children");
+
                           Random random = new Random();
                           int randomNumber = random.nextInt(10000);
                           String randID = randomNumber.toString();
-                          ref.child(randID).set({"User_type": "Child"});
+                          ref.child(randID!).set({
+                            "Child Name": "Ahmad",
+                          });
+
+                          setState(() {
+                            code = randID;
+                          });
+                          DatabaseReference ref2 = FirebaseDatabase.instance.ref().child("Users/$uid/Children/$randID/information");
+                          ref2.set(UsageInfo);
+                          DatabaseReference ref3 = FirebaseDatabase.instance.ref().child("Users/$uid/Children/$randID/information");
+                          ref2.set(Applications);
 
                           final isValid = formkey.currentState!.validate();
                           if (isValid) {
@@ -108,7 +131,7 @@ class _ChildInformationState extends State<ChildInformation> {
                               context,
                               MaterialPageRoute(
                                 builder: (_name.text != '' && _age.text != '')
-                                    ? (context) => const CodeGenerator()
+                                    ? (context) => CodeGenerator()
                                     : ((context) => const ChildInformation()),
                               ),
                             );

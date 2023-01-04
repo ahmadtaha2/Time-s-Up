@@ -68,7 +68,7 @@ class _ChooseModeState extends State<ChooseMode> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const ChildRegistrationCode(),
+                                  const ParentHomePage(),
                             ),
                           );
                         },
