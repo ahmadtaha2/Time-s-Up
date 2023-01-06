@@ -207,7 +207,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         enabled: allow,
                         controller: _confirmedPasswordController,
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          labelText: 'Confirm Password',
                           labelStyle: TextStyle(
                             color: fontColor4,
                           ),

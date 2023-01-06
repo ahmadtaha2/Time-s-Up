@@ -17,8 +17,9 @@ class ParentHomePage extends StatefulWidget {
   State<ParentHomePage> createState() => _ParentHomePageState();
 }
 
+bool flag1 = false;
 class _ParentHomePageState extends State<ParentHomePage> {
-  bool value = true;
+
   int currentIndex = 0;
   final List<StatefulWidget> _pages = [
     const Device(),
@@ -26,7 +27,20 @@ class _ParentHomePageState extends State<ParentHomePage> {
     const Website(),
   ];
 
-  late bool logIn;
+  getUser(){
+    User? user = FirebaseAuth.instance.currentUser;
+    print(user!.email);
+  }
+
+  @override
+  void initState() {
+    getUser();
+    setState(() {
+      flag1 = true;
+    });
+    super.initState();
+  }
+
   double rating = 0;
 
   void showRating() => showDialog(
@@ -149,6 +163,45 @@ class _ParentHomePageState extends State<ParentHomePage> {
                 ),
                 onTap: () => showRating(),
               ),
+              ListTile(
+                leading: Icon(
+                  Icons.notification_important,
+                  color: Theme.of(context).shadowColor,
+                ),
+                title: Text(
+                  'Send Notification',
+                  style: TextStyle(
+                    color: Theme.of(context).shadowColor,
+                  ),
+                ),
+                onTap: () {
+                  // Get.snackbar(
+                  //   'Hello!!!',
+                  //   'You got A+!!',
+                  //   duration: const Duration(seconds: 6),
+                  //   icon: const Icon(
+                  //     Icons.warning_amber,
+                  //   ),
+                  //   backgroundColor: background3.withOpacity(0.40),
+                  //   titleText: Text(
+                  //     'Hello!!!',
+                  //     style: TextStyle(
+                  //       fontWeight: FontWeight.w900,
+                  //       fontSize: 18,
+                  //       color: fontColor3,
+                  //     ),
+                  //   ),
+                  //   messageText: Text(
+                  //     'You got A+!!',
+                  //     style: TextStyle(
+                  //       fontWeight: FontWeight.w500,
+                  //       fontSize: 15,
+                  //       color: fontColor3,
+                  //     ),
+                  //   ),
+                  // );
+                },
+              ),
               Divider(
                 color: fontColor1,
               ),
@@ -172,24 +225,6 @@ class _ParentHomePageState extends State<ParentHomePage> {
                       builder: (context) => const Login(),
                     ),
                   );
-
-                  if (user == null) {
-                    logIn = false;
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Login(),
-                      ),
-                    );
-                  } else {
-                    logIn = true;
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Login(),
-                      ),
-                    );
-                  }
                 },
               ),
             ],
@@ -245,6 +280,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
           duration: const Duration(milliseconds: 50),
           color: background4,
           tabBackgroundColor: background4,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           tabs: const [
             GButton(
               icon: Icons.devices_other,

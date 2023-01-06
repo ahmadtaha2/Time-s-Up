@@ -146,6 +146,7 @@ class _WebsiteState extends State<Website> {
         ),
       );
 
+  final ChartData _chartData = ChartData();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,9 +165,9 @@ class _WebsiteState extends State<Website> {
                 heightFactor: 1.2,
                 child: PieChart(
                   dataMap: (userMode.isNotEmpty && userMode == 'family')
-                      ? childDataMap
-                      : dataMap,
-                  colorList: colorList,
+                      ? _chartData.childDataMap
+                      : _chartData.websitesDataMap,
+                  colorList: _chartData.colorList,
                   chartRadius: MediaQuery.of(context).size.width / 2,
                   chartValuesOptions: ChartValuesOptions(
                     chartValueStyle: TextStyle(

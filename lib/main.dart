@@ -26,7 +26,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
@@ -40,23 +40,15 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-
-
 /*
-
 Data needed for device, apps and websites are just the
 time spent + name of the app and the website
+TODO: team tasks{
 
+    TODO mine:{
+      chart & search (in progress with ahmad)
+      login
 
-TODO: team tasks
-
-Notifications, app statistics (hadeel)
-
-Device, website statistics back-end (ahmad)
-
-logout back-end (rama)
-
-Search engine back-end
-
+       }
+}
  */
-

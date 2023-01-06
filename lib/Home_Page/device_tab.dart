@@ -1,10 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pro1/chart_data.dart';
-import 'package:pro1/Registration/choose_mode.dart';
 import 'package:pro1/Theme/app_themes.dart';
-import 'package:pie_chart/pie_chart.dart';
 
-//This file is not ready yet
 class Device extends StatefulWidget {
   const Device({super.key});
 
@@ -26,17 +23,113 @@ class _DeviceState extends State<Device> {
         decoration: _themes.screenDecoration(context),
         child: ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: Center(
-                /**
-                 * FIXME: I don't see the need of the chart in the device tab
-                 */
+            const SizedBox(
+              height: 20,
+            ),
+            ListTile(
+              title: Text(
+                'Connected Devices',
+                style: TextStyle(
+                  color: fontColor1,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: null,
+                icon: Icon(
+                  CupertinoIcons.square_fill,
+                  color: fontColor1,
+                  size: 35,
+                ),
+              ),
+              subtitle: Divider(
+                color: fontColor1,
+                thickness: 6,
+              ),
+            ),
+
+            ///ListView.builder will be added here
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (ctx) => AlertDialog(
+              title: Text(
+                "Add a device",
+                style: TextStyle(
+                  color: fontColor1,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              content: SizedBox(
+                width: 200,
+                height: 180,
+                child: TextFormField(
+                  style: TextStyle(
+                    color: fontColor4,
+                  ),
+                  keyboardType: TextInputType.number,
+                  decoration: _themes.textFormFieldDecoration('Email/Username'),
+                  obscureText: true,
+                ),
+              ),
+              actions: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        'Add',
+                        style: TextStyle(
+                          color: fontColor1,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        'Cancel',
+                        style: TextStyle(
+                          color: fontColor1,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+              elevation: 30,
+            ),
+          );
+        },
+        backgroundColor: background1,
+        child: Icon(
+          CupertinoIcons.add_circled,
+          color: fontColor1,
+        ),
+      ),
+    );
+  }
+}
+
+///chart
+/*
+Center(
                 heightFactor: 1.2,
                 child: PieChart(
                   dataMap: (userMode.isNotEmpty && userMode == 'family')
                       ? childDataMap
-                      : dataMap,
+                      : childDeviceDataMap,
                   colorList: colorList,
                   chartRadius: MediaQuery.of(context).size.width / 2,
                   chartValuesOptions: ChartValuesOptions(
@@ -58,83 +151,5 @@ class _DeviceState extends State<Device> {
                     ),
                   ),
                 ),
-              ),
-            ),
-            Divider(
-              color: fontColor1,
-              thickness: 2,
-            ),
-            ListTile(
-              title: Text(
-                'View device Statistics',
-                style: TextStyle(
-                  color: fontColor1,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-            ListTile(
-              title: (userMode.isNotEmpty && userMode == 'family')
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          'Lock / Unlock Device',
-                          style: TextStyle(
-                            color: fontColor1,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                              ),
-                              child: const Text(
-                                'lock',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-                              ),
-                              child: const Text(
-                                'unlock',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
-                  : null,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-/*
-Text(
-                'NOTE: add Lock / unlock feature here',
-                style: TextStyle(
-                  color: fontColor1,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
+              )
  */

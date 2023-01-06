@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pro1/Theme/app_themes.dart';
 
 class ChildHomePage extends StatefulWidget {
@@ -10,6 +11,14 @@ class ChildHomePage extends StatefulWidget {
 
 class _ChildHomePageState extends State<ChildHomePage> {
   final Themes _themes = Themes();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  bool notify = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -71,6 +80,34 @@ class _ChildHomePageState extends State<ChildHomePage> {
             builder: (BuildContext context) {
               return IconButton(
                 onPressed: () {
+                  setState(() {
+                    notify = true;
+                  });
+                  Get.snackbar(
+                    'BedTime!',
+                    'Time to go to sleep!',
+                    duration: const Duration(seconds: 6),
+                    icon: const Icon(
+                      Icons.warning_amber,
+                    ),
+                    backgroundColor: background3.withOpacity(0.40),
+                    titleText: Text(
+                      'Hello!!!',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18,
+                        color: fontColor3,
+                      ),
+                    ),
+                    messageText: Text(
+                      'You got A+!!',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15,
+                        color: fontColor3,
+                      ),
+                    ),
+                  );
                   Scaffold.of(context).openDrawer();
                 },
                 icon: Icon(
@@ -204,20 +241,3 @@ class _ChildHomePageState extends State<ChildHomePage> {
   }
 }
 
-// Row(
-//   children: [
-//     Builder(
-//       builder: (BuildContext context) {
-//         return IconButton(
-//           onPressed: () {
-//             Scaffold.of(context).openDrawer();
-//           },
-//           icon: const Icon(
-//             Icons.menu,
-//             color: Colors.white,
-//           ),
-//         );
-//       },
-//     ),
-//   ],
-// ),

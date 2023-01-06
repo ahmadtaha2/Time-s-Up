@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:pro1/Home_Page/app_tab.dart';
-import 'package:pro1/Home_Page/device_tab.dart';
 import 'package:pro1/Home_Page/website_tab.dart';
 import 'package:pro1/Profile/profile.dart';
 import 'package:pro1/Registration/choose_mode.dart';
@@ -17,17 +16,28 @@ class SingleUserHomePage extends StatefulWidget {
   State<SingleUserHomePage> createState() => _SingleUserHomePageState();
 }
 
+bool flag2 = false;
 class _SingleUserHomePageState extends State<SingleUserHomePage> {
-  bool value = true;
+
+  getUser(){
+    User? user = FirebaseAuth.instance.currentUser;
+    print(user!.email);
+  }
+  @override
+  void initState() {
+    getUser();
+    setState(() {
+      flag2 = true;
+    });
+    super.initState();
+  }
 
   int currentIndex = 0;
   final List<StatefulWidget> _pages = [
-    const Device(),
     const App(),
     const Website(),
   ];
 
-  late bool logIn;
   double rating = 0;
 
   void showRating() => showDialog(
@@ -170,30 +180,13 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
                 onTap: () async {
                   await FirebaseAuth.instance.signOut();
                   var user = FirebaseAuth.instance.currentUser;
+                  print(user!.email);
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Login(),
                     ),
                   );
-
-                  if (user == null) {
-                    logIn = false;
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Login(),
-                      ),
-                    );
-                  } else {
-                    logIn = true;
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Login(),
-                      ),
-                    );
-                  }
                 },
               ),
             ],
@@ -246,14 +239,11 @@ class _SingleUserHomePageState extends State<SingleUserHomePage> {
           activeColor: background2,
           iconSize: 24,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           duration: const Duration(milliseconds: 50),
           color: background4,
           tabBackgroundColor: background4,
           tabs: const [
-            GButton(
-              icon: Icons.devices_other,
-              text: 'Device',
-            ),
             GButton(
               icon: Icons.app_registration,
               text: 'App',

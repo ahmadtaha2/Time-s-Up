@@ -1,11 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pro1/Home_Page/apps_config/apps_data/apps_list.dart';
 import 'package:pro1/chart_data.dart';
 import 'package:pro1/Registration/choose_mode.dart';
 import 'package:pro1/Theme/app_themes.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:counter_button/counter_button.dart';
 
-///This file is not ready yet
 class App extends StatefulWidget {
   const App({super.key});
 
@@ -28,8 +30,20 @@ class _AppState extends State<App> {
   int _counterValue = 0;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  final ChartData _chartData = ChartData();
+
+  //AppsListScreen obj = AppsListScreen();
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const AppsListScreen();
+  }
+}
+/*
+Scaffold(
       backgroundColor: background4,
       body: Container(
         height: double.maxFinite,
@@ -45,9 +59,9 @@ class _AppState extends State<App> {
                 heightFactor: 1.2,
                 child: PieChart(
                   dataMap: (userMode.isNotEmpty && userMode == 'family')
-                      ? childDataMap
-                      : dataMap,
-                  colorList: colorList,
+                      ? _chartData.childDataMap
+                      : _chartData.appData,
+                  colorList: _chartData.colorList,
                   chartRadius: MediaQuery.of(context).size.width / 2,
                   chartValuesOptions: ChartValuesOptions(
                     chartValueStyle: TextStyle(
@@ -74,43 +88,29 @@ class _AppState extends State<App> {
               color: fontColor1,
               thickness: 2,
             ),
-            // listView.builder { itemcount + itembuilder( listItem ) }
-            ListTile(
-              title: Text(
-                'View app Statistics',
-                style:
-                    TextStyle(color: fontColor1, fontWeight: FontWeight.w800),
-              ),
-            ),
-            Divider(
-              color: fontColor1,
-              thickness: 2,
-            ),
-            ListTile(
-              title: Text(
-                'View app Statistics',
-                style: TextStyle(
-                  color: fontColor1,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-            Divider(
-              color: fontColor1,
-              thickness: 2,
-            ),
-            ListTile(
-              title: Text(
-                'View app Statistics',
-                style: TextStyle(
-                  color: fontColor1,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-            Divider(
-              color: fontColor1,
-              thickness: 2,
+            // ListTile(
+            //   title: Text(
+            //     'View app List',
+            //     style: TextStyle(
+            //       color: fontColor1,
+            //       fontWeight: FontWeight.w800,
+            //     ),
+            //   ),
+            //   trailing: Icon(
+            //     CupertinoIcons.forward,
+            //     color: fontColor1,
+            //   ),
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute<Object>(
+            //         builder: (BuildContext context) => const AppsListScreen(),
+            //       ),
+            //     );
+            //   },
+            // ),
+            Scaffold(
+              body: AppsListScreen(),
             ),
           ],
         ),
@@ -252,5 +252,4 @@ class _AppState extends State<App> {
         tooltip: 'Add app limit',
       ),
     );
-  }
-}
+ */

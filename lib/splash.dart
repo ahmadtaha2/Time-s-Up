@@ -25,7 +25,7 @@ class _SplashState extends State<Splash> {
       duration,
       () => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const SignUp(),
+          builder: (context) =>  SignUp(),
         ),
       ),
     );
@@ -43,7 +43,7 @@ class _SplashState extends State<Splash> {
             width: double.infinity,
           ),
           splashIconSize: double.infinity,
-          nextScreen: const SignUp(),
+          nextScreen: SignUp(),
         ),
       ),
     );

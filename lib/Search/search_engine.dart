@@ -31,40 +31,40 @@ class SearchEngine extends SearchDelegate {
     );
   }
 
-  /**
-   * TODO: create a list that stores the search suggestions then filter them
-   *
-   * I've create an example below
-   */
-
+  /// TODO: create a list that stores the search suggestions then filter them
+  /// I've create an example below
   /// this list stores the needed input for the search engine
-  List apps = [
+  final List apps_names = [
     'Solo Learn',
-    'WhatsApp',
-    'Spotify',
-    'Netflix',
+    'Messenger',
+    'Instagram',
+    'Youtube',
+    'Udemy',
   ];
 
   @override
   Widget buildSuggestions(BuildContext context) {
+    /// here i will take applications names from the data in apps list
+    ///
+
     /// this is the input filter
-    List filteredInput = apps
+    List filteredInput = apps_names
         .where(
           (element) => element.toString().toLowerCase().contains(query),
         )
         .toList();
     // TODO: this will show the filtered search suggestions
     return ListView.builder(
-      itemCount: query == '' ? apps.length : filteredInput.length,
+      itemCount: query == '' ? apps_names.length : filteredInput.length,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
             title: Text(
-              query == '' ? '${apps[index]}' : '${filteredInput[index]}',
+              query == '' ? apps_names[index] : '${filteredInput[index]}',
             ),
             onTap: () {
-              query = query == '' ? apps[index] : filteredInput[index];
+              query = query == '' ? apps_names[index] : filteredInput[index];
               showResults(context);
             },
           ),

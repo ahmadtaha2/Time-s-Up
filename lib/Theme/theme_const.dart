@@ -41,15 +41,19 @@ ThemeData lightTheme = ThemeData(
   ),
   shadowColor: fontColor3,
   cardTheme: CardTheme(
+    shadowColor: Colors.transparent,
     color: background4,
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    splashColor: Colors.transparent,
     elevation: 0,
   ),
+  splashColor: Colors.transparent,
 );
 
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
+  splashColor: Colors.transparent,
   scaffoldBackgroundColor: background1,
   inputDecorationTheme: InputDecorationTheme(
     labelStyle: TextStyle(
@@ -88,10 +92,12 @@ ThemeData darkTheme = ThemeData(
   ),
   shadowColor: fontColor1,
   cardTheme: CardTheme(
+    shadowColor: Colors.transparent,
     color: background3,
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     elevation: 0,
+    splashColor: Colors.transparent,
   ),
 );
 

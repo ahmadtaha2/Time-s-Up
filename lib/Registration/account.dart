@@ -55,7 +55,7 @@ class _AccountState extends State<Account> {
         } else if (e.code == 'email-already-in-use') {
           AwesomeDialog(
                   context: context,
-                  title: "Erorr",
+                  title: "Error",
                   body:
                       const Text("The account already exists for that email."))
               .show();

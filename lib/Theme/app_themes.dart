@@ -29,6 +29,7 @@ Color shadowColor1 = Colors.white10;
 Color fillColor1 = const Color.fromRGBO(22, 29, 48, 0.66);
 
 class Themes {
+  Color shadowColor2 = Colors.white10;
   InputDecoration textFormFieldDecoration(String label) {
     return InputDecoration(
       labelText: label,
