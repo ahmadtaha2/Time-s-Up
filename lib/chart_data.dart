@@ -17,48 +17,6 @@ Note: TODO
  */
 
 class ChartData {
-  ///single user data
-  // List<AppUsageInfo>? rawData = chartData;
-  //
-  // ///here i will extract the top 5 apps from the list
-  // List<int> topFiveAppsUsagesList = [];
-  // List<int> appsUsagesList = [];
-  // List<String> topFiveAppsNamesList = [];
-  //
-  // ///List<String> appsNamesList = [];
-  // void topFiveAppsFilter() {
-  //   for (int i = 0; i < topFiveAppsUsagesList.length; i++) {
-  //     if (topFiveAppsUsagesList[i] == rawData![i].usage.inSeconds) {
-  //       topFiveAppsNamesList[i] = rawData![i].appName;
-  //     }
-  //   for (int i = 0; i < rawData!.length; i++) {
-  //     appsUsagesList[i] = rawData![i].usage.inSeconds;
-  //   }
-  //   appsUsagesList.sort((a, b) => b - a);
-  //   topFiveAppsUsagesList = appsUsagesList..take(5);
-  //   }
-  // }
-  //
-  // List<int> calculateUsageSummary(List<int> raw) {
-  //   for (int i = 0; i < raw.length; i++) {
-  //     raw[i] = (raw[i] * 60 * 60 / 18 * 100).toInt();
-  //   }
-  //   return raw;
-  // }
-  //
-  // Map<String, double> getAppChartData() {
-  //   topFiveAppsUsagesList = calculateUsageSummary(topFiveAppsUsagesList);
-  //   Map<String, double> data = {
-  //     topFiveAppsNamesList[0]: topFiveAppsUsagesList[0].toDouble(),
-  //     topFiveAppsNamesList[1]: topFiveAppsUsagesList[1].toDouble(),
-  //     topFiveAppsNamesList[2]: topFiveAppsUsagesList[2].toDouble(),
-  //     topFiveAppsNamesList[3]: topFiveAppsUsagesList[3].toDouble(),
-  //     topFiveAppsNamesList[4]: topFiveAppsUsagesList[4].toDouble(),
-  //     'others': 60,
-  //   };
-  //   return data;
-  // }
-
   Map<String, double> appData = {
     'top1': 10,
     'top2': 10,
@@ -99,3 +57,45 @@ class ChartData {
     const Color.fromRGBO(20, 110, 28, 1),
   ];
 }
+
+///single user data
+// List<AppUsageInfo>? rawData = chartData;
+//
+// ///here i will extract the top 5 apps from the list
+// List<int> topFiveAppsUsagesList = [];
+// List<int> appsUsagesList = [];
+// List<String> topFiveAppsNamesList = [];
+//
+// ///List<String> appsNamesList = [];
+// void topFiveAppsFilter() {
+//   for (int i = 0; i < topFiveAppsUsagesList.length; i++) {
+//     if (topFiveAppsUsagesList[i] == rawData![i].usage.inSeconds) {
+//       topFiveAppsNamesList[i] = rawData![i].appName;
+//     }
+//   for (int i = 0; i < rawData!.length; i++) {
+//     appsUsagesList[i] = rawData![i].usage.inSeconds;
+//   }
+//   appsUsagesList.sort((a, b) => b - a);
+//   topFiveAppsUsagesList = appsUsagesList..take(5);
+//   }
+// }
+//
+// List<int> calculateUsageSummary(List<int> raw) {
+//   for (int i = 0; i < raw.length; i++) {
+//     raw[i] = (raw[i] * 60 * 60 / 18 * 100).toInt();
+//   }
+//   return raw;
+// }
+//
+// Map<String, double> getAppChartData() {
+//   topFiveAppsUsagesList = calculateUsageSummary(topFiveAppsUsagesList);
+//   Map<String, double> data = {
+//     topFiveAppsNamesList[0]: topFiveAppsUsagesList[0].toDouble(),
+//     topFiveAppsNamesList[1]: topFiveAppsUsagesList[1].toDouble(),
+//     topFiveAppsNamesList[2]: topFiveAppsUsagesList[2].toDouble(),
+//     topFiveAppsNamesList[3]: topFiveAppsUsagesList[3].toDouble(),
+//     topFiveAppsNamesList[4]: topFiveAppsUsagesList[4].toDouble(),
+//     'others': 60,
+//   };
+//   return data;
+// }

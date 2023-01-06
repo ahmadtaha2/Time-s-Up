@@ -62,6 +62,8 @@ dependencies:
   device_apps: ^2.2.0
   percent_indicator: ^4.2.2
   app_usage: ^2.1.1
+  flutter_screen_lock: ^9.0.0+1
+  flutter_lock_screen: ^2.0.1
 
 dev_dependencies:
   flutter_test:

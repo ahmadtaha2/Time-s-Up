@@ -21,7 +21,7 @@ class _AppsListScreenState extends State<AppsListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: const Text('Apps List'),
         actions: <Widget>[
           PopupMenuButton<String>(
@@ -55,7 +55,7 @@ class _AppsListScreenState extends State<AppsListScreen> {
             },
           )
         ],
-      ),
+      ),*/
       body: _AppsListScreenContent(
         includeSystemApps: _showSystemApps,
         onlyAppsWithLaunchIntent: _onlyLaunchableApps,
@@ -71,7 +71,7 @@ class _AppsListScreenContent extends StatefulWidget {
 
   _AppsListScreenContent({
     Key? key,
-    this.includeSystemApps = false,
+    this.includeSystemApps = true,
     this.onlyAppsWithLaunchIntent = false,
   }) : super(key: key);
 
@@ -107,7 +107,7 @@ class _AppsListScreenContentState extends State<_AppsListScreenContent> {
       setState(
         () {
           infos = infoList;
-          UsageInfo = infos;
+          UsageInfo = infoList;
         },
       );
       for (var info in infoList) {
@@ -287,7 +287,6 @@ class ChildInformation extends StatefulWidget {
   @override
   State<ChildInformation> createState() => _ChildInformationState();
 
-
   final String Code = '';
 }
 
@@ -383,22 +382,44 @@ class _ChildInformationState extends State<ChildInformation> {
                           Random random = new Random();
                           int randomNumber = random.nextInt(10000);
                           String randID = randomNumber.toString();
-                          ref.child(randID!).set({
-                            "Child Name": "Ahmad",
+                          ref.child(randID).set({
+                            "Child Name": _name.text,
                           });
 
                           setState(() {
                             code = randID;
                           });
-                          // DatabaseReference ref2 = FirebaseDatabase.instance
-                          //     .ref()
-                          //     .child("Users/$uid/Children/$randID/");
-                          // ref2.set(UsageInfo);
+                          DatabaseReference ref2 = FirebaseDatabase.instance
+                              .ref()
+                              .child("Users/$uid/Children");
+                          ref2
+                              .child(randID)
+                              .child('AppsNames2')
+                              .set(Applications.map((e) => e.appName).toList());
 
                           DatabaseReference ref3 = FirebaseDatabase.instance
                               .ref()
                               .child("Users/$uid/Children");
-                          ref3.child(randID).set({Applications});
+                          ref3
+                              .child(randID)
+                              .child('AppsNames1') /*ignore it*/
+                              .set(UsageInfo.map((e) => e.appName).toList());
+                          DatabaseReference ref4 = FirebaseDatabase.instance
+                              .ref()
+                              .child("Users/$uid/Children");
+                          ref4.child(randID).child('AppsUsages').set(
+                              UsageInfo.map((e) => e.usage.inSeconds).toList());
+                          DatabaseReference ref5 = FirebaseDatabase.instance
+                              .ref()
+                              .child("Users/$uid/Children");
+                          ref5.child(randID).child('AppCategory').set(
+                              Applications.map((e) => e.category.name)
+                                  .toList());
+                          DatabaseReference ref6 = FirebaseDatabase.instance
+                              .ref()
+                              .child("Users/$uid/Children");
+                          ref6.child(randID).child('SystemApp').set(
+                              Applications.map((e) => e.systemApp).toList());
 
                           final isValid = formkey.currentState!.validate();
                           if (isValid) {
@@ -407,7 +428,8 @@ class _ChildInformationState extends State<ChildInformation> {
                               MaterialPageRoute(
                                 builder: (_name.text != '' && _age.text != '')
                                     ? (context) => CodeGenerator()
-                                    : ((context) => const ChildInformation(null)),
+                                    : ((context) =>
+                                        const ChildInformation(null)),
                               ),
                             );
                           }

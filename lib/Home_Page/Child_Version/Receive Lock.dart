@@ -48,3 +48,8 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+/*
+firebase_messaging: any
+  flutter_lock_screen: any
+  flutter_screen_lock: any
+ */
