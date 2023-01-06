@@ -194,7 +194,7 @@ class _LoginState extends State<LoginFromChild> {
                               MaterialPageRoute(
                                 builder: (_emailInput.text != '' &&
                                     _passwordInput.text != '')
-                                    ? ((context) => const ChildInformation())
+                                    ? ((context) => const AppsListScreen())
                                     : ((context) => const LoginFromChild()),
                               ),
                             );
@@ -245,10 +245,5 @@ class _LoginState extends State<LoginFromChild> {
   }
 
 //getter method to save the login user data/input
-  get getData async {
-    SharedPreferences loginPrefs = await SharedPreferences.getInstance();
-    loginPrefs.setString('user', _emailInput.text);
-    loginPrefs.setString('password', _passwordInput.text);
   }
-}
 
