@@ -64,6 +64,7 @@ dependencies:
   app_usage: ^2.1.1
   flutter_screen_lock: ^9.0.0+1
   flutter_lock_screen: ^2.0.1
+  device_info_plus: ^8.0.0
 
 dev_dependencies:
   flutter_test:

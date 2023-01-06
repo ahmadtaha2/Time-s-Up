@@ -24,41 +24,6 @@ class _AppsListScreenState extends State<AppsListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*appBar: AppBar(
-        title: const Text('Apps List'),
-        actions: <Widget>[
-          PopupMenuButton<String>(
-            itemBuilder: (BuildContext context) {
-              return <PopupMenuItem<String>>[
-                const PopupMenuItem<String>(
-                  value: 'system_apps',
-                  child: Text('Toggle system apps'),
-                ),
-                const PopupMenuItem<String>(
-                  value: 'launchable_apps',
-                  child: Text('Toggle launchable apps only'),
-                )
-              ];
-            },
-            onSelected: (String key) {
-              if (key == 'system_apps') {
-                setState(
-                  () {
-                    _showSystemApps = !_showSystemApps;
-                  },
-                );
-              }
-              if (key == 'launchable_apps') {
-                setState(
-                  () {
-                    _onlyLaunchableApps = !_onlyLaunchableApps;
-                  },
-                );
-              }
-            },
-          )
-        ],
-      ),*/
       body: _AppsListScreenContent(
         includeSystemApps: _showSystemApps,
         onlyAppsWithLaunchIntent: _onlyLaunchableApps,
@@ -161,125 +126,7 @@ class _AppsListScreenContentState extends State<_AppsListScreenContent> {
       },
     );
   }
-  /*
-  setState(() {
-            Applications = apps;
-          });
-   */
-
-/*
-Scrollbar(/*UI part*/
-            child: ListView.builder(
-                itemBuilder: (BuildContext context, int position) {
-                  Application app = apps[position];
-                  return Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: app is ApplicationWithIcon
-                            ? CircleAvatar(
-                                backgroundImage: MemoryImage(app.icon),
-                                backgroundColor: Colors.transparent,
-                              )
-                            : null,
-                        onTap: () => onAppClicked(context, app),
-                        title: Text(app.appName),
-                        subtitle: position >= infos.length
-                            ? null
-                            : LinearPercentIndicator(
-                                width: 140.0,
-                                lineHeight: 20.0,
-                                percent: position >= infos.length
-                                    ? 0.0
-                                    : infos[position].appName.toLowerCase() ==
-                                            app.appName
-                                        ? calulateTimeConsumedPercentage(
-                                            infos[position].usage.inSeconds,
-                                          )
-                                        : 0.0,
-                                center: Text(
-                                  position >= infos.length &&
-                                          infos[position].toString().isEmpty
-                                      ? ""
-                                      : "${(calulateTimeConsumedPercentage(infos[position].usage.inSeconds) * 100).toInt()}%",
-                                  style: TextStyle(
-                                    fontSize: 15.0,
-                                    color: fontColor3,
-                                  ),
-                                ),
-                                barRadius: const Radius.circular(25),
-                                backgroundColor: Colors.grey,
-                                progressColor: Colors.blue,
-                                animation: true,
-                                animationDuration: 1000,
-                              ),
-                        trailing: position >= infos.length
-                            ? null
-                            : Text(
-                                position >= infos.length
-                                    ? ' '
-                                    : timeSet(
-                                        infos[position].usage.inHours,
-                                        infos[position].usage.inMinutes,
-                                        infos[position].usage.inSeconds,
-                                        UsageInfo = infos,
-                                      ),
-                              ),
-                      ),
-                      const Divider(
-                        thickness: 2.0,
-                        indent: 10,
-                        endIndent: 10,
-                      )
-                    ],
-                  );
-                },
-                itemCount: apps.length),
-          )
- */
-  /*UI part*/
-  // void onAppClicked(BuildContext context, Application app) {
-  //   showDialog(
-  //       context: context,
-  //       builder: (BuildContext context) {
-  //         return AlertDialog(
-  //           title: Text(app.appName),
-  //           actions: <Widget>[
-  //             _AppButtonAction(
-  //               label: 'Open app',
-  //               onPressed: () => app.openApp(),
-  //             ),
-  //             _AppButtonAction(
-  //               label: 'Open app settings',
-  //               onPressed: () => app.openSettingsScreen(),
-  //             ),
-  //             _AppButtonAction(
-  //               label: 'Uninstall app',
-  //               onPressed: () async => app.uninstallApp(),
-  //             ),
-  //           ],
-  //         );
-  //       });
-  // }
 }
-
-/*UI part*/
-// class _AppButtonAction extends StatelessWidget {
-//   final String label;
-//   final VoidCallback? onPressed;
-//
-//   const _AppButtonAction({required this.label, this.onPressed});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextButton(
-//       onPressed: () {
-//         onPressed?.call();
-//         Navigator.of(context).maybePop();
-//       },
-//       child: Text(label),
-//     );
-//   }
-// }
 
 class ChildInformation extends StatefulWidget {
   final List<Application>? appsSata;
@@ -379,7 +226,14 @@ class _ChildInformationState extends State<ChildInformation> {
                           final uid = user?.uid;
 
                           var Model = await deviceInfoPlugin.androidInfo;
+                          var ModelIOS = await deviceInfoPlugin.iosInfo;
                           var brand = Model.brand;
+                          var physical = Model.isPhysicalDevice;
+                          var hardware = Model.hardware;
+                          var model = Model.model;
+                          var features = Model.systemFeatures;
+                          var type = Model.type;
+                          var androidV = Model.version;
 
                           FirebaseDatabase database = FirebaseDatabase.instance;
                           DatabaseReference ref = FirebaseDatabase.instance
@@ -396,42 +250,50 @@ class _ChildInformationState extends State<ChildInformation> {
                           setState(() {
                             code = randID;
                           });
+
                           DatabaseReference ref2 = FirebaseDatabase.instance
                               .ref()
                               .child("Users/$uid/Children");
                           ref2
                               .child(randID)
-                              .child('AppsNames2')
-                              .set(Applications.map((e) => e.appName).toList());
+                              .child('Brand')
+                              .set({'brand': brand});
 
-                          DatabaseReference ref4 = FirebaseDatabase.instance
+                          DatabaseReference ref6 = FirebaseDatabase.instance
                               .ref()
                               .child("Users/$uid/Children");
-                          ref4.child("$randID/Brand").set({brand});
+                          ref6
+                              .child(randID)
+                              .child('AndroidVersion')
+                              .set({'android': androidV.release});
+
+                          DatabaseReference ref7 = FirebaseDatabase.instance
+                              .ref()
+                              .child("Users/$uid/Children");
+                          ref7
+                              .child(randID)
+                              .child('Model')
+                              .set({'model': model});
 
                           DatabaseReference ref3 = FirebaseDatabase.instance
                               .ref()
                               .child("Users/$uid/Children");
                           ref3
                               .child(randID)
-                              .child('AppsNames1') /*ignore it*/
-                              .set(UsageInfo.map((e) => e.appName).toList());
+                              .child('Apps Names')
+                              .set(Applications.map((e) => e.appName).toList());
+
                           DatabaseReference ref4 = FirebaseDatabase.instance
                               .ref()
                               .child("Users/$uid/Children");
-                          ref4.child(randID).child('AppsUsages').set(
-                              UsageInfo.map((e) => e.usage.inSeconds).toList());
+                          ref4.child(randID).child('System App').set(
+                              Applications.map((e) => e.systemApp).toList());
+
                           DatabaseReference ref5 = FirebaseDatabase.instance
                               .ref()
                               .child("Users/$uid/Children");
-                          ref5.child(randID).child('AppCategory').set(
-                              Applications.map((e) => e.category.name)
-                                  .toList());
-                          DatabaseReference ref6 = FirebaseDatabase.instance
-                              .ref()
-                              .child("Users/$uid/Children");
-                          ref6.child(randID).child('SystemApp').set(
-                              Applications.map((e) => e.systemApp).toList());
+                          ref5.child(randID).child('Apps Usages').set(
+                              UsageInfo.map((e) => e.usage.inSeconds).toList());
 
                           final isValid = formkey.currentState!.validate();
                           if (isValid) {
@@ -459,3 +321,155 @@ class _ChildInformationState extends State<ChildInformation> {
     );
   }
 }
+/*appBar: AppBar(
+        title: const Text('Apps List'),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            itemBuilder: (BuildContext context) {
+              return <PopupMenuItem<String>>[
+                const PopupMenuItem<String>(
+                  value: 'system_apps',
+                  child: Text('Toggle system apps'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'launchable_apps',
+                  child: Text('Toggle launchable apps only'),
+                )
+              ];
+            },
+            onSelected: (String key) {
+              if (key == 'system_apps') {
+                setState(
+                  () {
+                    _showSystemApps = !_showSystemApps;
+                  },
+                );
+              }
+              if (key == 'launchable_apps') {
+                setState(
+                  () {
+                    _onlyLaunchableApps = !_onlyLaunchableApps;
+                  },
+                );
+              }
+            },
+          )
+        ],
+      ),*/
+/*
+  setState(() {
+            Applications = apps;
+          });
+   */
+
+/*
+Scrollbar(/*UI part*/
+            child: ListView.builder(
+                itemBuilder: (BuildContext context, int position) {
+                  Application app = apps[position];
+                  return Column(
+                    children: <Widget>[
+                      ListTile(
+                        leading: app is ApplicationWithIcon
+                            ? CircleAvatar(
+                                backgroundImage: MemoryImage(app.icon),
+                                backgroundColor: Colors.transparent,
+                              )
+                            : null,
+                        onTap: () => onAppClicked(context, app),
+                        title: Text(app.appName),
+                        subtitle: position >= infos.length
+                            ? null
+                            : LinearPercentIndicator(
+                                width: 140.0,
+                                lineHeight: 20.0,
+                                percent: position >= infos.length
+                                    ? 0.0
+                                    : infos[position].appName.toLowerCase() ==
+                                            app.appName
+                                        ? calulateTimeConsumedPercentage(
+                                            infos[position].usage.inSeconds,
+                                          )
+                                        : 0.0,
+                                center: Text(
+                                  position >= infos.length &&
+                                          infos[position].toString().isEmpty
+                                      ? ""
+                                      : "${(calulateTimeConsumedPercentage(infos[position].usage.inSeconds) * 100).toInt()}%",
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: fontColor3,
+                                  ),
+                                ),
+                                barRadius: const Radius.circular(25),
+                                backgroundColor: Colors.grey,
+                                progressColor: Colors.blue,
+                                animation: true,
+                                animationDuration: 1000,
+                              ),
+                        trailing: position >= infos.length
+                            ? null
+                            : Text(
+                                position >= infos.length
+                                    ? ' '
+                                    : timeSet(
+                                        infos[position].usage.inHours,
+                                        infos[position].usage.inMinutes,
+                                        infos[position].usage.inSeconds,
+                                        UsageInfo = infos,
+                                      ),
+                              ),
+                      ),
+                      const Divider(
+                        thickness: 2.0,
+                        indent: 10,
+                        endIndent: 10,
+                      )
+                    ],
+                  );
+                },
+                itemCount: apps.length),
+          )
+ */
+/*UI part*/
+// void onAppClicked(BuildContext context, Application app) {
+//   showDialog(
+//       context: context,
+//       builder: (BuildContext context) {
+//         return AlertDialog(
+//           title: Text(app.appName),
+//           actions: <Widget>[
+//             _AppButtonAction(
+//               label: 'Open app',
+//               onPressed: () => app.openApp(),
+//             ),
+//             _AppButtonAction(
+//               label: 'Open app settings',
+//               onPressed: () => app.openSettingsScreen(),
+//             ),
+//             _AppButtonAction(
+//               label: 'Uninstall app',
+//               onPressed: () async => app.uninstallApp(),
+//             ),
+//           ],
+//         );
+//       });
+// }
+/*UI part*/
+// class _AppButtonAction extends StatelessWidget {
+//   final String label;
+//   final VoidCallback? onPressed;
+//
+//   const _AppButtonAction({required this.label, this.onPressed});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextButton(
+//       onPressed: () {
+//         onPressed?.call();
+//         Navigator.of(context).maybePop();
+//       },
+//       child: Text(label),
+//     );
+//   }
+// }
