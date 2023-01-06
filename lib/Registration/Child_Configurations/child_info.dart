@@ -6,6 +6,9 @@ import 'package:pro1/Home_Page/Child_Version/Child_Widgets/Code_Config/code_gene
 import 'package:pro1/Theme//app_themes.dart';
 import 'package:device_apps/device_apps.dart';
 import 'package:app_usage/app_usage.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+
+final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
 
 class AppsListScreen extends StatefulWidget {
   const AppsListScreen({super.key});
@@ -374,6 +377,10 @@ class _ChildInformationState extends State<ChildInformation> {
                           final FirebaseAuth auth = FirebaseAuth.instance;
                           final User? user = auth.currentUser;
                           final uid = user?.uid;
+
+                          var Model = await deviceInfoPlugin.androidInfo;
+                          var brand = Model.brand;
+
                           FirebaseDatabase database = FirebaseDatabase.instance;
                           DatabaseReference ref = FirebaseDatabase.instance
                               .ref()
@@ -396,6 +403,11 @@ class _ChildInformationState extends State<ChildInformation> {
                               .child(randID)
                               .child('AppsNames2')
                               .set(Applications.map((e) => e.appName).toList());
+
+                          DatabaseReference ref4 = FirebaseDatabase.instance
+                              .ref()
+                              .child("Users/$uid/Children");
+                          ref4.child("$randID/Brand").set({brand});
 
                           DatabaseReference ref3 = FirebaseDatabase.instance
                               .ref()
