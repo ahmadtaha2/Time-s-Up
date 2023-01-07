@@ -7,7 +7,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import '../Home_Page/Parent_Version/parent_home.dart';
 import '../Home_Page/Single_User_Version/single_user_home.dart';
 

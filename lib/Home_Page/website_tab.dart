@@ -165,7 +165,7 @@ class _WebsiteState extends State<Website> {
                 heightFactor: 1.2,
                 child: PieChart(
                   dataMap: (userMode.isNotEmpty && userMode == 'family')
-                      ? _chartData.childDataMap
+                      ? _chartData.childWebData
                       : _chartData.websitesDataMap,
                   colorList: _chartData.colorList,
                   chartRadius: MediaQuery.of(context).size.width / 2,

@@ -1,22 +1,27 @@
+import 'package:app_usage/app_usage.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
+
+import 'package:pro1/Home_Page/apps_config/apps_data/apps_list.dart';
+
 
 /*
 Note: TODO
     To represent user statistics through the chart we need 6 charts to represent data:
   A- child: (do it with ahmad)
-    1. device chart
     2. apps chart
-    3. websites chart
   B- single user:
-    1. device
     2. apps
-    3. websites
 
     So make sure you create the needed data maps and add dynamic functionality for updating the content of each map
  */
 
 class ChartData {
+  // List<int> durationInSecondsFilter() {
+  //   List<int> rawData = rawData.map((e) => e.usage.inSeconds).toList();
+  //   return rawData;
+  //}
+  //List<int> duration = rawData!.map((e) => e.usage.inSeconds).toList();
   Map<String, double> appData = {
     'top1': 10,
     'top2': 10,
@@ -42,7 +47,7 @@ class ChartData {
     'others': 70,
   };
 
-  Map<String, double> childDataMap = {
+  Map<String, double> childWebData = {
     'Youtube': 5,
     'E-Learning': 35,
     'SoloLearn': 20,

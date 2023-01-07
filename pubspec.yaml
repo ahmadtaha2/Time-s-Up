@@ -65,6 +65,9 @@ dependencies:
   flutter_screen_lock: ^9.0.0+1
   flutter_lock_screen: ^2.0.1
   device_info_plus: ^8.0.0
+  cloud_firestore: ^4.3.1
+  printing: ^5.9.3
+  pdf: ^3.8.4
 
 dev_dependencies:
   flutter_test:
