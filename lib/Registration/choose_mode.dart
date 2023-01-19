@@ -3,7 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:pro1/Home_Page/Parent_Version/parent_home.dart';
 import 'package:pro1/Home_Page/Single_User_Version/single_user_home.dart';
-import 'package:pro1/Registration/child_registration_code.dart';
+import 'package:pro1/Registration/login.dart';
 import 'package:pro1/Theme/app_themes.dart';
 
 class ChooseMode extends StatefulWidget {
@@ -68,7 +68,7 @@ class _ChooseModeState extends State<ChooseMode> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const ParentHomePage(),
+                                  const Login(),
                             ),
                           );
                         },
@@ -101,7 +101,7 @@ class _ChooseModeState extends State<ChooseMode> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const SingleUserHomePage(),
+                              builder: (context) => const Login(),
                             ),
                           );
                         },

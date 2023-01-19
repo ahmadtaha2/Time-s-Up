@@ -40,7 +40,7 @@ class _DeviceState extends State<Device> {
     // data.forEach((key, value) async {});
     fb_db.Query ref2 = fb_db.FirebaseDatabase.instance
         .ref()
-        .child("Users/$uid/Children/${id.text.isNotEmpty ? id.text : '4457'}");
+        .child("Users/$uid/Children/${id.text.isNotEmpty ? id.text : '6956'}");
     fb_db.DataSnapshot e = await ref2.get();
     data = e.value as Map<dynamic, dynamic>;
     appsData = data;
